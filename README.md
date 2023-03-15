@@ -17,5 +17,6 @@ confirmación de pago.
   
   ## Participantes del grupo
   ° Andrade Cristian
+  
   ° Moreno Franco
   
