@@ -14,3 +14,8 @@ confirmación de pago.
 ## Público objetivo
   El Buen Sabor está abierto para todos los públicos siempre y cuando sean mayores de 16 años.
   
+  
+  ## Participantes del grupo
+  ° Andrade Cristian
+  ° Moreno Franco
+  
