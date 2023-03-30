@@ -21,4 +21,6 @@ confirmación de pago.
   - Andrade, Cristian Adrián
   
   - Moreno, Franco Iván
-  
+
+## Maquetado
+  Todo nuestro maquetado fue realizado en el sitio web Figma. Click [aquí](https://www.figma.com/file/OzT2PpGUtaMjaLf7ZOQtxa/El-Buen-Sabor?node-id=20%3A659&t=DVCg058lPWQwdfK8-1) para ver el proyecto. Haga zoom en la página/maqueta que desee ver con detenimiento.
