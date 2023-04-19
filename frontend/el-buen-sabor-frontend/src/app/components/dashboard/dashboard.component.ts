@@ -9,7 +9,12 @@ import { AuthService } from '@auth0/auth0-angular';
 export class DashboardComponent implements OnInit {
   constructor(public auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.auth.user$.subscribe((user) => {
+      
+      console.log('User roles:', user?.['user_rol']);
+    });
+  }
 
   logOut() {
     this.auth.logout();
