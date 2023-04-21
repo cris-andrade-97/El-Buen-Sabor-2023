@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { Auth0Client } from '@auth0/auth0-spa-js';
 
 @Component({
   selector: 'app-inicio',
@@ -10,13 +11,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class InicioComponent implements OnInit {
   constructor(public auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
-      if (isAuthenticated) {
-        this.router.navigate(['dashboard']);
-      }
-    });
-  }
+  ngOnInit(): void {}
 
   login() {
     this.auth.loginWithRedirect();

@@ -8,9 +8,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, InicioComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    InicioComponent,
+    DashboardComponent,
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
