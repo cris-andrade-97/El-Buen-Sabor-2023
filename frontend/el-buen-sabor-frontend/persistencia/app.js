@@ -1,19 +1,16 @@
 const express = require("express")
-const filesync = require("fs")
 const app = express();
 app.use(express.json())
 
-app.get("/ingredientes-no-vendibles", (req,res)=>{
+app.use("/api/rubro-ingrediente-vendible", require("./rubro-ingrediente/rubro-ingrediente-vendible"))
+app.use("/api/rubro-ingrediente-no-vendible", require("./rubro-ingrediente/rubro-ingrediente-no-vendible"))
+/*app.get("/ingredientes-no-vendibles", (req,res)=>{
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
     res.send(jsonData["Ingredientes_No_Vendibles"])
 })
 
-app.get("/ingredientes-vendibles", (req,res)=>{
-    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
-    const jsonData = JSON.parse(data);
-    res.send(jsonData["Ingredientes_Vendibles"])
-})
+
 
 app.get("/articulos-manufacturados", (req,res)=>{
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json");
@@ -33,17 +30,7 @@ app.put("/modificar-ingredientes-no-vendibles", (req,res)=>{
     res.send('JSON file updated successfully');
 })
 
-app.put("/modificar-ingredientes-vendibles", (req,res)=>{
-    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
-    const jsonData = JSON.parse(data);
 
-    jsonData["Ingredientes_Vendibles"][req.body.id].nombre = req.body.nombre
-    jsonData["Ingredientes_Vendibles"][req.body.id].estado = req.body.estado   
-
-    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
-
-    res.send('JSON file updated successfully');
-})
 
 app.put("/modificar-articulos-manufacturados", (req,res)=>{
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
@@ -56,7 +43,7 @@ app.put("/modificar-articulos-manufacturados", (req,res)=>{
 
     res.send('JSON file updated successfully');
 })
-
+*/
 /*app.delete("/borrar-articulos-manufacturados", (req,res)=>{
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
