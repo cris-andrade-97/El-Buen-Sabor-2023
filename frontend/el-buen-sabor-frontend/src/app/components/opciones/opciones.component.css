@@ -1,0 +1,273 @@
+.opciones,
+.opciones * {
+  box-sizing: border-box;
+}
+.opciones {
+  background: #ffffff;
+  padding: 0px 80px 0px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 1440px;
+  height: 1870px;
+  position: relative;
+}
+.frame-31 {
+  background: #f4f4f4;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-20 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.el-buen-sabor-1 {
+  border-radius: 100px;
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.frame-19 {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-18 {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-13 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.my-account {
+  color: #1f2937;
+  text-align: right;
+  font: 400 16px/16px "Work Sans", sans-serif;
+  position: relative;
+}
+.frame-16 {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-11 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.bag {
+  color: #1f2937;
+  text-align: right;
+  font: 400 16px/16px "Work Sans", sans-serif;
+  position: relative;
+}
+.line {
+  border-style: solid;
+  border-color: #2f6ce6;
+  border-width: 1px 0 0 0;
+  flex-shrink: 0;
+  width: 100px;
+  height: 0px;
+  position: relative;
+}
+.luxe {
+  color: #1f2937;
+  text-align: center;
+  font: 700 48px/50px "Playfair Display", sans-serif;
+  position: relative;
+  align-self: stretch;
+}
+.frame-35 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.dise-o-sin-t-tulo-2-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.frame-27 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.dise-o-sin-t-tulo-5-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.dise-o-sin-t-tulo-6-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.dise-o-sin-t-tulo-4-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.dise-o-sin-t-tulo-3-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.frame-32 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.stock-de-insumos-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.dise-o-sin-t-tulo-7-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.frame-33 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.dise-o-sin-t-tulo-1-2 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.dise-o-sin-t-tulo-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.frame-34 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.stock-de-insumos-1-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.stock-de-insumos-2-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.stock-de-insumos-3-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}

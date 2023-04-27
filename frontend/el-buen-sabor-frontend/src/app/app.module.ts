@@ -9,6 +9,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { OpcionesComponent } from './components/opciones/opciones.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { GrillaRubroIngredientesComponent } from './components/rubros/grilla-rubro-ingredientes/grilla-rubro-ingredientes.component';
+import { GrillaRubroProductosComponent } from './components/rubros/grilla-rubro-productos/grilla-rubro-productos.component';
+import { FormularioRubroProductosComponent } from './components/rubros/formulario-rubro-productos/formulario-rubro-productos.component';
+import { FormularioRubroIngredientesComponent } from './components/rubros/formulario-rubro-ingredientes/formulario-rubro-ingredientes.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +22,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     InicioComponent,
     DashboardComponent,
     NavbarComponent,
+    OpcionesComponent,
+    FooterComponent,
+    GrillaRubroIngredientesComponent,
+    GrillaRubroProductosComponent,
+    FormularioRubroProductosComponent,
+    FormularioRubroIngredientesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,16 @@
-<div class="px-4 py-5 my-5 text-center">
-    <section *ngIf="auth.user$ | async as user" class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <img [src]="user.picture" alt="" height="80px" class="bd-placeholder-img rounded-circle">
-                <p><b>Nombre:</b> {{user.given_name}}</p>
-                <p><b>Apellido:</b> {{user.family_name}}</p>
-                <p><b>Email:</b> {{user.email}}</p>
-                <p><b>User_id:</b> {{user.sub}}</p>
-                <!-- <p class="lead text-muted">{{user | json}}</p> -->
+<div class="container">
+    <div class="px-4 py-5 my-5 text-center">
+        <section *ngIf="auth.user$ | async as user" class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <img [src]="user.picture" alt="" height="80px" class="bd-placeholder-img rounded-circle">
+                    <p><b>Nombre:</b> {{user.given_name}}</p>
+                    <p><b>Apellido:</b> {{user.family_name}}</p>
+                    <p><b>Email:</b> {{user.email}}</p>
+                    <p><b>User_id:</b> {{user.sub}}</p>
+                    <!-- <p class="lead text-muted">{{user | json}}</p> -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </div>
