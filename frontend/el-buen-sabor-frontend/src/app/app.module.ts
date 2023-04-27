@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -30,14 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     GrillaRubroProductosComponent,
     FormularioRubroProductosComponent,
     FormularioRubroIngredientesComponent,
-    
   ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     // Import the module into the application, with configuration
@@ -48,7 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
         redirect_uri: window.location.origin,
       },
     }),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

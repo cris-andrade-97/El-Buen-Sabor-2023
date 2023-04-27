@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import RubroIngredientesJSON from '../grilla-rubro-ingredientes/RubroIngredientes.json'
 
@@ -13,15 +13,15 @@ import RubroIngredientesJSON from '../grilla-rubro-ingredientes/RubroIngrediente
 })
 export class FormularioRubroIngredientesComponent implements OnInit {
 
-  rubro!:FormGroup;  
+  rubro!:UntypedFormGroup;  
   esNuevo: boolean = false;
   rubroIngrediente!: any;
-  nombre = new FormControl("")
+  nombre = new UntypedFormControl("")
   estado: boolean = false;
 
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,private fb: UntypedFormBuilder) { }
 
   ngOnInit(): void {  
     
