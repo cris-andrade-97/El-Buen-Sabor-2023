@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
     <br>
     <div class="frame-2014">
         <div class="frame-2013">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <a href="/formulario-rubro-ingredientes">
+        <a href="/formulario-rubro-ingredientes/nuevoRubro">
             <div class="frame-1894">
                 <div class="frame-2280">
                     <div class="new-report">Agregar Rubro Ingrediente</div>
@@ -34,166 +34,41 @@
         </a>
     </div>
 
+
+    <br>
+    <br>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre Rubro</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rubro of ingredientesNoVendibles">
+                <td>
+                    {{rubro.nombre}}
+                </td>
+                <td *ngIf="rubro.estado == true;">
+                    <p>&#9989;</p>
+                </td>
+                <td *ngIf="rubro.estado == false;">
+                    <p>&#10060;</p>
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning" [routerLink]="['/formulario-rubro-ingredientes',rubro.id]">
+                        Modificar Rubro
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger">
+                        Eliminar Rubro
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-<br>
-<br>
-<br> -->
-<!-- <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Nombre Rubro</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Modificar</th>
-            <th scope="col">Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let rubro of ingredientesNoVendibles">
-            <td>
-                {{rubro.nombre}}
-            </td>
-            <td *ngIf="rubro.estado == true;">
-                <p>&#9989;</p>
-            </td>
-            <td *ngIf="rubro.estado == false;">
-                <p>&#10060;</p>
-            </td>
-            <td>
-                <a class="btn btn-outline-warning" [routerLink]="['/formulario-rubro-ingredientes',rubro.id]">
-                    Modificar Rubro
-                </a>
-            </td>
-            <td>
-                <button class="btn btn-outline-danger">
-                    Eliminar Rubro
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table> -->
-
-
-<!--<div class="table">
-        <div class="column">
-            <div class="row">
-                <div class="developers">Nombre Rubro</div>
-            </div>
-
-            <div class="frame-1868">
-                <div class="frame-1897">
-                    <div class="jaydon-herwitz">Rubro xx</div>
-                </div>
-            </div>
-
-            <div class="frame-1869">
-                <div class="frame-18972">
-                    <div class="giana-herwitz">Rubro zz</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column2">
-            <div class="row2">
-                <div class="comission">Activo</div>
-            </div>
-
-            <div class="row3">
-                <div class="row4">
-                    <div class="frame-1859">
-                        <svg class="icons-checkmark" width="13" height="13" viewBox="0 0 13 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M10.4969 3.21779C10.6528 3.35417 10.6686 3.59108 10.5322 3.74694L5.28222 9.74694C5.21387 9.82505 5.11621 9.87134 5.01248 9.8748C4.90875 9.87825 4.80822 9.83856 4.73483 9.76517L2.48483 7.51517C2.33839 7.36872 2.33839 7.13129 2.48483 6.98484C2.63128 6.83839 2.86872 6.83839 3.01517 6.98484L4.98173 8.95141L9.96778 3.25307C10.1042 3.0972 10.3411 3.08141 10.4969 3.21779Z"
-                                fill="white" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row5">
-                <div class="row6">
-                    <div class="frame-18592">
-                        <svg class="icons-checkmark2" width="13" height="13" viewBox="0 0 13 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M10.4969 3.21779C10.6528 3.35417 10.6686 3.59108 10.5322 3.74694L5.28222 9.74694C5.21387 9.82505 5.11621 9.87134 5.01248 9.8748C4.90875 9.87825 4.80822 9.83856 4.73483 9.76517L2.48483 7.51517C2.33839 7.36872 2.33839 7.13129 2.48483 6.98484C2.63128 6.83839 2.86872 6.83839 3.01517 6.98484L4.98173 8.95141L9.96778 3.25307C10.1042 3.0972 10.3411 3.08141 10.4969 3.21779Z"
-                                fill="white" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column3">
-            <div class="row7">
-                <div class="collaborators">Opciones</div>
-            </div>
-
-            <div class="row8">
-                <div class="frame-1898">
-                    <div class="view-offer">Modificar</div>
-                </div>
-            </div>
-
-            <div class="row9">
-                <div class="frame-1898">
-                    <div class="view-offer2">Modificar</div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-<!-- <div class="container">
-    <div class="row animated fadeIn">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table width="100%" class="table table-sm table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width: 15%;">Id</th>
-                            <th style="width: 20%;">Nombre</th>
-                            <th style="width: 20%;">Estado</th>
-                            <th style="width: 40%;" class="text-right">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let ingrediente of ingredientesNoVendibles; let i = index">
-                            <td>{{ ingrediente.id }}</td>
-                            <td>{{ ingrediente.nombre }}</td>
-                            <td>{{ ingrediente.estado }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div> -->
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
-    </tbody>
-</table>
