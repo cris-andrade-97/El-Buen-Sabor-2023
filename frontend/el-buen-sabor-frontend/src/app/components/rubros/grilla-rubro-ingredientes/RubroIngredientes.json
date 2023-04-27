@@ -1,0 +1,54 @@
+{
+    "Ingredientes_No_Vendibles": [
+        {
+            "id": 0,
+            "nombre": "Vegetales",
+            "estado": true
+        },
+        {
+            "id": 1,
+            "nombre": "Carne",
+            "estado": false
+        },
+        {
+            "id": 2,
+            "nombre": "Especias",
+            "estado": false
+        },
+        {
+            "id": 3,
+            "nombre": "Aceites Vegetales",
+            "estado": true
+        },
+        {
+            "id": 4,
+            "nombre": "Granos",
+            "estado": true
+        },
+        {
+            "id": 5,
+            "nombre": "Lácteos",
+            "estado": true
+        },
+        {
+            "id": 6,
+            "nombre": "Pan",
+            "estado": true
+        },
+        {
+            "id": 7,
+            "nombre": "Aderezos",
+            "estado": false
+        }
+    ],
+    "Ingredientes_Vendibles": [
+        {
+            "nombre": "Bebidas alcohólicas",
+            "estado": false
+        },
+        {
+            "nombre": "Bebidas sin alcohol",
+            "estado": false
+        }
+    ]
+}

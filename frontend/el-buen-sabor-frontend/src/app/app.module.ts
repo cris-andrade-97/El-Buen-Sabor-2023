@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -15,6 +15,7 @@ import { GrillaRubroIngredientesComponent } from './components/rubros/grilla-rub
 import { GrillaRubroProductosComponent } from './components/rubros/grilla-rubro-productos/grilla-rubro-productos.component';
 import { FormularioRubroProductosComponent } from './components/rubros/formulario-rubro-productos/formulario-rubro-productos.component';
 import { FormularioRubroIngredientesComponent } from './components/rubros/formulario-rubro-ingredientes/formulario-rubro-ingredientes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,14 @@ import { FormularioRubroIngredientesComponent } from './components/rubros/formul
     GrillaRubroProductosComponent,
     FormularioRubroProductosComponent,
     FormularioRubroIngredientesComponent,
+    
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'dev-138fig3286kuaadw.us.auth0.com',
@@ -40,6 +45,7 @@ import { FormularioRubroIngredientesComponent } from './components/rubros/formul
         redirect_uri: window.location.origin,
       },
     }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
