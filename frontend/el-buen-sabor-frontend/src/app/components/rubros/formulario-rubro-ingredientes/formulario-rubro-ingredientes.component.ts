@@ -27,10 +27,9 @@ export class FormularioRubroIngredientesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fb: UntypedFormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
-    //Obtengo Rubro
-    //this.rubroIngrediente = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.id == Number(this.id))[0];
+    //Obtengo Rubro    
     this.obtenerRubro()
-    console.log(this.rubroIngrediente)
+
     //Si es nuevo deja el formulario en blanco
     if (this.id == 'nuevoRubro') {
       this.esNuevo = true;
@@ -41,7 +40,7 @@ export class FormularioRubroIngredientesComponent implements OnInit {
     }
   }
 
-  obtenerRubro() {
+  obtenerRubro() {    
     let url = "http://localhost:3000/api/rubro-ingredientes/buscar-por-id/" + this.id
 
     this.http.get(
