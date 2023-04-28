@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const filesync = require("fs")
 
-
-
 router.get("/listar", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
