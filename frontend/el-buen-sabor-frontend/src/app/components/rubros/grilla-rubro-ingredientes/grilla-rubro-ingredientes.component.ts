@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import RubroIngredientesJSON from './RubroIngredientes.json'
+//import RubroIngredientesJSON from './RubroIngredientes.json'
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-grilla-rubro-ingredientes',
   templateUrl: './grilla-rubro-ingredientes.component.html',
@@ -7,13 +8,40 @@ import RubroIngredientesJSON from './RubroIngredientes.json'
 })
 export class GrillaRubroIngredientesComponent implements OnInit {
 
-  ingredientesNoVendibles = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.aLaVenta == false);
-  ingredientesVendibles = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.aLaVenta == true);
-  
-  constructor() { }
+  rubrosIngredientes: any;
+
+  listaCompleta: any;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    
+    this.llenarLista()
   }
 
+  llenarLista() {
+    let url = "http://localhost:3000/api/rubro-ingredientes/listar";
+
+    this.http.get(
+      url
+    ).subscribe(
+      (response) => {
+        this.rubrosIngredientes = response
+      }
+    )
+  }
+
+  actualizarVigencia(id: number, estado: boolean) {
+    let url = "http://localhost:3000/api/rubro-ingredientes/modificar-estado-rubro/" + id;
+
+    this.http.put(
+      url,
+      {
+        "estado": estado
+      }
+    ).subscribe(
+      response => console.log(response)
+    )
+
+    //window.location.reload()
+  }
 }

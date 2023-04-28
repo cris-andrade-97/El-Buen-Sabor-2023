@@ -7,6 +7,23 @@ router.get("/listar", (req, res) => {
     const jsonData = JSON.parse(data);
     res.send(jsonData["rubro-ingredientes"])
 })
+
+router.get("/buscar-por-id/:id", (req, res) => {
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
+    const { id } = req.params
+
+    const jsonData = JSON.parse(data);
+    const results = jsonData["rubro-ingredientes"].filter(obj => obj.id == Number(id));
+
+    if (results.length !== 0) {
+        res.send(results[0])
+    } else {
+        res.send({
+            "results": false
+        })
+    }
+})
+
 /*
 router.get("/buscar-por-nombre/:nombre", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
@@ -124,7 +141,7 @@ router.put("/modificar-nombre-rubro/:id", (req, res) => {
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
-    jsonData["rubro-ingredientes"][Number(id)].nombre = req.body.nombre    
+    jsonData["rubro-ingredientes"][Number(id)].nombre = req.body.nombre
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
@@ -137,8 +154,8 @@ router.put("/modificar-estado-rubro/:id", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
     const { id } = req.params
-    
-    jsonData["rubro-ingredientes"][Number(id)].estado = req.body.estado    
+
+    jsonData["rubro-ingredientes"][Number(id)].estado = req.body.estado
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
@@ -149,10 +166,10 @@ router.put("/modificar-estado-rubro/:id", (req, res) => {
 
 router.put("/modificar-venta-rubro/:id", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
-    const jsonData = JSON.parse(data);    
+    const jsonData = JSON.parse(data);
     const { id } = req.params
 
-    jsonData["rubro-ingredientes"][Number(id)].aLaVenta = req.body.aLaVenta    
+    jsonData["rubro-ingredientes"][Number(id)].aLaVenta = req.body.aLaVenta
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
