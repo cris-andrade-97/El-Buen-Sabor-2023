@@ -59,12 +59,6 @@
             "nombre": "Bebidas sin alcohol",
             "estado": true,
             "aLaVenta": true
-        },
-        {
-            "id": 10,
-            "nombre": "Productos de Celofán",
-            "estado": true,
-            "aLaVenta": true
         }
     ]
 }
