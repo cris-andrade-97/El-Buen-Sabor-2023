@@ -8,6 +8,7 @@ router.get("/listar", (req, res) => {
     res.send(jsonData["articulos-manufacturados"])
 })
 
+/*
 router.get("/rubros-en-vigencia", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
@@ -41,7 +42,7 @@ router.get("/buscar-por-nombre/:nombre", (req, res) => {
         })
     }
 })
-
+*/
 router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
     const jsonData = JSON.parse(data);

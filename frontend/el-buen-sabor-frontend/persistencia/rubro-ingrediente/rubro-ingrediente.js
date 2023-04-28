@@ -7,7 +7,7 @@ router.get("/listar", (req, res) => {
     const jsonData = JSON.parse(data);
     res.send(jsonData["rubro-ingredientes"])
 })
-
+/*
 router.get("/buscar-por-nombre/:nombre", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
@@ -83,7 +83,7 @@ router.get("/rubros-en-baja", (req, res) => {
         })
     }
 })
-
+*/
 router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
