@@ -8,6 +8,24 @@ router.get("/listar", (req, res) => {
     res.send(jsonData["articulos-manufacturados"])
 })
 
+router.get("/rubros-en-vigencia", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const jsonData = JSON.parse(data);
+
+    const results = jsonData["articulos-manufacturados"].filter(obj => obj.estado == true);
+
+    res.send(results)
+})
+
+router.get("/rubros-en-baja", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const jsonData = JSON.parse(data);
+
+    const results = jsonData["articulos-manufacturados"].filter(obj => obj.estado == false);
+
+    res.send(results)
+})
+
 router.get("/buscar-por-nombre/:nombre", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
@@ -42,12 +60,41 @@ router.post("/nuevo-rubro", (req, res) => {
     })
 })
 
-router.put("/modificar-rubro", (req, res) => {
+router.put("/modificar-rubro/:id", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
+    const { id } = req.params
 
-    jsonData["articulos-manufacturados"][req.body.id].nombre = req.body.nombre
-    jsonData["articulos-manufacturados"][req.body.id].estado = req.body.estado
+    jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre
+    jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado
+
+    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+
+    res.send({
+        "message": "Rubro modificado con éxito."
+    });
+})
+
+router.put("/modificar-nombre-rubro/:id", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const jsonData = JSON.parse(data);
+    const { id } = req.params
+
+    jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre    
+
+    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+
+    res.send({
+        "message": "Rubro modificado con éxito."
+    });
+})
+
+router.put("/modificar-estado-rubro/:id", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const jsonData = JSON.parse(data);
+    const { id } = req.params
+
+    jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado 
 
     filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 

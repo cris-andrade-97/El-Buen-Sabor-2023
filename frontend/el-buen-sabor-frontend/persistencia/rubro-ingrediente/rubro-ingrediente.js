@@ -54,6 +54,36 @@ router.get("/rubros-no-a-la-venta", (req, res) => {
     }
 })
 
+router.get("/rubros-en-vigencia", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
+    const jsonData = JSON.parse(data);
+
+    const results = jsonData["rubro-ingredientes"].filter(obj => obj.estado == true);
+
+    if (results.length !== 0) {
+        res.send(results)
+    } else {
+        res.send({
+            "results": false
+        })
+    }
+})
+
+router.get("/rubros-en-baja", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
+    const jsonData = JSON.parse(data);
+
+    const results = jsonData["rubro-ingredientes"].filter(obj => obj.estado == false);
+
+    if (results.length !== 0) {
+        res.send(results)
+    } else {
+        res.send({
+            "results": false
+        })
+    }
+})
+
 router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
@@ -73,13 +103,56 @@ router.post("/nuevo-rubro", (req, res) => {
     })
 })
 
-router.put("/modificar-rubro", (req, res) => {
+router.put("/modificar-rubro/:id", (req, res) => {
     const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
+    const { id } = req.params
 
-    jsonData["rubro-ingredientes"][req.body.id].nombre = req.body.nombre
-    jsonData["rubro-ingredientes"][req.body.id].estado = req.body.estado
-    jsonData["rubro-ingredientes"][req.body.id].aLaVenta = req.body.aLaVenta
+    jsonData["rubro-ingredientes"][Number(id)].nombre = req.body.nombre
+    jsonData["rubro-ingredientes"][Number(id)].estado = req.body.estado
+    jsonData["rubro-ingredientes"][Number(id)].aLaVenta = req.body.aLaVenta
+
+    filesync.writeFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
+
+    res.send({
+        "message": "Rubro modificado con éxito."
+    });
+})
+
+router.put("/modificar-nombre-rubro/:id", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
+    const jsonData = JSON.parse(data);
+    const { id } = req.params
+
+    jsonData["rubro-ingredientes"][Number(id)].nombre = req.body.nombre    
+
+    filesync.writeFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
+
+    res.send({
+        "message": "Rubro modificado con éxito."
+    });
+})
+
+router.put("/modificar-estado-rubro/:id", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
+    const jsonData = JSON.parse(data);
+    const { id } = req.params
+    
+    jsonData["rubro-ingredientes"][Number(id)].estado = req.body.estado    
+
+    filesync.writeFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
+
+    res.send({
+        "message": "Rubro modificado con éxito."
+    });
+})
+
+router.put("/modificar-venta-rubro/:id", (req, res) => {
+    const data = filesync.readFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json");
+    const jsonData = JSON.parse(data);    
+    const { id } = req.params
+
+    jsonData["rubro-ingredientes"][Number(id)].aLaVenta = req.body.aLaVenta    
 
     filesync.writeFileSync("../persistencia/rubro-ingrediente/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
