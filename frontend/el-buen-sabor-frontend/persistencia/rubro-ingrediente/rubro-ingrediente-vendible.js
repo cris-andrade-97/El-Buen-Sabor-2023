@@ -16,9 +16,9 @@ router.get("/buscar-por-nombre/:nombre", (req, res) => {
 
     const results = jsonData["Ingredientes_Vendibles"].filter(obj => obj.nombre.toLowerCase().includes(nombre));
 
-    if (results.length !== 0){
+    if (results.length !== 0) {
         res.send(results)
-    }else{
+    } else {
         res.send({
             "results": false
         })
@@ -66,13 +66,17 @@ router.delete("/borrar-rubro/:id", (req, res) => {
 
     if (index !== -1) {
         jsonData["Ingredientes_Vendibles"].splice(index, 1)
+        
+        filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
+
+        res.send({
+            "message": "Rubro eliminado con éxito."
+        });
+    } else {
+        res.send({
+            "results": false
+        });
     }
-
-    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
-
-    res.send({
-        "message": "Rubro eliminado con éxito."
-    });
 })
 
 module.exports = router;
