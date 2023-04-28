@@ -112,7 +112,7 @@
   position: relative;
   overflow: visible;
 }
-.table {
+/* .table {
   background: #ffffff;
   border-radius: 6px;
   display: flex;
@@ -124,7 +124,7 @@
   width: 1256px;
   height: 333px;
   position: relative;
-}
+} */
 .column {
   border-radius: 4px 0px 0px 0px;
   display: flex;

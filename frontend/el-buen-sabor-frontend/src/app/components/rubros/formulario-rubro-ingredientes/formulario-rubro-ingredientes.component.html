@@ -1,75 +1,59 @@
-<!--<div class="container">
+<div class="container">
     <br>
     <div class="form-11">
         <img class="wtmpz-tg-j-eb-u" src="../../../assets/img/Logo.png" />
-
         <div class="register-form">
-            <div class="frame-247">
-                <div class="get-s-started">Rubro Ingrediente</div>
-            </div>
-
-            <div class="frame-242">
-                <div class="frame-248">
-                    <div class="input">
-                        <div class="first-name">Nombre Rubro</div>
-
-                        <div class="input2"></div>
-                    </div>
+            <div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Nombre del Rubro</label>
+                    <input type="text" [(ngModel)]="nombre" class="form-control" id="exampleInputEmail1" />
                 </div>
-            </div>
-
-            <div class="frame-1892">
-                <div class="frame-1914">
-                    <svg class="icons-checkmark" width="12" height="12" viewBox="0 0 12 12" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M9.99694 2.71779C10.1528 2.85417 10.1686 3.09108 10.0322 3.24694L4.78222 9.24694C4.71387 9.32505 4.61621 9.37134 4.51248 9.3748C4.40875 9.37825 4.30822 9.33856 4.23483 9.26517L1.98483 7.01517C1.83839 6.86872 1.83839 6.63129 1.98483 6.48484C2.13128 6.33839 2.36872 6.33839 2.51517 6.48484L4.48173 8.45141L9.46778 2.75307C9.60416 2.5972 9.84107 2.58141 9.99694 2.71779Z"
-                            fill="white" />
-                    </svg>
+                <br>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1"
+                        [checked]="validaSeVende()">
+                    <label class="form-check-label" for="exampleCheck1">Vigente</label>
                 </div>
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-primary">Confirmar</button>
 
-                <div class="cotton-blend">Vigente</div>
-            </div>
-
-            <div class="button">
-                <div class="button-cta">Confirmar</div>
-            </div>
-
-            <div class="button2">
-                <div class="button-cta2">Cancelar</div>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<br>-->
+<br>
 
-<div class="d-flex justify-content-center">
+<!-- <div class="d-flex justify-content-center">
 
     <div class="col-6 justify-content-center">
         <h2 *ngIf="esNuevo">Nuevo Rubro de Ingredientes</h2>
-        <h2 *ngIf="!esNuevo">Modificar Rubro de Ingredientes</h2>        
+        <h2 *ngIf="!esNuevo">Modificar Rubro de Ingredientes</h2>
         <br>
         <form (ngSubmit)="onSubmit()" [formGroup]="rubro">
             <div class="form-group">
                 <label>Nombre Del Rubro</label>
-                <input id="nombre" [formControl]="nombre" class="form-control"
-                    placeholder="Ingrese el Nombre del Rubro" type="text" value="{{rubroIngrediente.nombre}}">
+                <input id="nombre" [formControl]="nombre" class="form-control" placeholder="Ingrese el Nombre del Rubro"
+                    type="text" value="{{rubroIngrediente.nombre}}">
                 <br>
                 <div *ngIf="rubroIngrediente.estado">
-                    <input id="estadoActivo" type="radio" name="estado" value="true"  checked (change)="asignarEstado(true)">
+                    <input id="estadoActivo" type="radio" name="estado" value="true" checked
+                        (change)="asignarEstado(true)">
                     <label> Activo</label>
                     <br>
-                    <input id="estadoInactivo" type="radio" name="estado"  value="false" (change)="asignarEstado(false)">
+                    <input id="estadoInactivo" type="radio" name="estado" value="false" (change)="asignarEstado(false)">
                     <label> Inactivo</label>
                 </div>
                 <div *ngIf="!rubroIngrediente.estado">
                     <input id="estadoActivo" type="radio" name="estado" value="true" (change)="asignarEstado(true)">
                     <label> Activo</label>
                     <br>
-                    <input id="estadoInactivo" type="radio" name="estado"  value="false" checked (change)="asignarEstado(false)">
+                    <input id="estadoInactivo" type="radio" name="estado" value="false" checked
+                        (change)="asignarEstado(false)">
                     <label> Inactivo</label>
                 </div>
-            </div>           
+            </div>
             <br>
             <div *ngIf="!esNuevo">
                 <button class="btn btn-outline-warning" (click)="onSubmit()">Modificar
@@ -82,4 +66,4 @@
 
         </form>
     </div>
-</div>
+</div> -->

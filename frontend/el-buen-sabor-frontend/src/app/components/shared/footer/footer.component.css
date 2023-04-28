@@ -1,13 +1,11 @@
+
+
 .footer-4,
-.footer-4 * {
-  box-sizing: border-box;
-}
 .footer-4 {
-  background: #ffffff;
-  border-style: solid;
-  border-color: #000000;
+  background: #f4f4f4;
+
   border-width: 1px;
-  padding: 48px 80px 48px 80px;
+  padding: 20px 20px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 0px;
@@ -15,7 +13,7 @@
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  height: 376px;
+  
   position: relative;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -37,7 +35,7 @@
   align-self: stretch;
 }
 .frame-6 {
-  padding: 0px 0px 58px 0px;
+  padding: 0px 0px 10px 0px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -64,7 +62,7 @@
 }
 .direcci-n-avenida-general-chamizo-y-donovan-capital-tel-2615000000-horarios-de-atenci-n-lunes-a-viernes-de-20-a-24-s-bados-y-domingos-de-11-a-15-copyright-el-buen-sabor-todos-los-derechos-reservados-span3 {
   color: #4b5563;
-  font: 600 16px/28px "Inter", sans-serif;
+  font: 600 12px/28px "Inter", sans-serif;
 }
 .social-links {
   padding: 0px 160px 0px 0px;
@@ -76,16 +74,20 @@
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
 }
 .social-icons-white-instagram {
   flex-shrink: 0;
+  border-radius: 75px;
   position: relative;
   overflow: visible;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 .social-icons-white-twitter {
   flex-shrink: 0;
+  border-radius: 75px;
   position: relative;
   overflow: visible;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
