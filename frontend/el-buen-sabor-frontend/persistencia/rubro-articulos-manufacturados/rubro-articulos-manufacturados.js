@@ -8,6 +8,22 @@ router.get("/listar", (req, res) => {
     res.send(jsonData["articulos-manufacturados"])
 })
 
+router.get("/buscar-por-id/:id", (req, res) => {
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
+    const { id } = req.params
+
+    const jsonData = JSON.parse(data);
+    const results = jsonData["articulos-manufacturados"].filter(obj => obj.id == Number(id));
+
+    if (results.length !== 0) {
+        res.send(results[0])
+    } else {
+        res.send({
+            "results": false
+        })
+    }
+})
+
 /*
 router.get("/rubros-en-vigencia", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");

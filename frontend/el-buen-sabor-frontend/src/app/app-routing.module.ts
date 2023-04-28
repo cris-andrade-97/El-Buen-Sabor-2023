@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'grilla-rubro-ingredientes', component: GrillaRubroIngredientesComponent},
   {path: 'grilla-rubro-productos', component: GrillaRubroProductosComponent},
   {path: 'formulario-rubro-ingredientes/:id', component: FormularioRubroIngredientesComponent},  
-  {path: 'formulario-rubro-productos', component: FormularioRubroProductosComponent},
+  {path: 'formulario-rubro-productos/:id', component: FormularioRubroProductosComponent},
 ];
 
 @NgModule({
