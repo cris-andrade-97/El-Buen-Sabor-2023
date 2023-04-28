@@ -34,74 +34,42 @@
             </div>
         </a>
     </div>
-
-    <div class="table">
-        <div class="column">
-            <div class="row">
-                <div class="developers">Nombre Rubro</div>
-            </div>
-
-            <div class="frame-1868">
-                <div class="frame-1897">
-                    <div class="jaydon-herwitz">Rubro xx</div>
-                </div>
-            </div>
-
-            <div class="frame-1869">
-                <div class="frame-18972">
-                    <div class="giana-herwitz">Rubro zz</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column2">
-            <div class="row2">
-                <div class="comission">Activo</div>
-            </div>
-
-            <div class="row3">
-                <div class="row4">
-                    <div class="frame-1859">
-                        <svg class="icons-checkmark" width="13" height="13" viewBox="0 0 13 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M10.4969 3.21779C10.6528 3.35417 10.6686 3.59108 10.5322 3.74694L5.28222 9.74694C5.21387 9.82505 5.11621 9.87134 5.01248 9.8748C4.90875 9.87825 4.80822 9.83856 4.73483 9.76517L2.48483 7.51517C2.33839 7.36872 2.33839 7.13129 2.48483 6.98484C2.63128 6.83839 2.86872 6.83839 3.01517 6.98484L4.98173 8.95141L9.96778 3.25307C10.1042 3.0972 10.3411 3.08141 10.4969 3.21779Z"
-                                fill="white" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row5">
-                <div class="row6">
-                    <div class="frame-18592">
-                        <svg class="icons-checkmark2" width="13" height="13" viewBox="0 0 13 13" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M10.4969 3.21779C10.6528 3.35417 10.6686 3.59108 10.5322 3.74694L5.28222 9.74694C5.21387 9.82505 5.11621 9.87134 5.01248 9.8748C4.90875 9.87825 4.80822 9.83856 4.73483 9.76517L2.48483 7.51517C2.33839 7.36872 2.33839 7.13129 2.48483 6.98484C2.63128 6.83839 2.86872 6.83839 3.01517 6.98484L4.98173 8.95141L9.96778 3.25307C10.1042 3.0972 10.3411 3.08141 10.4969 3.21779Z"
-                                fill="white" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column3">
-            <div class="row7">
-                <div class="collaborators">Opciones</div>
-            </div>
-
-            <div class="row8">
-                <div class="frame-1898">
-                    <div class="view-offer">Modificar</div>
-                </div>
-            </div>
-
-            <div class="row9">
-                <div class="frame-18982">
-                    <div class="view-offer2">Modificar</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <br>
+    <br>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Nombre Rubro</th>
+                <th scope="col">Vigencia</th>                
+                <th scope="col">Modificar</th>
+                <th scope="col">Dar de Alta/Baja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rubro of rubrosProductos">
+                <td>
+                    {{rubro.nombre}}
+                </td>
+                <td *ngIf="rubro.estado">
+                    <p>&#9989;</p>
+                </td>
+                <td *ngIf="!rubro.estado">
+                    <p>&#10060;</p>
+                </td>                
+                <td>
+                    <a class="btn btn-outline-warning" [routerLink]="['/formulario-rubro-ingredientes',rubro.id]">
+                        Modificar Rubro
+                    </a>
+                </td>
+                <td>
+                    <button *ngIf="!rubro.estado" class="btn btn-outline-success" (click)="actualizarVigencia(rubro.id,true)">
+                        Dar de Alta
+                    </button>
+                    <button *ngIf="rubro.estado" class="btn btn-outline-danger" (click)="actualizarVigencia(rubro.id, false)">
+                        Dar de Baja
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

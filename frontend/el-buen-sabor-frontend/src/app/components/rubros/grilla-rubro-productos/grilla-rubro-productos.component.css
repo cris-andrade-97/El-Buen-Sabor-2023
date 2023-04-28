@@ -112,19 +112,7 @@
   position: relative;
   overflow: visible;
 }
-.table {
-  background: #ffffff;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1256px;
-  height: 333px;
-  position: relative;
-}
+
 .column {
   border-radius: 4px 0px 0px 0px;
   display: flex;

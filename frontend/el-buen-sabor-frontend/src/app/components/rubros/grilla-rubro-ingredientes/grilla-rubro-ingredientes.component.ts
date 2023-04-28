@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import RubroIngredientesJSON from './RubroIngredientes.json'
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-grilla-rubro-ingredientes',
@@ -9,8 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class GrillaRubroIngredientesComponent implements OnInit {
 
   rubrosIngredientes: any;
-
-  listaCompleta: any;
 
   constructor(private http: HttpClient) { }
 
