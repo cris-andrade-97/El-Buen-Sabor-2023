@@ -3,14 +3,14 @@ const router = express.Router()
 const filesync = require("fs")
 
 router.get("/listar", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
     res.send(jsonData["articulos-manufacturados"])
 })
 
 /*
 router.get("/rubros-en-vigencia", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
 
     const results = jsonData["articulos-manufacturados"].filter(obj => obj.estado == true);
@@ -19,7 +19,7 @@ router.get("/rubros-en-vigencia", (req, res) => {
 })
 
 router.get("/rubros-en-baja", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
 
     const results = jsonData["articulos-manufacturados"].filter(obj => obj.estado == false);
@@ -28,7 +28,7 @@ router.get("/rubros-en-baja", (req, res) => {
 })
 
 router.get("/buscar-por-nombre/:nombre", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
     const { nombre } = req.params
 
@@ -44,7 +44,8 @@ router.get("/buscar-por-nombre/:nombre", (req, res) => {
 })
 */
 router.post("/nuevo-rubro", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
+    //../src/app/components/grilla-rubro-productos/
     const jsonData = JSON.parse(data);
 
     jsonData["articulos-manufacturados"].push(
@@ -55,21 +56,21 @@ router.post("/nuevo-rubro", (req, res) => {
         }
     )
 
-    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
     res.send({
         "message": "Rubro agregado con éxito."
     })
 })
 
 router.put("/modificar-rubro/:id", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
     jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre
     jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado
 
-    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
     res.send({
         "message": "Rubro modificado con éxito."
@@ -77,13 +78,13 @@ router.put("/modificar-rubro/:id", (req, res) => {
 })
 
 router.put("/modificar-nombre-rubro/:id", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
     jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre    
 
-    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
     res.send({
         "message": "Rubro modificado con éxito."
@@ -91,13 +92,13 @@ router.put("/modificar-nombre-rubro/:id", (req, res) => {
 })
 
 router.put("/modificar-estado-rubro/:id", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
     jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado 
 
-    filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+    filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
     res.send({
         "message": "Rubro modificado con éxito."
@@ -105,7 +106,7 @@ router.put("/modificar-estado-rubro/:id", (req, res) => {
 })
 
 router.delete("/borrar-rubro/:id", (req, res) => {
-    const data = filesync.readFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json");
+    const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json");
     const jsonData = JSON.parse(data);
 
     const { id } = req.params
@@ -115,7 +116,7 @@ router.delete("/borrar-rubro/:id", (req, res) => {
     if (index !== -1) {
         jsonData["articulos-manufacturados"].splice(index, 1)
 
-        filesync.writeFileSync("../persistencia/rubro-articulos-manufacturados/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
+        filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
         res.send({
             "message": "Rubro eliminado con éxito."
