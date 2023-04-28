@@ -5,7 +5,7 @@ const filesync = require("fs")
 router.get("/listar", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json");
     const jsonData = JSON.parse(data);
-    res.send(jsonData["Articulos_Manufacturados"])
+    res.send(jsonData["articulos-manufacturados"])
 })
 
 router.get("/buscar-por-nombre/:nombre", (req, res) => {
@@ -13,7 +13,7 @@ router.get("/buscar-por-nombre/:nombre", (req, res) => {
     const jsonData = JSON.parse(data);
     const { nombre } = req.params
 
-    const results = jsonData["Articulos_Manufacturados"].filter(obj => obj.nombre.toLowerCase().includes(nombre));
+    const results = jsonData["articulos-manufacturados"].filter(obj => obj.nombre.toLowerCase().includes(nombre));
 
     if (results.length !== 0) {
         res.send(results)
@@ -28,9 +28,9 @@ router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json");
     const jsonData = JSON.parse(data);
 
-    jsonData["Articulos_Manufacturados"].push(
+    jsonData["articulos-manufacturados"].push(
         {
-            "id": jsonData["Articulos_Manufacturados"].length,
+            "id": jsonData["articulos-manufacturados"].length,
             "nombre": req.body.nombre,
             "estado": req.body.estado
         }
@@ -46,8 +46,8 @@ router.put("/modificar-rubro", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json");
     const jsonData = JSON.parse(data);
 
-    jsonData["Articulos_Manufacturados"][req.body.id].nombre = req.body.nombre
-    jsonData["Articulos_Manufacturados"][req.body.id].estado = req.body.estado
+    jsonData["articulos-manufacturados"][req.body.id].nombre = req.body.nombre
+    jsonData["articulos-manufacturados"][req.body.id].estado = req.body.estado
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json", JSON.stringify(jsonData, null, 4));
 
@@ -62,10 +62,10 @@ router.delete("/borrar-rubro/:id", (req, res) => {
 
     const { id } = req.params
 
-    const index = jsonData["Articulos_Manufacturados"].findIndex(obj => obj.id === Number(id));
+    const index = jsonData["articulos-manufacturados"].findIndex(obj => obj.id === Number(id));
 
     if (index !== -1) {
-        jsonData["Articulos_Manufacturados"].splice(index, 1)
+        jsonData["articulos-manufacturados"].splice(index, 1)
 
         filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-productos/Rubro Manufacturados.json", JSON.stringify(jsonData, null, 4));
 

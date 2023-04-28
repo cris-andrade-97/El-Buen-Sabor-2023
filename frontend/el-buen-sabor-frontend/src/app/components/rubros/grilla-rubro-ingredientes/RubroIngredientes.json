@@ -1,56 +1,70 @@
 {
-    "Ingredientes_No_Vendibles": [
+    "rubro-ingredientes": [
         {
             "id": 0,
             "nombre": "Vegetales",
-            "estado": true
+            "estado": true,
+            "aLaVenta": false
         },
         {
             "id": 1,
             "nombre": "Carne",
-            "estado": false
+            "estado": false,
+            "aLaVenta": false
         },
         {
             "id": 2,
             "nombre": "Especias",
-            "estado": false
+            "estado": false,
+            "aLaVenta": false
         },
         {
             "id": 3,
             "nombre": "Aceites Vegetales",
-            "estado": true
+            "estado": true,
+            "aLaVenta": false
         },
         {
             "id": 4,
             "nombre": "Granos",
-            "estado": true
+            "estado": true,
+            "aLaVenta": false
         },
         {
             "id": 5,
             "nombre": "Lácteos",
-            "estado": true
+            "estado": true,
+            "aLaVenta": false
         },
         {
             "id": 6,
             "nombre": "Pan",
-            "estado": true
+            "estado": true,
+            "aLaVenta": false
         },
         {
             "id": 7,
             "nombre": "Aderezos",
-            "estado": false
-        }
-    ],
-    "Ingredientes_Vendibles": [
-        {
-            "id": 0,
-            "nombre": "Bebidas alcohólicas",
-            "estado": true
+            "estado": false,
+            "aLaVenta": false
         },
         {
-            "id": 1,
+            "id": 8,
+            "nombre": "Bebidas alcohólicas",
+            "estado": true,
+            "aLaVenta": true
+        },
+        {
+            "id": 9,
             "nombre": "Bebidas sin alcohol",
-            "estado": true
+            "estado": true,
+            "aLaVenta": true
+        },
+        {
+            "id": 10,
+            "nombre": "Productos de Celofán",
+            "estado": true,
+            "aLaVenta": true
         }
     ]
 }

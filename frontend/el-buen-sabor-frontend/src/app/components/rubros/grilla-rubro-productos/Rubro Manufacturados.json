@@ -1,27 +1,29 @@
 {
-    "Articulos_Manufacturados": 
-    [
-    {
-        "id":0,
-        "nombre":"Hamburguesas",
-        "estado": true
-    },
-    {
-        "id":1,
-        "nombre":"Pizzas",
-        "estado": true
-    },{
-        "id":2,
-        "nombre":"Panchos",
-        "estado": true
-    },{
-        "id":3,
-        "nombre":"Lomos",
-        "estado": true
-    },{
-        "id":4,
-        "nombre":"Empanadas",
-        "estado": true
-    }
+    "articulos-manufacturados": [
+        {
+            "id": 0,
+            "nombre": "Hamburguesas",
+            "estado": true
+        },
+        {
+            "id": 1,
+            "nombre": "Pizzas",
+            "estado": true
+        },
+        {
+            "id": 2,
+            "nombre": "Panchos",
+            "estado": true
+        },
+        {
+            "id": 3,
+            "nombre": "Lomos",
+            "estado": true
+        },
+        {
+            "id": 4,
+            "nombre": "Empanadas",
+            "estado": true
+        }
     ]
 }
