@@ -7,8 +7,8 @@ import RubroIngredientesJSON from './RubroIngredientes.json'
 })
 export class GrillaRubroIngredientesComponent implements OnInit {
 
-  ingredientesNoVendibles = RubroIngredientesJSON["Ingredientes_No_Vendibles"];
-  ingredientesVendibles = RubroIngredientesJSON["Ingredientes_Vendibles"];
+  ingredientesNoVendibles = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.aLaVenta == false);
+  ingredientesVendibles = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.aLaVenta == true);
   
   constructor() { }
 

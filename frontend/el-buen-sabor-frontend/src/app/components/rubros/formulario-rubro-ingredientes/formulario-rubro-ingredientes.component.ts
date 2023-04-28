@@ -28,8 +28,7 @@ export class FormularioRubroIngredientesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     //Obtengo Rubro
-    this.rubroIngrediente =
-      RubroIngredientesJSON['Ingredientes_No_Vendibles'][Number(this.id)];
+    this.rubroIngrediente = RubroIngredientesJSON['rubro-ingredientes'].filter(obj => obj.id == Number(this.id))[0];
 
     //Si es nuevo deja el formulario en blanco
     if (this.id == 'nuevoRubro') {
@@ -39,6 +38,9 @@ export class FormularioRubroIngredientesComponent implements OnInit {
       this.estado = this.rubroIngrediente.estado;
       this.nombre = this.rubroIngrediente.nombre;
     }
+
+    console.log(this.estado)    
+
   }
 
   validaSeVende() {
@@ -53,9 +55,7 @@ export class FormularioRubroIngredientesComponent implements OnInit {
     this.estado = estadoRubro;
   }
 
-  onSubmit() {
-    //lecturaDatos(Number(this.id),this.nombre.value,this.estado)
-
+  onSubmit() {   
     window.location.replace('/grilla-rubro-ingredientes');
   }
 }
