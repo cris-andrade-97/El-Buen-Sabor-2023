@@ -66,7 +66,7 @@ router.delete("/borrar-rubro/:id", (req, res) => {
 
     if (index !== -1) {
         jsonData["Ingredientes_Vendibles"].splice(index, 1)
-        
+
         filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
         res.send({

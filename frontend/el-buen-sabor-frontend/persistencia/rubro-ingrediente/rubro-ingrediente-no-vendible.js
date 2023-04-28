@@ -3,7 +3,7 @@ const router = express.Router()
 const filesync = require("fs")
 
 
-router.get("/listar", (req,res)=>{
+router.get("/listar", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
     res.send(jsonData["Ingredientes_No_Vendibles"])
@@ -16,16 +16,16 @@ router.get("/buscar-por-nombre/:nombre", (req, res) => {
 
     const results = jsonData["Ingredientes_No_Vendibles"].filter(obj => obj.nombre.toLowerCase().includes(nombre));
 
-    if (results.length !== 0){
+    if (results.length !== 0) {
         res.send(results)
-    }else{
+    } else {
         res.send({
             "results": false
         })
     }
 })
 
-router.post("/nuevo-rubro", (req,res)=>{
+router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
 
@@ -43,12 +43,12 @@ router.post("/nuevo-rubro", (req,res)=>{
     })
 })
 
-router.put("/modificar-rubro", (req,res)=>{
+router.put("/modificar-rubro", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
 
     jsonData["Ingredientes_No_Vendibles"][req.body.id].nombre = req.body.nombre
-    jsonData["Ingredientes_No_Vendibles"][req.body.id].estado = req.body.estado   
+    jsonData["Ingredientes_No_Vendibles"][req.body.id].estado = req.body.estado
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
 
@@ -57,15 +57,15 @@ router.put("/modificar-rubro", (req,res)=>{
     });
 })
 
-router.delete("/borrar-rubro/:id", (req,res)=>{
+router.delete("/borrar-rubro/:id", (req, res) => {
     const data = filesync.readFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json");
     const jsonData = JSON.parse(data);
-    const { id } = req.params    
+    const { id } = req.params
 
     const index = jsonData["Ingredientes_No_Vendibles"].findIndex(obj => obj.id === Number(id));
 
-    if(index !== -1){
-        jsonData["Ingredientes_No_Vendibles"].splice(index,1)
+    if (index !== -1) {
+        jsonData["Ingredientes_No_Vendibles"].splice(index, 1)
     }
 
     filesync.writeFileSync("../src/app/components/rubros/grilla-rubro-ingredientes/RubroIngredientes.json", JSON.stringify(jsonData, null, 4));
