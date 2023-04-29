@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Client } from '@auth0/auth0-spa-js';
@@ -11,9 +11,25 @@ import axios from 'axios';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private el: ElementRef
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.el.nativeElement
+      .querySelectorAll('.scroll-to')
+      .forEach((element: any) => {
+        element.addEventListener('click', () => {
+          const section = document.querySelector(element.getAttribute('href'));
+          window.scrollTo({
+            behavior: 'smooth',
+            top: section.offsetTop,
+          });
+        });
+      });
+  }
 
   login() {
     this.auth.loginWithRedirect();
