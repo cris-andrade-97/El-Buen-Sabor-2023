@@ -17,39 +17,40 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormularioRubroIngredientesComponent implements OnInit {
   rubroIngrediente: any;
-  rubro!: UntypedFormGroup;
-  esNuevo: boolean = false; 
+  esNuevo: boolean = false;
   nombre: string = '';
   estado: boolean = false;
+  aLaVenta: boolean = false;
 
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private route: ActivatedRoute, private fb: UntypedFormBuilder, private http: HttpClient) { }
+  constructor(
+    private route: ActivatedRoute,
+    private fb: UntypedFormBuilder,
+    private http: HttpClient
+  ) {}
 
-  ngOnInit(): void {
-    //Obtengo Rubro    
-    this.obtenerRubro()
-
-    //Si es nuevo deja el formulario en blanco
-    if (this.id == 'nuevoRubro') {
-      this.esNuevo = true;
-    } else {
-      //Si es modificación seteo los valores
-      this.estado = this.rubroIngrediente.estado;
-      this.nombre = this.rubroIngrediente.nombre;
-    }
+  async ngOnInit(): Promise<void> {
+    //Obtengo Rubro
+    await this.obtenerRubro();
   }
 
-  obtenerRubro() {    
-    let url = "http://localhost:3000/api/rubro-ingredientes/buscar-por-id/" + this.id
+  async obtenerRubro() {
+    let url =
+      'http://localhost:3000/api/rubro-ingredientes/buscar-por-id/' + this.id;
 
-    this.http.get(
-      url
-    ).subscribe(
-      (response) => {        
-        this.rubroIngrediente = response        
+    this.http.get(url).subscribe((response) => {
+      //Si es nuevo deja el formulario en blanco
+      if (this.id == 'nuevoRubro') {
+        this.esNuevo = true;
+      } else {
+        //Si es modificación seteo los valores
+        this.rubroIngrediente = response;
+        this.estado = this.rubroIngrediente.estado;
+        this.nombre = this.rubroIngrediente.nombre;
+        this.aLaVenta = this.rubroIngrediente.aLaVenta;
       }
-    )
+    });
   }
 
   validaSeVende() {
@@ -60,8 +61,12 @@ export class FormularioRubroIngredientesComponent implements OnInit {
     return false;
   }
 
-  asignarEstado(estadoRubro: boolean) {
-    this.estado = estadoRubro;
+  validaALaVenta() {
+    if (this.aLaVenta == true) {
+      this.aLaVenta = true;
+      return true;
+    }
+    return false;
   }
 
   onSubmit() {

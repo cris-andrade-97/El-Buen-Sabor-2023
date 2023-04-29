@@ -9,13 +9,13 @@
         {
             "id": 1,
             "nombre": "Carne",
-            "estado": false,
+            "estado": true,
             "aLaVenta": false
         },
         {
             "id": 2,
             "nombre": "Especias",
-            "estado": false,
+            "estado": true,
             "aLaVenta": false
         },
         {

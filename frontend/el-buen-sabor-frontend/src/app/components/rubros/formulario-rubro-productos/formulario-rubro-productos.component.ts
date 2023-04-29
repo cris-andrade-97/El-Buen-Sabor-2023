@@ -13,38 +13,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormularioRubroProductosComponent implements OnInit {
   rubroProducto: any;
-  rubro!: UntypedFormGroup;
-  esNuevo: boolean = false; 
+  esNuevo: boolean = false;
   nombreRubro: string = '';
   estado: boolean = false;
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private http: HttpClient, private route:ActivatedRoute){}
-  
-  ngOnInit(): void {
-    //Obtengo Rubro    
-    this.obtenerRubro()
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
-    //Si es nuevo deja el formulario en blanco
-    if (this.id == 'nuevoRubro') {
-      this.esNuevo = true;
-    } else {
-      //Si es modificación seteo los valores
-      this.estado = this.rubroProducto.estado;
-      this.nombreRubro = this.rubroProducto.nombre;
-    }
+  async ngOnInit(): Promise<void> {
+    //Obtengo Rubro
+    await this.obtenerRubro();
   }
 
-  obtenerRubro() {    
-    let url = "http://localhost:3000/api/rubro-articulos-manufacturados/buscar-por-id/" + this.id
+  async obtenerRubro() {
+    let url =
+      'http://localhost:3000/api/rubro-articulos-manufacturados/buscar-por-id/' +
+      this.id;
 
-    this.http.get(
-      url
-    ).subscribe(
-      (response) => {        
-        this.rubroProducto = response        
+    this.http.get(url).subscribe((response) => {
+      //Si es nuevo deja el formulario en blanco
+      if (this.id == 'nuevoRubro') {
+        this.esNuevo = true;
+      } else {
+        //Si es modificación seteo los valores
+        this.rubroProducto = response;
+        this.estado = this.rubroProducto.estado;
+        this.nombreRubro = this.rubroProducto.nombre;
       }
-    )
+    });
   }
 
   validaSeVende() {
@@ -55,14 +51,7 @@ export class FormularioRubroProductosComponent implements OnInit {
     return false;
   }
 
-  asignarEstado(estadoRubro: boolean) {
-    this.estado = estadoRubro;
-  }
-
   onSubmit() {
     window.location.replace('/grilla-rubro-ingredientes');
-  }
-  muestraNombre() {
-    alert(this.nombreRubro);
   }
 }
