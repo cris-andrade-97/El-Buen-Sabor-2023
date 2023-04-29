@@ -1,0 +1,400 @@
+/* Estilos por defecto */
+.dise-o-sin-t-tulo-2-1,
+.dise-o-sin-t-tulo-5-1,
+.dise-o-sin-t-tulo-6-1,
+.dise-o-sin-t-tulo-4-1,
+.dise-o-sin-t-tulo-3-1,
+.stock-de-insumos-1 {
+  border-radius: 75px;
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.5),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.frame-27,
+.frame-32 {
+  padding: 25px 0px 25px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+  .frame-27,
+  .frame-32 {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .dise-o-sin-t-tulo-2-1,
+  .dise-o-sin-t-tulo-5-1,
+  .dise-o-sin-t-tulo-6-1,
+  .dise-o-sin-t-tulo-4-1,
+  .dise-o-sin-t-tulo-3-1,
+  .stock-de-insumos-1 {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .frame-27,
+  .frame-32 {
+    gap: 50px;
+  }
+
+  .dise-o-sin-t-tulo-2-1,
+  .dise-o-sin-t-tulo-5-1,
+  .dise-o-sin-t-tulo-6-1,
+  .dise-o-sin-t-tulo-4-1,
+  .dise-o-sin-t-tulo-3-1,
+  .stock-de-insumos-1 {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 1024px) {
+  .frame-27,
+  .frame-32 {
+    gap: 80px;
+  }
+
+  .dise-o-sin-t-tulo-2-1,
+  .dise-o-sin-t-tulo-5-1,
+  .dise-o-sin-t-tulo-6-1,
+  .dise-o-sin-t-tulo-4-1,
+  .dise-o-sin-t-tulo-3-1,
+  .stock-de-insumos-1 {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/*Figma*/
+.featured-5,
+.featured-5 * {
+  box-sizing: border-box;
+}
+.featured-5 {
+  background: #ffffff;
+  padding: 48px 80px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1440px;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.frame-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 406px;
+  position: relative;
+}
+.frame-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.luxe-streak-collecion {
+  color: #111827;
+  text-align: center;
+  font: 600 36px/36px "Work Sans", sans-serif;
+  position: relative;
+  align-self: stretch;
+}
+.start-off-the-new-year-by-hitting-the-ground-running-with-this-purpose-built-workman-s-bag {
+  color: #000000;
+  text-align: center;
+  font: 400 20px/28px "Inter", sans-serif;
+  position: relative;
+  align-self: stretch;
+}
+.frame-2174 {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 492px;
+  position: relative;
+}
+.frame-2174 > * {
+  flex: 1;
+}
+.frame-2163 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1;
+  height: 492px;
+  position: relative;
+}
+.unsplash-g-vux-w-he-1-iy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.frame-2162 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.luxe-2-series {
+  color: #111827;
+  text-align: left;
+  font: 600 24px/24px "Work Sans", sans-serif;
+  position: relative;
+  align-self: stretch;
+}
+.frame-2161 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._23-000 {
+  color: #111827;
+  text-align: left;
+  font: 400 20px/20px "Work Sans", sans-serif;
+  position: relative;
+  flex: 1;
+}
+.vector {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.frame-2164 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1;
+  height: 492px;
+  position: relative;
+}
+.unsplash-q-s-3-sq-pt-1-t-9-s {
+  flex-shrink: 0;
+  width: 405.33px;
+  height: 400px;
+  position: relative;
+}
+.frame-21622 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.luxe-2-series2 {
+  color: #111827;
+  text-align: left;
+  font: 600 24px/24px "Work Sans", sans-serif;
+  position: relative;
+  align-self: stretch;
+}
+.frame-21612 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._23-0002 {
+  color: #111827;
+  text-align: left;
+  font: 400 20px/20px "Work Sans", sans-serif;
+  position: relative;
+  flex: 1;
+}
+.vector2 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.frame-2165 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+.unsplash-f-f-oar-3-awgz-q {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.frame-21623 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.frame-2169 {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.luxe-2-series3 {
+  color: #111827;
+  text-align: left;
+  font: 600 24px/24px "Work Sans", sans-serif;
+  position: relative;
+  flex: 1;
+}
+.frame-21613 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+._23-0003 {
+  color: #111827;
+  text-align: left;
+  font: 400 20px/20px "Work Sans", sans-serif;
+  position: relative;
+  flex: 1;
+}
+.vector3 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.frame-2175 {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 492px;
+  position: relative;
+}
+.vector4 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.unsplash-q-s-3-sq-pt-1-t-9-s2 {
+  flex-shrink: 0;
+  width: 624px;
+  height: 394px;
+  position: relative;
+}
+.vector5 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+
+/*prueba*/
+.bloques {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.frame-2300 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1;
+  max-width: 550px; /* Para que no se estiren demasiado en pantallas grandes */
+  height: auto;
+  position: relative;
+}
+
+.frame-2300 img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.caja {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 12px 12px 12px 12px;
+}
+.center-content {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
