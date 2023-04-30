@@ -19,6 +19,10 @@ import { FormularioRubroProductosComponent } from './components/rubros/formulari
 import { FormularioRubroIngredientesComponent } from './components/rubros/formulario-rubro-ingredientes/formulario-rubro-ingredientes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPopper } from 'angular-popper';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgbDropdownModule,
+    NgxPopper,
+    TooltipModule.forRoot(),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'dev-138fig3286kuaadw.us.auth0.com',
@@ -49,6 +56,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       },
     }),
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
