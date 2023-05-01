@@ -23,6 +23,8 @@ import { NgxPopper } from 'angular-popper';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { GrillaUnidadDeMedidaComponent } from './components/unidad-de-medida/grilla-unidad-de-medida/grilla-unidad-de-medida.component';
+import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida/formulario-unidad-de-medida/formulario-unidad-de-medida.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     GrillaRubroProductosComponent,
     FormularioRubroProductosComponent,
     FormularioRubroIngredientesComponent,
+    GrillaUnidadDeMedidaComponent,
+    FormularioUnidadDeMedidaComponent,
   ],
   imports: [
     BrowserModule,
