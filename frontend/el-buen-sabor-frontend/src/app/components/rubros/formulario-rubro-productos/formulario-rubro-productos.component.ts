@@ -53,21 +53,43 @@ export class FormularioRubroProductosComponent implements OnInit {
         text: 'El nombre no puede estar vacio',
       });
     } else {
-      //Si esta todo ok hago el post
-      let url =
-        'http://localhost:3000/api/rubro-articulos-manufacturados/nuevo-rubro';
-      const data = {
-        nombre: this.nombreRubro,
-        estado: this.estado,
-      };
-      await Swal.fire('EL estado es:' + this.estado);
-      this.http.post(url, data).subscribe(async (response) => {
-        if (response) {
-          await Swal.fire('Rubro agregado!', 'success');
-          window.location.replace('/grilla-rubro-productos');
-        }
-      });
-      return;
+      //Si esta todo ok, verifico si es put o post mediante ID
+      //POST
+      if (this.esNuevo) {
+        let url =
+          'http://localhost:3000/api/rubro-articulos-manufacturados/nuevo-rubro';
+
+        const data = {
+          nombre: this.nombreRubro,
+          estado: this.estado,
+        };
+
+        this.http.post(url, data).subscribe(async (response) => {
+          if (response) {
+            await Swal.fire('Rubro agregado!');
+            window.location.replace('/grilla-rubro-productos');
+          }
+        });
+        return;
+      } else {
+        //PUT
+        let url =
+          'http://localhost:3000/api/rubro-articulos-manufacturados//modificar-rubro/' +
+          this.id;
+
+        const data = {
+          nombre: this.nombreRubro,
+          estado: this.estado,
+        };
+
+        this.http.put(url, data).subscribe(async (response) => {
+          if (response) {
+            await Swal.fire('Rubro actualizado!');
+            window.location.replace('/grilla-rubro-productos');
+          }
+        });
+        return;
+      }
     }
   }
 }

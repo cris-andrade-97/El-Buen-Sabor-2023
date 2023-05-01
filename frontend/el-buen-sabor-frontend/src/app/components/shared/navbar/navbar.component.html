@@ -9,20 +9,20 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             </ul>
-            <form class="d-flex justify-content-center" role="search" style="padding-right: 50px;">
+            <form class="col-sm-4" role="search" style="padding-right: 50px;">
                 <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
             </form>
             &nbsp;
             <div class="dropdown text-end" ngbDropdown>
                 <button style="border:none; background:#f4f4f4"> <a *ngIf="!(auth.user$ | async) as notUser"
                         class="d-block link-dark text-decoration-none" ngbDropdownToggle>
-                        <img src="../../../assets/img/usuario.png" alt="mdo" width="32" height="32"
+                        <img src="../../../assets/img/usuario.png" alt="mdo" width="50" height="50"
                             class="rounded-circle">
                     </a></button>
 
                 <button style="border:none; background:#f4f4f4"><a *ngIf="(auth.user$ | async) as user"
                         class="d-block link-dark text-decoration-none" ngbDropdownToggle>
-                        <img [src]="user.picture" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img [src]="user.picture" alt="mdo" width="50" height="50" class="rounded-circle">
                     </a></button>
 
                 <ul ngbDropdownMenu class="dropdown-menu text-small" aria-labelledby="dropdownUser1">

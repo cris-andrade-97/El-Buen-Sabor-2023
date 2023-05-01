@@ -6,6 +6,7 @@ import {
   UntypedFormControl,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 //import RubroIngredientesJSON from '../grilla-rubro-ingredientes/RubroIngredientes.json';
 
 //import { lecturaDatos } from 'persistencia/persistencia';
@@ -53,20 +54,54 @@ export class FormularioRubroIngredientesComponent implements OnInit {
     });
   }
 
-  validaSeVende() {
-    if (this.estado == true) {
-      this.estado = true;
-      return true;
-    }
-    return false;
-  }
+  async post() {
+    //Verifico si el nombre está vacio
+    if (this.nombre.length == 0) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El nombre no puede estar vacio',
+      });
+    } else {
+      //Si esta todo ok, verifico si es put o post mediante ID
+      //POST
+      if (this.esNuevo) {
+        let url = 'http://localhost:3000/api/rubro-ingredientes/nuevo-rubro';
 
-  validaALaVenta() {
-    if (this.aLaVenta == true) {
-      this.aLaVenta = true;
-      return true;
+        const data = {
+          nombre: this.nombre,
+          estado: this.estado,
+          aLaVenta: this.aLaVenta,
+        };
+
+        this.http.post(url, data).subscribe(async (response) => {
+          if (response) {
+            await Swal.fire('Rubro agregado!');
+            window.location.replace('/grilla-rubro-ingredientes');
+          }
+        });
+        return;
+      } else {
+        //PUT
+        let url =
+          'http://localhost:3000/api/rubro-ingredientes/modificar-rubro/' +
+          this.id;
+
+        const data = {
+          nombre: this.nombre,
+          estado: this.estado,
+          aLaVenta: this.aLaVenta,
+        };
+
+        this.http.put(url, data).subscribe(async (response) => {
+          if (response) {
+            await Swal.fire('Rubro actualizado!');
+            window.location.replace('/grilla-rubro-ingredientes');
+          }
+        });
+        return;
+      }
     }
-    return false;
   }
 
   onSubmit() {

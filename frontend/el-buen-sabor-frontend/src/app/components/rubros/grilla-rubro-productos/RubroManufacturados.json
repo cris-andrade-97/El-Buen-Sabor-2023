@@ -8,7 +8,7 @@
         {
             "id": 1,
             "nombre": "Pizzas",
-            "estado": false
+            "estado": true
         },
         {
             "id": 2,

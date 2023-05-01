@@ -10,8 +10,7 @@
                 </div>
                 <br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1"
-                        [checked]="validaSeVende()">
+                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Vigente</label>
                 </div>
                 <div class="mb-3 form-check">
@@ -19,7 +18,7 @@
                     <label class="form-check-label" for="exampleCheck1">A la Venta</label>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-primary" (click)="post()">Confirmar</button>
 
                     <button type="button" class="btn btn-danger">Cancelar</button>
                 </div>
