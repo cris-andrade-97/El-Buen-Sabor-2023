@@ -52,7 +52,7 @@ router.put("/modificar-nombre/:id", (req, res) => {
 router.put("/modificar-stock-minimo/:id", (req, res) => {
     const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
 
-    ingredientes["ingredientes"][Number(req.params.id)].idRubroIngrediente = Number(req.body.idRubroIngrediente);
+    ingredientes["ingredientes"][Number(req.params.id)].stockMinimoInsumo = Number(req.body.stockMinimoInsumo);
 
     filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
 
