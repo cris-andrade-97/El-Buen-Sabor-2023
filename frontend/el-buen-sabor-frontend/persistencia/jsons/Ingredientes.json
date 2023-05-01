@@ -131,7 +131,7 @@
             "nombre": "Lluvia de Papas",
             "stockMinimoInsumo": 3000,
             "unidadMedida": "gr",
-            "cantidadActual": 5,
+            "cantidadActual": 5000,
             "rubroIngrediente": "Vegetales",
             "estado": true
         },
@@ -139,7 +139,7 @@
             "id": 15,
             "nombre": "Ají Molido",
             "stockMinimoInsumo": 1000,
-            "unidadMedida": "cucharada de te",
+            "unidadMedida": "gr",
             "cantidadActual": 1500,
             "rubroIngrediente": "Especias",
             "estado": true
