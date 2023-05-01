@@ -9,6 +9,8 @@ import { FormularioRubroIngredientesComponent } from './components/rubros/formul
 import { FormularioRubroProductosComponent } from './components/rubros/formulario-rubro-productos/formulario-rubro-productos.component';
 import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida/formulario-unidad-de-medida/formulario-unidad-de-medida.component';
 import { GrillaUnidadDeMedidaComponent } from './components/unidad-de-medida/grilla-unidad-de-medida/grilla-unidad-de-medida.component';
+import { GrillaIngredientesComponent } from './components/ingredientes/grilla-ingredientes/grilla-ingredientes.component';
+import { FormularioIngredientesComponent } from './components/ingredientes/formulario-ingredientes/formulario-ingredientes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -34,6 +36,14 @@ const routes: Routes = [
     path: 'formulario-unidad-de-medida/:id',
     component: FormularioUnidadDeMedidaComponent,
   },
+  {
+    path: 'grilla-ingredientes',
+    component: GrillaIngredientesComponent,
+  },
+  {
+    path: 'formulario-ingredientes/:id',
+    component: FormularioIngredientesComponent,
+  }
 ];
 
 @NgModule({
