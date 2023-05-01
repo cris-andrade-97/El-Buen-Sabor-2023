@@ -59,6 +59,24 @@
             "nombre": "Bebidas sin alcohol",
             "estado": true,
             "aLaVenta": true
+        },
+        {
+            "id": 10,
+            "nombre": "Harinas",
+            "estado": true,
+            "aLaVenta": false
+        },
+        {
+            "id": 11,
+            "nombre": "Embutidos",
+            "estado": true,
+            "aLaVenta": false
+        },
+        {
+            "id": 12,
+            "nombre": "De Origen Animal",
+            "estado": true,
+            "aLaVenta": false
         }
     ]
 }
