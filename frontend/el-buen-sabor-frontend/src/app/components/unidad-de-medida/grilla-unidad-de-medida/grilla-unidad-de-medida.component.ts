@@ -24,7 +24,7 @@ export class GrillaUnidadDeMedidaComponent implements OnInit {
     });
   }
 
-  actualizarVigencia(id: number, estado: boolean) {
+  /*actualizarVigencia(id: number, estado: boolean) {
     this.spinner.show();
     let url =
       'http://localhost:3000/api/unidad-de-medida/modificar-estado-unidad/' +
@@ -37,5 +37,5 @@ export class GrillaUnidadDeMedidaComponent implements OnInit {
       .subscribe((response) => console.log(response));
 
     window.location.reload();
-  }
+  }*/
 }

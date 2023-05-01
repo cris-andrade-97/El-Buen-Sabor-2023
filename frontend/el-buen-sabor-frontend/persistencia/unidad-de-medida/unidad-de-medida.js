@@ -11,7 +11,7 @@ router.get("/listar", (req, res) => {
 router.get("/buscar-por-id/:id", (req, res) => {
   const data = JSON.parse(filesync.readFileSync("./jsons/UnidadesMedida.json"));
 
-  const results = jsonData["unidad-de-medida"].filter(
+  const results = data["unidad-de-medida"].filter(
     (obj) => obj.id == Number(req.params.id)
   );
 
@@ -25,7 +25,7 @@ router.get("/buscar-por-id/:id", (req, res) => {
 });
 
 router.post("/nuevo", (req, res) => {
-  const data = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
+  const data = JSON.parse(filesync.readFileSync("./jsons/UnidadesMedida.json"));
 
   data["unidad-de-medida"].push({
     "id": data["unidad-de-medida"].length,
@@ -33,23 +33,20 @@ router.post("/nuevo", (req, res) => {
     "unidad": req.body.unidad
   });
 
-  filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(jsonData, null, 4));
+  filesync.writeFileSync("./jsons/UnidadesMedida.json", JSON.stringify(data, null, 4));
   res.send({
     message: "Unidad agregada con éxito.",
   });
 });
 
 router.put("/modificar-todo/:id", (req, res) => {
-  const data = filesync.readFileSync("./jsons/Ingredientes.json");
+  const data = JSON.parse(filesync.readFileSync("./jsons/UnidadesMedida.json"));
+  const { id } = req.params
 
-  const jsonData = JSON.parse(data);
+  data["unidad-de-medida"][Number(id)].nombre = req.body.nombre;
+  data["unidad-de-medida"][Number(id)].unidad = req.body.unidad;
 
-  jsonData["unidad-de-medida"][Number(req.params.id)].nombre = req.body.nombre;
-  jsonData["unidad-de-medida"][Number(req.params.id)].estado = req.body.estado;
-  jsonData["unidad-de-medida"][Number(req.params.id)].unidad = req.body.unidad;
-
-  filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(jsonData, null, 4)
-  );
+  filesync.writeFileSync("./jsons/UnidadesMedida.json", JSON.stringify(data, null, 4));
 
   res.send({
     message: "Unidad modificada con éxito.",
@@ -57,13 +54,11 @@ router.put("/modificar-todo/:id", (req, res) => {
 });
 
 router.put("/modificar-nombre/:id", (req, res) => {
-  const data = filesync.readFileSync("./jsons/Ingredientes.json");
+  const data = JSON.parse(filesync.readFileSync("./jsons/UnidadesMedida.json"));
 
-  const jsonData = JSON.parse(data);
+  data["unidad-de-medida"][Number(req.params.id)].nombre = req.body.nombre;
 
-  jsonData["unidad-de-medida"][Number(req.params.id)].nombre = req.body.nombre;
-
-  filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(jsonData, null, 4)
+  filesync.writeFileSync("./jsons/UnidadesMedida.json", JSON.stringify(data, null, 4)
   );
 
   res.send({
@@ -72,13 +67,11 @@ router.put("/modificar-nombre/:id", (req, res) => {
 });
 
 router.put("/modificar-unidad/:id", (req, res) => {
-  const data = filesync.readFileSync("./jsons/Ingredientes.json");
+  const data = JSON.parse(filesync.readFileSync("./jsons/UnidadesMedida.json"));
 
-  const jsonData = JSON.parse(data);
+  data["unidad-de-medida"][Number(req.params.id)].unidad = req.body.unidad;
 
-  jsonData["unidad-de-medida"][Number(req.params.id)].unidad = req.body.unidad;
-
-  filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(jsonData, null, 4)
+  filesync.writeFileSync("./jsons/UnidadesMedida.json", JSON.stringify(data, null, 4)
   );
 
   res.send({

@@ -11,15 +11,16 @@ import Swal from 'sweetalert2';
 export class FormularioUnidadDeMedidaComponent implements OnInit {
   UMedida: any;
   esNuevo: boolean = false;
-  nombreUMedida: string = '';
-  estado: boolean = false;
+  nombre: string = '';
+  unidad: string = '';
+  //estado: boolean = false;
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
     //Obtengo Rubro
-    await this.obtenerUMedida();
+    await this.obtenerUMedida();   
   }
 
   async obtenerUMedida() {
@@ -33,29 +34,30 @@ export class FormularioUnidadDeMedidaComponent implements OnInit {
       } else {
         //Si es modificación seteo los valores
         this.UMedida = response;
-        this.estado = this.UMedida.estado;
-        this.nombreUMedida = this.UMedida.nombreUMedida;
+        //this.estado = this.UMedida.estado;
+        this.nombre = this.UMedida.nombre;
+        this.unidad = this.UMedida.unidad;
       }
     });
   }
 
   async post() {
     //Verifico si el nombre está vacio
-    if (this.nombreUMedida.length == 0) {
+    if (this.nombre.length == 0 || this.unidad.length == 0) {
       return Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El nombre no puede estar vacio',
+        text: 'Hay campos vacíos.',
       });
     } else {
       //Si esta todo ok, verifico si es put o post mediante ID
       //POST
       if (this.esNuevo) {
-        let url = 'http://localhost:3000/api/unidad-de-medida/nueva-unidad';
+        let url = 'http://localhost:3000/api/unidad-de-medida/nuevo';
 
         const data = {
-          nombreUMedida: this.nombreUMedida,
-          estado: this.estado,
+          "nombre": this.nombre,
+          "unidad": this.unidad
         };
 
         this.http.post(url, data).subscribe(async (response) => {
@@ -68,12 +70,11 @@ export class FormularioUnidadDeMedidaComponent implements OnInit {
       } else {
         //PUT
         let url =
-          'http://localhost:3000/api/unidad-de-medida/modificar-unidad/' +
-          this.id;
+          'http://localhost:3000/api/unidad-de-medida/modificar-todo/' + this.id;
 
         const data = {
-          nombreUMedida: this.nombreUMedida,
-          estado: this.estado,
+          "nombre": this.nombre,
+          "unidad": this.unidad
         };
 
         this.http.put(url, data).subscribe(async (response) => {

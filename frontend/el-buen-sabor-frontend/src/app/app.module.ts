@@ -25,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { GrillaUnidadDeMedidaComponent } from './components/unidad-de-medida/grilla-unidad-de-medida/grilla-unidad-de-medida.component';
 import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida/formulario-unidad-de-medida/formulario-unidad-de-medida.component';
+import { FormularioIngredientesComponent } from './components/ingredientes/formulario-ingredientes/formulario-ingredientes.component';
+import { GrillaIngredientesComponent } from './components/ingredientes/grilla-ingredientes/grilla-ingredientes.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida
     FormularioRubroIngredientesComponent,
     GrillaUnidadDeMedidaComponent,
     FormularioUnidadDeMedidaComponent,
+    FormularioIngredientesComponent,
+    GrillaIngredientesComponent,
   ],
   imports: [
     BrowserModule,
