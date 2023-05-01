@@ -6,7 +6,8 @@
             "stockMinimoInsumo": 100000,
             "idUnidadMedida": 0,
             "cantidadActual": 150000,
-            "idRubroIngrediente": 10
+            "idRubroIngrediente": 10,
+            "estado": true
         },
         {
             "id": 1,
@@ -14,7 +15,8 @@
             "stockMinimoInsumo": 25000,
             "idUnidadMedida": 2,
             "cantidadActual": 50000,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
         },
         {
             "id": 2,
@@ -22,7 +24,8 @@
             "stockMinimoInsumo": 20000,
             "idUnidadMedida": 0,
             "cantidadActual": 40000,
-            "idRubroIngrediente": 5
+            "idRubroIngrediente": 5,
+            "estado": true
         },
         {
             "id": 3,
@@ -30,8 +33,8 @@
             "stockMinimoInsumo": 20000,
             "idUnidadMedida": 0,
             "cantidadActual": 50000,
-            "idRubroIngrediente": 11
-
+            "idRubroIngrediente": 11,
+            "estado": true
         },
         {
             "id": 4,
@@ -39,7 +42,8 @@
             "stockMinimoInsumo": 20000,
             "idUnidadMedida": 0,
             "cantidadActual": 50000,
-            "idRubroIngrediente": 1
+            "idRubroIngrediente": 1,
+            "estado": true
         },
         {
             "id": 5,
@@ -47,7 +51,8 @@
             "stockMinimoInsumo": 20000,
             "idUnidadMedida": 0,
             "cantidadActual": 25000,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
         },
         {
             "id": 6,
@@ -55,7 +60,8 @@
             "stockMinimoInsumo": 5000,
             "idUnidadMedida": 0,
             "cantidadActual": 10000,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
         },
         {
             "id": 7,
@@ -63,7 +69,8 @@
             "stockMinimoInsumo": 100,
             "idUnidadMedida": 7,
             "cantidadActual": 192,
-            "idRubroIngrediente": 12
+            "idRubroIngrediente": 12,
+            "estado": true
         },
         {
             "id": 8,
@@ -71,7 +78,8 @@
             "stockMinimoInsumo": 20000,
             "idUnidadMedida": 0,
             "cantidadActual": 45000,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
         },
         {
             "id": 9,
@@ -79,7 +87,8 @@
             "stockMinimoInsumo": 48,
             "idUnidadMedida": 7,
             "cantidadActual": 60,
-            "idRubroIngrediente": 6
+            "idRubroIngrediente": 6,
+            "estado": true
         },
         {
             "id": 10,
@@ -87,7 +96,8 @@
             "stockMinimoInsumo": 80,
             "idUnidadMedida": 7,
             "cantidadActual": 100,
-            "idRubroIngrediente": 11
+            "idRubroIngrediente": 11,
+            "estado": true
         },
         {
             "id": 11,
@@ -95,7 +105,8 @@
             "stockMinimoInsumo": 10000,
             "idUnidadMedida": 0,
             "cantidadActual": 15000,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
         },
         {
             "id": 12,
@@ -103,7 +114,8 @@
             "stockMinimoInsumo": 15000,
             "idUnidadMedida": 0,
             "cantidadActual": 30000,
-            "idRubroIngrediente": 5
+            "idRubroIngrediente": 5,
+            "estado": true
         },
         {
             "id": 13,
@@ -111,7 +123,8 @@
             "stockMinimoInsumo": 10000,
             "idUnidadMedida": 0,
             "cantidadActual": 25000,
-            "idRubroIngrediente": 5
+            "idRubroIngrediente": 5,
+            "estado": true
         },
         {
             "id": 14,
@@ -119,8 +132,17 @@
             "stockMinimoInsumo": 3000,
             "idUnidadMedida": 0,
             "cantidadActual": 5,
-            "idRubroIngrediente": 0
+            "idRubroIngrediente": 0,
+            "estado": true
+        },
+        {
+            "id": 15,
+            "nombre": "Ají Molido",
+            "stockMinimoInsumo": 1000,
+            "idUnidadMedida": 6,
+            "cantidadActual": 1500,
+            "idRubroIngrediente": 2,
+            "estado": true
         }
-        
     ]
 }

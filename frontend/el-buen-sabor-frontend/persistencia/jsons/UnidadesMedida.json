@@ -1,9 +1,9 @@
 {
-    "unidadesMedida": [
+    "unidad-de-medida": [
         {
             "id": 0,
             "nombre": "gramos",
-            "unidad": "g"
+            "unidad": "gr"
         },
         {
             "id": 1,
@@ -23,35 +23,22 @@
         {
             "id": 4,
             "nombre": "tazas",
-            "unidad": [
-                "taza",
-                "tazas"
-            ]
+            "unidad": "taza"
         },
         {
             "id": 5,
             "nombre": "cucharadas de te",
-            "unidad": [
-                "cucharada de te",
-                "cucharadas de te"
-            ]
+            "unidad": "cucharada de te"
         },
         {
             "id": 6,
             "nombre": "cucharadas soperas",
-            "unidad": [
-                "cucharada sopera",
-                "cucharadas soperas"
-            ]
+            "unidad": "cucharada sopera"
         },
         {
             "id": 7,
             "nombre": "unidades",
-            "unidad": [
-                "unidad",
-                "unidades",
-                "u"
-            ]
+            "unidad": "unidad"
         }
     ]
 }

@@ -26,7 +26,7 @@ router.get("/buscar-por-id/:id", (req, res) => {
 
 router.post("/nuevo-rubro", (req, res) => {
     const data = filesync.readFileSync("./jsons/RubroManufacturados.json");
-    //../src/app/components/grilla-rubro-productos/
+
     const jsonData = JSON.parse(data);
 
     jsonData["articulos-manufacturados"].push(
@@ -63,7 +63,7 @@ router.put("/modificar-nombre-rubro/:id", (req, res) => {
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
-    jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre    
+    jsonData["articulos-manufacturados"][Number(id)].nombre = req.body.nombre
 
     filesync.writeFileSync("./jsons/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
@@ -77,7 +77,7 @@ router.put("/modificar-estado-rubro/:id", (req, res) => {
     const jsonData = JSON.parse(data);
     const { id } = req.params
 
-    jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado 
+    jsonData["articulos-manufacturados"][Number(id)].estado = req.body.estado
 
     filesync.writeFileSync("./jsons/RubroManufacturados.json", JSON.stringify(jsonData, null, 4));
 
