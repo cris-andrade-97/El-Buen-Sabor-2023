@@ -15,6 +15,22 @@ router.get("/listar", (req, res) => {
 }
 )
 
+router.get("/buscar-por-id/:id", (req, res) => {
+    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"))["ingredientes"];
+    const ingrediente = ingredientes.find(ingrediente => ingrediente.id === Number(req.params.id));
+
+    res.send(ingrediente)
+
+    if (ingrediente) {
+        res.send(ingrediente)
+    } else {
+        res.send({
+            "results": false
+        })
+    }
+}
+)
+
 router.post("/nuevo", (req, res) => {
 
     const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
