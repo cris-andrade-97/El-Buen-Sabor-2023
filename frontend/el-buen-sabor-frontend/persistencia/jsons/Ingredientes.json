@@ -143,6 +143,15 @@
             "cantidadActual": 1500,
             "rubroIngrediente": "Especias",
             "estado": true
+        },
+        {
+            "id": 16,
+            "nombre": "Beteraba",
+            "stockMinimoInsumo": 0,
+            "unidadMedida": "kg",
+            "cantidadActual": "0",
+            "rubroIngrediente": "Vegetales",
+            "estado": false
         }
     ]
 }
