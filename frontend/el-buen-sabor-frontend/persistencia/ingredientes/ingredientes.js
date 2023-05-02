@@ -53,7 +53,26 @@ router.post("/nuevo", (req, res) => {
 
 })
 
-router.put("/modificar-nombre/:id", (req, res) => {
+router.put("/modificar-todo/:id", (req, res) => {
+
+    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
+
+    ingredientes["ingredientes"][Number(req.params.id)].nombre = req.body.nombre;
+    ingredientes["ingredientes"][Number(req.params.id)].stockMinimoInsumo = Number(req.body.stockMinimoInsumo);
+    ingredientes["ingredientes"][Number(req.params.id)].unidadMedida = req.body.unidadMedida;
+    ingredientes["ingredientes"][Number(req.params.id)].cantidadActual = Number(req.body.cantidadActual);
+    ingredientes["ingredientes"][Number(req.params.id)].rubroIngrediente = req.body.rubroIngrediente;
+    ingredientes["ingredientes"][Number(req.params.id)].estado = req.body.estado;
+
+    filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
+
+    res.send({
+        "message": "Ingrediente modificado con éxito."
+    })
+
+})
+
+/*router.put("/modificar-nombre/:id", (req, res) => {
     const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
 
     ingredientes["ingredientes"][Number(req.params.id)].nombre = req.body.nombre;
@@ -123,25 +142,8 @@ router.put("/modificar-estado/:id", (req, res) => {
     res.send({
         "message": "Ingrediente modificado con éxito."
     })
-})
+})*/
 
-router.put("/modificar-todo/:id", (req, res) => {
 
-    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
-
-    ingredientes["ingredientes"][Number(req.params.id)].nombre = req.body.nombre;
-    ingredientes["ingredientes"][Number(req.params.id)].stockMinimoInsumo = Number(req.body.stockMinimoInsumo);
-    ingredientes["ingredientes"][Number(req.params.id)].unidadMedida = req.body.unidadMedida;
-    ingredientes["ingredientes"][Number(req.params.id)].cantidadActual = Number(req.body.cantidadActual);
-    ingredientes["ingredientes"][Number(req.params.id)].rubroIngrediente = req.body.rubroIngrediente;
-    ingredientes["ingredientes"][Number(req.params.id)].estado = req.body.estado;
-
-    filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
-
-    res.send({
-        "message": "Ingrediente modificado con éxito."
-    })
-
-})
 
 module.exports = router
