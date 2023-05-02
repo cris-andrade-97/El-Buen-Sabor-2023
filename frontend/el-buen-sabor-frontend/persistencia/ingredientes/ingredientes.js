@@ -53,6 +53,18 @@ router.post("/nuevo", (req, res) => {
 
 })
 
+router.put("/modificar-estado/:id", (req, res) => {
+    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
+
+    ingredientes["ingredientes"][Number(req.params.id)].estado = req.body.estado;
+
+    filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
+
+    res.send({
+        "message": "Ingrediente modificado con éxito."
+    })
+})
+
 router.put("/modificar-todo/:id", (req, res) => {
 
     const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
@@ -132,17 +144,7 @@ router.put("/modificar-rubro/:id", (req, res) => {
     })
 })
 
-router.put("/modificar-estado/:id", (req, res) => {
-    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
-
-    ingredientes["ingredientes"][Number(req.params.id)].estado = req.body.estado;
-
-    filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
-
-    res.send({
-        "message": "Ingrediente modificado con éxito."
-    })
-})*/
+*/
 
 
 
