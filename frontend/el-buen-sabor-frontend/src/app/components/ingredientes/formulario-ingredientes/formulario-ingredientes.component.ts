@@ -22,13 +22,19 @@ export class FormularioIngredientesComponent implements OnInit {
   stockMinimo: number = 0;
   estado: boolean = false;
   esNuevo: boolean = false;
+  listaUnidades: string[] = [];
+  listaRubros: string[] = [];
+  auxiliar!: any;
 
   id = this.route.snapshot.paramMap.get('id')
 
   constructor(private route: ActivatedRoute, private fb: UntypedFormBuilder, private http: HttpClient) { }
 
   async ngOnInit() {
+    await this.obtenerRubros()
+    await this.obtenerUnidades()
     await this.obtenerIngrediente()
+    this.auxiliar = null;
   }
 
   async obtenerIngrediente() {
@@ -36,6 +42,8 @@ export class FormularioIngredientesComponent implements OnInit {
       .subscribe((response) => {
         if (this.id == "nuevoIngrediente") {
           this.esNuevo = true
+          this.unidadMedida = "gr"
+          this.rubro = "Vegetales"
         } else {
           this.ingrediente = response;
           this.nombre = this.ingrediente.nombre;
@@ -49,8 +57,29 @@ export class FormularioIngredientesComponent implements OnInit {
       )
   }
 
+  async obtenerUnidades() {
+    this.http.get('http://localhost:3000/api/unidad-de-medida/listar').subscribe(
+      (response) => {
+        this.auxiliar = response
+        for (let i = 0; i < this.auxiliar.length; i++) {
+          this.listaUnidades.push(this.auxiliar[i]['unidad']);
+        }
+      }
+    )
+  }
+
+  async obtenerRubros() {
+    this.http.get('http://localhost:3000/api/rubro-ingredientes/listar').subscribe(
+      (response) => {
+        this.auxiliar = response
+        for (let i = 0; i < this.auxiliar.length; i++) {
+          this.listaRubros.push(this.auxiliar[i]['nombre']);
+        }
+      }
+    )
+  }
+
   async post() {
-    //Verifico si el nombre está vacio
     if (this.nombre.length == 0) {
       return Swal.fire({
         icon: 'error',
@@ -58,9 +87,6 @@ export class FormularioIngredientesComponent implements OnInit {
         text: 'El nombre no puede estar vacio',
       });
     } else {
-      //Si esta todo ok, verifico si es put o post mediante ID
-      //POST     
-
       if (this.esNuevo) {
         let url = 'http://localhost:3000/api/ingredientes/nuevo';
 
@@ -81,9 +107,7 @@ export class FormularioIngredientesComponent implements OnInit {
         });
         return;
       } else {
-        //PUT
-        let url =
-          'http://localhost:3000/api/ingredientes/modificar-todo/' + this.id;
+        let url = 'http://localhost:3000/api/ingredientes/modificar-todo/' + this.id;
 
         const data = {
           "nombre": this.nombre,
