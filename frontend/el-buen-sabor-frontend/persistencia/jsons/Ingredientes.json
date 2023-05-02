@@ -25,7 +25,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 40000,
             "rubroIngrediente": "Lácteos",
-            "estado": true
+            "estado": false
         },
         {
             "id": 3,
@@ -61,7 +61,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 0,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": false
         },
         {
             "id": 7,
@@ -88,7 +88,7 @@
             "unidadMedida": "unidad",
             "cantidadActual": 60,
             "rubroIngrediente": "Pan",
-            "estado": true
+            "estado": false
         },
         {
             "id": 10,
@@ -115,7 +115,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 30000,
             "rubroIngrediente": "Lácteos",
-            "estado": true
+            "estado": false
         },
         {
             "id": 13,

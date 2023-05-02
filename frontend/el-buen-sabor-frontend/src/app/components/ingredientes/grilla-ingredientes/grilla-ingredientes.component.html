@@ -69,16 +69,16 @@
                         <p>&#10060;</p>
                     </td>
                     <td class="table-success">
-                        <a class="btn btn-outline-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
+                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
                             Modificar Ingrediente
                         </a>
                     </td>
                     <td class="table-success">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
+                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
                             (click)="actualizarVigencia(ingrediente.id, true)">
                             Dar de Alta
                         </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
+                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
                             (click)="actualizarVigencia(ingrediente.id, false)">
                             Dar de Baja
                         </button>
@@ -120,16 +120,16 @@
                         <p>&#10060;</p>
                     </td>
                     <td class="table-warning">
-                        <a class="btn btn-outline-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
+                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
                             Modificar Ingrediente
                         </a>
                     </td>
                     <td class="table-warning">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
+                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
                             (click)="actualizarVigencia(ingrediente.id, true)">
                             Dar de Alta
                         </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
+                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
                             (click)="actualizarVigencia(ingrediente.id, false)">
                             Dar de Baja
                         </button>
@@ -171,16 +171,16 @@
                         <p>&#10060;</p>
                     </td>
                     <td class="table-danger">
-                        <a class="btn btn-outline-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
+                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
                             Modificar Ingrediente
                         </a>
                     </td>
                     <td class="table-danger">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
+                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
                             (click)="actualizarVigencia(ingrediente.id, true)">
                             Dar de Alta
                         </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
+                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
                             (click)="actualizarVigencia(ingrediente.id, false)">
                             Dar de Baja
                         </button>
