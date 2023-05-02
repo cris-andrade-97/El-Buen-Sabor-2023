@@ -1,0 +1,38 @@
+{
+    "articulosManufacturados": [
+        {
+            "id": 0,
+            "nombre": "Hamburguesa Clasica",
+            "precioVenta": 2500,
+            "imagen": "https://i.ibb.co/F3bNhNk/Clasica.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr"
+                },
+                {
+                    "id": 2,
+                    "nombre": "Cebolla",
+                    "cantidad": 20,
+                    "unidadDeMedida": "gr"
+                },
+                {
+                    "id": 3,
+                    "nombre": "Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr"
+                },
+                {
+                    "id": 4,
+                    "nombre": "Lechuga",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr"
+                }
+            ]
+        }
+    ]
+}

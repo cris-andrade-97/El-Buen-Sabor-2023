@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  login() {
+  async login() {
     this.auth.loginWithRedirect();
   }
 

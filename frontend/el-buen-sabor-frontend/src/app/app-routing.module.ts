@@ -11,6 +11,8 @@ import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida
 import { GrillaUnidadDeMedidaComponent } from './components/unidad-de-medida/grilla-unidad-de-medida/grilla-unidad-de-medida.component';
 import { GrillaIngredientesComponent } from './components/ingredientes/grilla-ingredientes/grilla-ingredientes.component';
 import { FormularioIngredientesComponent } from './components/ingredientes/formulario-ingredientes/formulario-ingredientes.component';
+import { GrillaArticulosManufacturadosComponent } from './components/articulos-manufacturados/grilla-articulos-manufacturados/grilla-articulos-manufacturados.component';
+import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -23,10 +25,18 @@ const routes: Routes = [
     component: GrillaRubroIngredientesComponent,
   },
   { path: 'grilla-rubro-productos', component: GrillaRubroProductosComponent },
+  {
+    path: 'grilla-articulos-manufacturados',
+    component: GrillaArticulosManufacturadosComponent,
+  },
   { path: 'grilla-unidad-de-medida', component: GrillaUnidadDeMedidaComponent },
   {
     path: 'formulario-rubro-ingredientes/:id',
     component: FormularioRubroIngredientesComponent,
+  },
+  {
+    path: 'formulario-articulos-manufacturados/:id',
+    component: FormularioArticulosManufacturadosComponent,
   },
   {
     path: 'formulario-rubro-productos/:id',
@@ -43,7 +53,7 @@ const routes: Routes = [
   {
     path: 'formulario-ingredientes/:id',
     component: FormularioIngredientesComponent,
-  }
+  },
 ];
 
 @NgModule({

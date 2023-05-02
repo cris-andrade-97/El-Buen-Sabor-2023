@@ -27,6 +27,8 @@ import { GrillaUnidadDeMedidaComponent } from './components/unidad-de-medida/gri
 import { FormularioUnidadDeMedidaComponent } from './components/unidad-de-medida/formulario-unidad-de-medida/formulario-unidad-de-medida.component';
 import { FormularioIngredientesComponent } from './components/ingredientes/formulario-ingredientes/formulario-ingredientes.component';
 import { GrillaIngredientesComponent } from './components/ingredientes/grilla-ingredientes/grilla-ingredientes.component';
+import { GrillaArticulosManufacturadosComponent } from './components/articulos-manufacturados/grilla-articulos-manufacturados/grilla-articulos-manufacturados.component';
+import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { GrillaIngredientesComponent } from './components/ingredientes/grilla-in
     FormularioUnidadDeMedidaComponent,
     FormularioIngredientesComponent,
     GrillaIngredientesComponent,
+    GrillaArticulosManufacturadosComponent,
+    FormularioArticulosManufacturadosComponent,
   ],
   imports: [
     BrowserModule,

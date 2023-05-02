@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h2 *ngIf="id=='nuevoIngrediente'">Agregar Nuevo Articulo</h2>
+        <h2 *ngIf="id!='nuevoIngrediente'">Modificar Articulo Existente</h2>
+    </div>
+    <br>
+    <div class="form-11">
+        <img class="wtmpz-tg-j-eb-u" src="../../../assets/img/Logo.png" />
+        <div class="register-form">
+            <div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Nombre del Articulo</label>
+                    <input type="text" [(ngModel)]="nombre" name="myInput" class="form-control"
+                        id="exampleInputEmail1" />
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Imagen</label>
+                    <input type="text" name="myInput" [(ngModel)]="imagen" class="form-control"
+                        id="exampleInputEmail1" />
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Rubro de Articulo</label>
+                <select class="form-select" [(ngModel)]="rubroArticulo">
+                    <option [ngValue]="null" selected>-- Seleccione una opción --</option>
+                    <option *ngFor="let r of listaRubros">{{r}}</option>
+                </select>
+                <br>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" name="myInput"
+                        id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Vigente</label>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Precio de Venta</label>
+                    $<input type="number" name="myInput" [(ngModel)]="precioVenta" class="form-control"
+                        id="exampleInputEmail1" />
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-primary" (click)="post()">Confirmar</button>
+
+                    <a type="btn" class="btn btn-danger" href="/grilla-articulos-manufacturados">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col" style="width:14%">Ingrediente</th>
+                <th scope="col" style="width:12%">Cantidad</th>
+                <th scope="col" style="width:11%">Unidad de Medida</th>
+                <th scope="col" style="width:13%">Opciones</th>
+            </tr>
+        </thead>
+        <tbody [(ngModel)]="articuloManufacturadoDetalle">
+            <tr *ngFor="let ingrediente of articuloManufacturadoDetalle">
+                <td>
+                    {{ingrediente.nombre}}
+                </td>
+                <td>
+                    {{ingrediente.cantidad}}
+                </td>
+                <td>
+                    {{ingrediente.unidadDeMedida}}
+                </td>
+                <td>
+                    <button class="btn btn-outline-success" (click)="eliminarIngrediente(ingrediente.id)">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <select class="form-select" [(ngModel)]="ingrediente">
+                        <option [ngValue]="null" selected>-- Seleccione una opción --</option>
+                        <option *ngFor="let ingrediente of listaIngredientes" [ngValue]="ingrediente">
+                            {{ingrediente.nombre}}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" [(ngModel)]="cantidad" name="myInput" class="form-control"
+                        id="exampleInputEmail1" />
+                </td>
+                <td>
+                    {{ingrediente.unidadMedida}}
+                </td>
+                <td>
+                    <button class="btn btn-outline-success" (click)="agregarIngrediente(ingrediente.id)">
+                        Agregar Ingrediente
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<br>
