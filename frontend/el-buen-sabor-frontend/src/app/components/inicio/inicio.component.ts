@@ -12,6 +12,9 @@ import axios from 'axios';
 })
 export class InicioComponent implements OnInit {
   articulosManufacturados!: any;
+  pizzas: any[] = [];
+  hamburguesas: any[] = [];
+  lomosArray: any[] = [];
 
   constructor(
     public auth: AuthService,
@@ -44,6 +47,19 @@ export class InicioComponent implements OnInit {
 
     this.http.get(url).subscribe((response) => {
       this.articulosManufacturados = response;
+      for (let i = 0; i < this.articulosManufacturados.length; i++) {
+        if (this.articulosManufacturados[i].estado == true) {
+          if (this.articulosManufacturados[i].rubroArticulo == 'Pizzas') {
+            this.pizzas.push(this.articulosManufacturados[i]);
+          } else if (
+            this.articulosManufacturados[i].rubroArticulo == 'Hamburguesas'
+          ) {
+            this.hamburguesas.push(this.articulosManufacturados[i]);
+          } else if (this.articulosManufacturados[i].rubroArticulo == 'Lomos') {
+            this.lomosArray.push(this.articulosManufacturados[i]);
+          }
+        }
+      }
     });
   }
 

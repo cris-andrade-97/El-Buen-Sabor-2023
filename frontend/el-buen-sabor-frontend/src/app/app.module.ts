@@ -32,6 +32,7 @@ import { FormularioArticulosManufacturadosComponent } from './components/articul
 
 
 import { RegistrarCompraIngredienteComponent } from './components/ingredientes/registrar-compra-ingrediente/registrar-compra-ingrediente.component';
+import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { RegistrarCompraIngredienteComponent } from './components/ingredientes/r
     GrillaIngredientesComponent,
     GrillaArticulosManufacturadosComponent,
     FormularioArticulosManufacturadosComponent,
+    DetalleArticuloManufacturadoComponent,
   ],
   imports: [
     BrowserModule,

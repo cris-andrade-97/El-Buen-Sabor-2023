@@ -159,6 +159,16 @@
             "rubroIngrediente": "Especias",
             "estado": true,
             "costoPorUnidad": 5
+        },
+        {
+            "id": 16,
+            "nombre": "Calabrese",
+            "stockMinimoInsumo": 3000,
+            "unidadMedida": "gr",
+            "cantidadActual": 6000,
+            "rubroIngrediente": "Embutidos",
+            "estado": true,
+            "costoPorUnidad": 1.8
         }
     ]
 }

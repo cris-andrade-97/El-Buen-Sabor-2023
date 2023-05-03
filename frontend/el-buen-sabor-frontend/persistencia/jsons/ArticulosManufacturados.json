@@ -77,6 +77,656 @@
                 }
             ],
             "costoTotal": 872
+        },
+        {
+            "id": 2,
+            "nombre": "Hamburguesa Americana",
+            "precioVenta": 1900,
+            "imagen": "https://i.ibb.co/Hhg4DFR/Americana.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 2,
+                    "nombre": "Huevos",
+                    "cantidad": 2,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 160
+                },
+                {
+                    "id": 3,
+                    "nombre": "Cebolla",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 8.5
+                },
+                {
+                    "id": 4,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 229.99999999999997
+                }
+            ],
+            "costoTotal": 638.5
+        },
+        {
+            "id": 3,
+            "nombre": "Hamburguesa Doble Americana",
+            "precioVenta": 2100,
+            "imagen": "https://i.ibb.co/wp6dDXJ/Doble-Americana.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 400,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 480
+                },
+                {
+                    "id": 2,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 30
+                },
+                {
+                    "id": 3,
+                    "nombre": "Cebolla",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 8.5
+                },
+                {
+                    "id": 4,
+                    "nombre": "Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
+                },
+                {
+                    "id": 5,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 229.99999999999997
+                },
+                {
+                    "id": 6,
+                    "nombre": "Huevos",
+                    "cantidad": 4,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 320
+                }
+            ],
+            "costoTotal": 1103.5
+        },
+        {
+            "id": 4,
+            "nombre": "Hamburguesa Pickle Especial",
+            "precioVenta": 1850,
+            "imagen": "https://i.ibb.co/tpWYRym/Pickle-Special.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 30
+                },
+                {
+                    "id": 2,
+                    "nombre": "Papa",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 25
+                },
+                {
+                    "id": 3,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 4,
+                    "nombre": "Huevos",
+                    "cantidad": 2,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 160
+                },
+                {
+                    "id": 5,
+                    "nombre": "Cebolla",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 8.5
+                },
+                {
+                    "id": 6,
+                    "nombre": "Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
+                },
+                {
+                    "id": 7,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 345
+                }
+            ],
+            "costoTotal": 843.5
+        },
+        {
+            "id": 5,
+            "nombre": "Hamburguesa Provoburguer",
+            "precioVenta": 2000,
+            "imagen": "https://i.ibb.co/m9Z3Vkm/Provo-Burger.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 2,
+                    "nombre": "Huevos",
+                    "cantidad": 2,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 160
+                },
+                {
+                    "id": 3,
+                    "nombre": "Jamón Cocido",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 150
+                },
+                {
+                    "id": 4,
+                    "nombre": "Salsa de Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "ml",
+                    "costoIngrediente": 25
+                },
+                {
+                    "id": 5,
+                    "nombre": "Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
+                },
+                {
+                    "id": 6,
+                    "nombre": "Papa",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 50
+                },
+                {
+                    "id": 7,
+                    "nombre": "Queso Provolone",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 430
+                },
+                {
+                    "id": 8,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 229.99999999999997
+                }
+            ],
+            "costoTotal": 1320
+        },
+        {
+            "id": 6,
+            "nombre": "Hamburguesa Veggie",
+            "precioVenta": 1800,
+            "imagen": "https://i.ibb.co/jhYX5r1/Veggie.jpg",
+            "estado": true,
+            "rubroArticulo": "Hamburguesas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Cebolla",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 17
+                },
+                {
+                    "id": 2,
+                    "nombre": "Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
+                },
+                {
+                    "id": 3,
+                    "nombre": "Salsa de Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "ml",
+                    "costoIngrediente": 25
+                },
+                {
+                    "id": 4,
+                    "nombre": "Papa",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 25
+                },
+                {
+                    "id": 5,
+                    "nombre": "Huevos",
+                    "cantidad": 2,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 160
+                },
+                {
+                    "id": 6,
+                    "nombre": "Lechuga",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
+                },
+                {
+                    "id": 7,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 229.99999999999997
+                },
+                {
+                    "id": 8,
+                    "nombre": "Queso Provolone",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 430
+                }
+            ],
+            "costoTotal": 957
+        },
+        {
+            "id": 7,
+            "nombre": "Provolomo",
+            "precioVenta": 2300,
+            "imagen": "https://i.ibb.co/1Xttjgm/provolomo-solo-prueba-2.png",
+            "estado": true,
+            "rubroArticulo": "Lomos",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Cebolla",
+                    "cantidad": 50,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 8.5
+                },
+                {
+                    "id": 2,
+                    "nombre": "Huevos",
+                    "cantidad": 3,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 3,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 40
+                },
+                {
+                    "id": 4,
+                    "nombre": "Papa",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 50
+                },
+                {
+                    "id": 5,
+                    "nombre": "Queso Provolone",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 645
+                },
+                {
+                    "id": 6,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 229.99999999999997
+                },
+                {
+                    "id": 7,
+                    "nombre": "Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                }
+            ],
+            "costoTotal": 1283.5
+        },
+        {
+            "id": 8,
+            "nombre": "Lomo Americano",
+            "precioVenta": 2250,
+            "imagen": "https://i.ibb.co/5Gs8FJS/lomo-americano-solo.png",
+            "estado": true,
+            "rubroArticulo": "Lomos",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 2,
+                    "nombre": "Cebolla",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 17
+                },
+                {
+                    "id": 3,
+                    "nombre": "Huevos",
+                    "cantidad": 3,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 4,
+                    "nombre": "Jamón Cocido",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 300
+                },
+                {
+                    "id": 5,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 40
+                },
+                {
+                    "id": 6,
+                    "nombre": "Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                },
+                {
+                    "id": 7,
+                    "nombre": "Lechuga",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                },
+                {
+                    "id": 8,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 459.99999999999994
+                }
+            ],
+            "costoTotal": 1437
+        },
+        {
+            "id": 9,
+            "nombre": "Lomo Pickle Especial",
+            "precioVenta": 2300,
+            "imagen": "https://i.ibb.co/GQxjqXN/lomo-pickles-prueba-2.png",
+            "estado": true,
+            "rubroArticulo": "Lomos",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Cebolla",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 17
+                },
+                {
+                    "id": 2,
+                    "nombre": "Jamón Cocido",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 450
+                },
+                {
+                    "id": 3,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 459.99999999999994
+                },
+                {
+                    "id": 4,
+                    "nombre": "Huevos",
+                    "cantidad": 3,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 5,
+                    "nombre": "Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                },
+                {
+                    "id": 6,
+                    "nombre": "Lechuga",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                },
+                {
+                    "id": 7,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 40
+                },
+                {
+                    "id": 8,
+                    "nombre": "Papa",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 50
+                }
+            ],
+            "costoTotal": 1397
+        },
+        {
+            "id": 10,
+            "nombre": "Lomo Pickle",
+            "precioVenta": 2350,
+            "imagen": "https://i.ibb.co/GQxjqXN/lomo-pickles-prueba-2.png",
+            "estado": false,
+            "rubroArticulo": "Lomos",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Carne Molida",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
+                },
+                {
+                    "id": 2,
+                    "nombre": "Jamón Cocido",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 300
+                },
+                {
+                    "id": 3,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 345
+                },
+                {
+                    "id": 4,
+                    "nombre": "Queso Provolone",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 430
+                },
+                {
+                    "id": 5,
+                    "nombre": "Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 70
+                }
+            ],
+            "costoTotal": 1385
+        },
+        {
+            "id": 11,
+            "nombre": "Pizza Muzzarella",
+            "precioVenta": 1650,
+            "imagen": "https://i.ibb.co/LvnXnMw/Muzzarella-Macro.jpg",
+            "estado": true,
+            "rubroArticulo": "Pizzas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 20
+                },
+                {
+                    "id": 2,
+                    "nombre": "Papa",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 75
+                },
+                {
+                    "id": 3,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 459.99999999999994
+                },
+                {
+                    "id": 4,
+                    "nombre": "Salsa de Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "ml",
+                    "costoIngrediente": 50
+                }
+            ],
+            "costoTotal": 605
+        },
+        {
+            "id": 12,
+            "nombre": "Pizza con Jamón",
+            "precioVenta": 1750,
+            "imagen": "https://i.ibb.co/7Rb1ypx/Jamon-Top.jpg",
+            "estado": true,
+            "rubroArticulo": "Pizzas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 20
+                },
+                {
+                    "id": 2,
+                    "nombre": "Papa",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 75
+                },
+                {
+                    "id": 3,
+                    "nombre": "Salsa de Tomate",
+                    "cantidad": 100,
+                    "unidadDeMedida": "ml",
+                    "costoIngrediente": 50
+                },
+                {
+                    "id": 4,
+                    "nombre": "Jamón Cocido",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 300
+                }
+            ],
+            "costoTotal": 445
+        },
+        {
+            "id": 13,
+            "nombre": "Pizza Calabresa",
+            "precioVenta": 1750,
+            "imagen": "https://i.ibb.co/gyxppdr/Calabressa-Macro.jpg",
+            "estado": true,
+            "rubroArticulo": "Pizzas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 20
+                },
+                {
+                    "id": 2,
+                    "nombre": "Papa",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 75
+                },
+                {
+                    "id": 3,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 459.99999999999994
+                },
+                {
+                    "id": 4,
+                    "nombre": "Salsa de Tomate",
+                    "cantidad": 50,
+                    "unidadDeMedida": "ml",
+                    "costoIngrediente": 25
+                },
+                {
+                    "id": 5,
+                    "nombre": "Calabrese",
+                    "cantidad": 100,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 180
+                }
+            ],
+            "costoTotal": 760
         }
     ]
 }

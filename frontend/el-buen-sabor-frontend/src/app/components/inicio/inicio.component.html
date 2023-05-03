@@ -20,7 +20,7 @@
             </div>
             <br>
             <div class="bloques">
-                <div class="card" style="width: 18rem;" *ngFor="let articulo of articulosManufacturados">
+                <div class="card" style="width: 18rem;" *ngFor="let articulo of pizzas">
                     <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
                         class="card-img-top card-img-fixed-height" alt="...">
                     <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
@@ -28,9 +28,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{articulo.nombre}}</h5>
                         <p class="card-text">{{articulo.precioVenta}}</p>
-                        <div class="d-flex justify-content-evenly">
-                            <a href="#" class="btn btn-outline-primary">Agregar al carrito</a>
-                            <a href="#" class="btn btn-outline-info">Ver detalle</a>
+                        <div>
+                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                                <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                            </a>
+                            <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"
+                                class="btn btn-outline-info" style="display: block;">
+                                Ver detalle
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -48,48 +53,23 @@
             </div>
             <br>
             <div class="bloques">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Clasica.jpg" class="card-img-top card-img-fixed-height" alt="...">
+                <div class="card" style="width: 18rem;" *ngFor="let articulo of hamburguesas">
+                    <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
+                    <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Hamburguesa Simple</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Americana.jpg" class="card-img-top card-img-fixed-height" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Hamburguesa Americana</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Doble-Americana.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Hamburguesa Doble Americana</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pickle-Special.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Hamburguesa Pickle</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Provo-Burger.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Hamburguesa Provolone</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
+                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <div>
+                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                                <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                            </a>
+                            <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"
+                                class="btn btn-outline-info" style="display: block;">
+                                Ver detalle
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -106,32 +86,23 @@
             </div>
             <br>
             <div class="bloques">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/provolomo-solo-prueba-2.png"
+                <div class="card" style="width: 18rem;" *ngFor="let articulo of lomosArray">
+                    <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
+                    <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Provolomo</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/lomo-americano-solo.png" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Lomo Americano</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/lomo-pickles-prueba-2.png" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Lomo Pickles</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
+                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <div>
+                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                                <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                            </a>
+                            <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"
+                                class="btn btn-outline-info" style="display: block;">
+                                Ver detalle
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

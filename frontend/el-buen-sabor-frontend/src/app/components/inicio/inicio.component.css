@@ -366,10 +366,16 @@
 .bloques {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
+  flex-wrap: wrap;
   gap: 24px;
-  justify-content: space-between;
+  justify-content: center;
+  flex-basis: 100%;
 }
+
+.card {
+  width: calc(33.33% - 8px);
+}
+
 
 .frame-2300 {
   display: flex;

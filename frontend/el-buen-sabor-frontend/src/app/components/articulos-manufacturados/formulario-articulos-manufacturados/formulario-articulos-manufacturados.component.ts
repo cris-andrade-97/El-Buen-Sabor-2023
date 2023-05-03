@@ -80,6 +80,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
       .subscribe(async (response) => {
         if (this.id == 'nuevoArticulo') {
           this.esNuevo = true;
+          await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
         } else {
           this.articuloManufacturado = response;
           this.nombre = this.articuloManufacturado.nombre;

@@ -1,0 +1,33 @@
+<div class="container">
+    <br>
+    <div class="row animated fadeIn">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <h1>{{articuloManufacturado.nombre | uppercase}}</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-4" style="text-align: center">
+                    <img *ngIf="(articuloManufacturado.imagen).indexOf('http')>=0" src={{articuloManufacturado.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
+                    <img *ngIf="(articuloManufacturado.imagen).indexOf('http')!=0" src={{articuloManufacturado.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
+                    <br><br>
+                </div>
+                <div class="col-md-8">
+                    <hr>
+                    <div>
+                        <p>
+                            <b>Ingredientes:</b>
+                            <li
+                                *ngFor="let detalle of articuloManufacturado.articuloManufacturadoDetalle;let i = index">
+                                {{detalle.nombre}}
+                            </li>
+                        </p>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-outline-primary" ><i class="fas fa-shopping-cart"></i>
+                    Agregar al
+                    carrito</a>
+            </div>
+        </div>
+    </div>
+</div>
