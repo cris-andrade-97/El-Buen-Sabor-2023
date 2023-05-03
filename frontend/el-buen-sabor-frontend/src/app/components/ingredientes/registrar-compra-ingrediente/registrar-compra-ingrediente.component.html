@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h2>Registrar Compra Ingrediente</h2>
+    </div>
+    <br>
+    <div class="form-11">
+        <img class="wtmpz-tg-j-eb-u" src="../../../assets/img/Logo.png" />
+        <div class="register-form">
+            <div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Seleccione el Ingrediente</label>
+                    <select class="form-select" [(ngModel)]="nombre" (ngModelChange)="seleccionarIngrediente()">
+                        <option *ngFor="let i of ingredientes">{{i.nombre}}</option>
+                    </select>                    
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Cantidad Actual</label>
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="cantidadActual" class="form-control" id="exampleInputEmail1"
+                        readonly />
+                    <div class="input-group-append">
+                        <span class="input-group-text">{{unidadMedida}}</span>
+                    </div>
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Cantidad Comprada</label>
+                <div class="input-group">
+                    <input type="number" [(ngModel)]="cantidadComprada" class="form-control" id="exampleInputEmail1"
+                        (ngModelChange)="actualizarCostoPorUnidad()" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">{{unidadMedida}}</span>
+                    </div>
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">¿Cuánto costó la compra?</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ARS</span>
+                    </div>
+                    <input type="number" [(ngModel)]="costoCompra" class="form-control" id="exampleInputEmail1"
+                        (ngModelChange)="actualizarCostoPorUnidad()" />
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Nuevo Costo Por Unidad</label>
+                <div class="input-group">
+                    <input type="number" [(ngModel)]="nuevoCostoPorUnidad" class="form-control" id="exampleInputEmail1"
+                        readonly />
+                    <div class="input-group-append">
+                        <span class="input-group-text">$/{{unidadMedida}}</span>
+                    </div>
+                </div>
+                <br>
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-primary" (click)="post()">Confirmar</button>
+                    <a type="btn" class="btn btn-danger" href="/grilla-ingredientes">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

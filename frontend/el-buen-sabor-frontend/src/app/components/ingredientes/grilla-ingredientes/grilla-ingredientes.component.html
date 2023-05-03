@@ -10,9 +10,12 @@
     </div>
     <br>
     <div class="d-flex justify-content-between">
-        <div>
+        <div class="d-flex flex-row">
             <a href="/formulario-ingredientes/nuevoIngrediente">
                 <button type="button" class="btn btn-outline-primary">Agregar Nuevo Ingrediente</button>
+            </a>
+            <a href="/registrar-compra-ingrediente">
+                <button type="button" class="btn btn-outline-primary">Registrar Compra</button>
             </a>
         </div>
         <div class="col-sm-4">
@@ -22,15 +25,15 @@
     <table class="table table-light">
         <thead>
             <tr>
-                <th scope="col" style="width:11%">Nombre</th>
-                <th scope="col" style="width:11%">Stock Mínimo</th>
-                <th scope="col" style="width:11%">Cantidad Actual</th>
-                <th scope="col" style="width:5%">Unidad de Medida</th>
-                <th scope="col" style="width:11%">Rubro</th>
-                <th scope="col" style="width:5%">Costo</th>
-                <th scope="col" style="width:11%">Vigencia</th>
-                <th scope="col" style="width:11%">Modificar</th>
-                <th scope="col" style="width:11%">Dar de Alta/Baja</th>                
+                <th scope="col" style="width:10%">Nombre</th>
+                <th scope="col" style="width:10%">Stock Mínimo</th>
+                <th scope="col" style="width:10%">Stock Actual</th>
+                <th scope="col" style="width:10%">U. de Medida</th>
+                <th scope="col" style="width:10%">Rubro</th>
+                <th scope="col" style="width:10%">Costo</th>
+                <th scope="col" style="width:10%">Vigencia</th>
+                <th scope="col" style="width:10%">Modificar</th>
+                <th scope="col" style="width:10%">Dar de Alta/Baja</th>
             </tr>
         </thead>
         <tbody>
@@ -74,7 +77,7 @@
                     </td>
                     <td class="table-success">
                         <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar Ingrediente
+                            Modificar
                         </a>
                     </td>
                     <td class="table-success">
@@ -128,7 +131,7 @@
                     </td>
                     <td class="table-warning">
                         <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar Ingrediente
+                            Modificar
                         </a>
                     </td>
                     <td class="table-warning">
@@ -182,7 +185,7 @@
                     </td>
                     <td class="table-danger">
                         <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar Ingrediente
+                            Modificar
                         </a>
                     </td>
                     <td class="table-danger">

@@ -13,6 +13,7 @@ import { GrillaIngredientesComponent } from './components/ingredientes/grilla-in
 import { FormularioIngredientesComponent } from './components/ingredientes/formulario-ingredientes/formulario-ingredientes.component';
 import { GrillaArticulosManufacturadosComponent } from './components/articulos-manufacturados/grilla-articulos-manufacturados/grilla-articulos-manufacturados.component';
 import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
+import { RegistrarCompraIngredienteComponent } from './components/ingredientes/registrar-compra-ingrediente/registrar-compra-ingrediente.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -54,6 +55,10 @@ const routes: Routes = [
     path: 'formulario-ingredientes/:id',
     component: FormularioIngredientesComponent,
   },
+  {
+    path: 'registrar-compra-ingrediente',
+    component: RegistrarCompraIngredienteComponent,
+  }
 ];
 
 @NgModule({
