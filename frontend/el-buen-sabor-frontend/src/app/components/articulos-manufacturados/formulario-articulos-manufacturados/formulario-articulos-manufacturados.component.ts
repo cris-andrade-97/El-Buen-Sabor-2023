@@ -39,6 +39,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   esNuevo: boolean = false;
   listaUnidades: string[] = [];
   listaIngredientes: any[] = [];
+  listaIngredientesTotal: ingrediente[] = [];
   articuloManufacturadoDetalle: ArticuloManufacturadoDetalle[] = [];
   listaRubros: string[] = [];
   auxiliar!: any;
@@ -52,6 +53,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     rubroIngrediente: '',
     estado: true,
   };
+  costoTotal: number = 0;
 
   id = this.route.snapshot.paramMap.get('id');
 
@@ -65,17 +67,17 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     await this.obtenerRubros();
     await this.obtenerUnidades();
     await this.obtenerIngredientes();
-    await this.obtenerIngrediente();
+    await this.obtenerArticulo();
     this.auxiliar = null;
   }
 
-  async obtenerIngrediente() {
+  async obtenerArticulo() {
     this.articuloManufacturado = this.http
       .get(
         'http://localhost:3000/api/articulos-manufacturados/buscar-por-id/' +
           this.id
       )
-      .subscribe((response) => {
+      .subscribe(async (response) => {
         if (this.id == 'nuevoArticulo') {
           this.esNuevo = true;
         } else {
@@ -87,6 +89,8 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           this.estado = this.articuloManufacturado.estado;
           this.articuloManufacturadoDetalle =
             this.articuloManufacturado.articuloManufacturadoDetalle;
+          await this.calcularCostoTotal();
+          await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
         }
       });
   }
@@ -107,11 +111,30 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
       .get('http://localhost:3000/api/ingredientes/listar')
       .subscribe((response) => {
         this.auxiliar = response;
+        this.listaIngredientesTotal = [];
         for (let i = 0; i < this.auxiliar.length; i++) {
-          this.listaIngredientes.push(this.auxiliar[i]);
+          this.listaIngredientesTotal.push(this.auxiliar[i]);
         }
         this.listaIngredientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
       });
+  }
+
+  async eliminarIngredientesEnArticuloManufacturadoDetalle() {
+    await this.obtenerIngredientes();
+    this.listaIngredientes = [];
+    this.listaIngredientes = this.listaIngredientesTotal;
+
+    for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
+      const nombreIngredienteDetalle =
+        this.articuloManufacturadoDetalle[i].nombre;
+      for (let j = 0; j < this.listaIngredientes.length; j++) {
+        const nombreIngredienteLista = this.listaIngredientes[j].nombre;
+        if (nombreIngredienteDetalle === nombreIngredienteLista) {
+          this.listaIngredientes.splice(j, 1);
+          j--;
+        }
+      }
+    }
   }
 
   async eliminarIngrediente(id: number) {
@@ -120,6 +143,8 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
         this.articuloManufacturadoDetalle.splice(i, 1);
       }
     }
+    await this.calcularCostoTotal();
+    await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
   }
 
   async agregarIngrediente(id: number) {
@@ -131,13 +156,16 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           nombre: this.listaIngredientes[i].nombre,
           cantidad: this.cantidad,
           unidadDeMedida: this.listaIngredientes[i].unidadMedida,
-          costoIngrediente: (this.cantidad * this.listaIngredientes[i].costoPorUnidad)
+          costoIngrediente:
+            this.cantidad * this.listaIngredientes[i].costoPorUnidad,
         };
         this.listaIngredientes.splice(i, 1);
         this.articuloManufacturadoDetalle.push(nuevoDetalle);
         this.cantidad = 0;
       }
     }
+    await this.calcularCostoTotal();
+    await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
   }
 
   async obtenerRubros() {
@@ -151,16 +179,15 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
       });
   }
 
-  async calcularCostoTotal(){
-    let costo = 0;
+  async calcularCostoTotal() {
+    this.costoTotal = 0;
     for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
-      costo += this.articuloManufacturadoDetalle[i].costoIngrediente;
+      this.costoTotal += this.articuloManufacturadoDetalle[i].costoIngrediente;
     }
-    return costo;
+    return this.costoTotal;
   }
 
-  async post() {    
-    
+  async post() {
     if (this.imagen.length == 0) {
       return Swal.fire({
         icon: 'error',
@@ -175,10 +202,10 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
         text: 'El nombre no puede estar vacio',
       });
     } else {
-      let costoTotal: number = await this.calcularCostoTotal()
+      let costoTotal: number = await this.calcularCostoTotal();
       if (this.esNuevo) {
         let url = 'http://localhost:3000/api/articulos-manufacturados/nuevo';
-        
+
         const data = {
           nombre: this.nombre,
           precioVenta: this.precioVenta,
@@ -186,7 +213,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           estado: this.estado,
           rubroArticulo: this.rubroArticulo,
           articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
-          costoTotal: costoTotal
+          costoTotal: costoTotal,
         };
 
         this.http.post(url, data).subscribe(async (response) => {
@@ -208,7 +235,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           estado: this.estado,
           rubroArticulo: this.rubroArticulo,
           articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
-          costoTotal: costoTotal
+          costoTotal: costoTotal,
         };
 
         this.http.put(url, data).subscribe(async (response) => {

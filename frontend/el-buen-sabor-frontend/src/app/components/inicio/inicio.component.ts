@@ -1,4 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -11,13 +11,17 @@ import axios from 'axios';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
+  articulosManufacturados!: any;
+
   constructor(
     public auth: AuthService,
     private router: Router,
-    private el: ElementRef
+    private el: ElementRef,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.llenarLista();
     this.el.nativeElement
       .querySelectorAll('.scroll-to')
       .forEach((element: any) => {
@@ -33,6 +37,14 @@ export class InicioComponent implements OnInit {
 
   login() {
     this.auth.loginWithRedirect();
+  }
+
+  async llenarLista() {
+    let url = 'http://localhost:3000/api/articulos-manufacturados/listar';
+
+    this.http.get(url).subscribe((response) => {
+      this.articulosManufacturados = response;
+    });
   }
 
   // async addRolesToUser(userId: string, roles: string) {

@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;" *ngFor="let articulo of articulosManufacturados">
+    <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}} class="card-img-top card-img-fixed-height"
+        alt="...">
+    <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}} class="card-img-top card-img-fixed-height"
+        alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{articulo.nombre}}</h5>
+        <p class="card-text">{{articulo.precioVenta}}</p>
+        <div class="d-flex justify-content-evenly">
+            <a href="#" class="btn btn-outline-primary">Agregar al carrito</a>
+            <a href="#" class="btn btn-outline-info">Ver detalle</a>
+        </div>
+    </div>
+</div>
+<br>

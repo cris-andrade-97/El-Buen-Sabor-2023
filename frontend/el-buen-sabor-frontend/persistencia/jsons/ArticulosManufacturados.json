@@ -35,9 +35,16 @@
                     "cantidad": 50,
                     "unidadDeMedida": "gr",
                     "costoIngrediente": 35
+                },
+                {
+                    "id": 5,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 150,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 30
                 }
             ],
-            "costoTotal": 313.4
+            "costoTotal": 343.4
         },
         {
             "id": 1,
