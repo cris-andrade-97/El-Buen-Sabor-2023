@@ -29,6 +29,7 @@ import { FormularioIngredientesComponent } from './components/ingredientes/formu
 import { GrillaIngredientesComponent } from './components/ingredientes/grilla-ingredientes/grilla-ingredientes.component';
 import { GrillaArticulosManufacturadosComponent } from './components/articulos-manufacturados/grilla-articulos-manufacturados/grilla-articulos-manufacturados.component';
 import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
+import { ItemArticuloManufacturadoComponent } from './components/articulos-manufacturados/item-articulo-manufacturado/item-articulo-manufacturado.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FormularioArticulosManufacturadosComponent } from './components/articul
     GrillaIngredientesComponent,
     GrillaArticulosManufacturadosComponent,
     FormularioArticulosManufacturadosComponent,
+    ItemArticuloManufacturadoComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,8 @@
     <div class="frame-27">
         <a href="inicio#pizzas"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Pizzas.png" /></a>
 
-        <a href="inicio#hamburguesas"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Hamburguesas.png" /></a>
+        <a href="inicio#hamburguesas"><img class="dise-o-sin-t-tulo-5-1"
+                src="../../../assets/img/Hamburguesas.png" /></a>
 
         <a href="inicio#lomos"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Lomos.png" /></a>
 
@@ -19,48 +20,18 @@
             </div>
             <br>
             <div class="bloques">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pizza comun.jpg" class="card-img-top card-img-fixed-height" alt="...">
+                <div class="card" style="width: 18rem;" *ngFor="let articulo of articulosManufacturados">
+                    <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
+                    <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
+                        class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Pizza Común</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pizza Calabresa.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza Calabresa</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pizza Jamon.jpg" class="card-img-top card-img-fixed-height" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza con Jamón</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pizza Margherita.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza Marguerita</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="../../../assets/img/Pizza Napolitana.jpg" class="card-img-top card-img-fixed-height"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza Napolitana</h5>
-                        <p class="card-text">$2000</p>
-                        <a href="#" class="btn btn-outline-primary">Ir a algún lugar</a>
+                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="#" class="btn btn-outline-primary">Agregar al carrito</a>
+                            <a href="#" class="btn btn-outline-info">Ver detalle</a>
+                        </div>
                     </div>
                 </div>
             </div>
