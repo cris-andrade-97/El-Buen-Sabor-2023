@@ -49,6 +49,7 @@ router.post("/nuevo", (req, res) => {
     estado: req.body.estado,
     rubroArticulo: req.body.rubroArticulo,
     articuloManufacturadoDetalle: req.body.articuloManufacturadoDetalle,
+    costoTotal: req.body.costoTotal
   });
 
   filesync.writeFileSync(
@@ -103,6 +104,9 @@ router.put("/modificar-todo/:id", (req, res) => {
   articulosManufacturados["articulosManufacturados"][
     Number(req.params.id)
   ].articuloManufacturadoDetalle = req.body.articuloManufacturadoDetalle;
+  articulosManufacturados["articulosManufacturados"][
+    Number(req.params.id)
+  ].costoTotal = req.body.costoTotal;
 
   filesync.writeFileSync(
     "./jsons/ArticulosManufacturados.json",

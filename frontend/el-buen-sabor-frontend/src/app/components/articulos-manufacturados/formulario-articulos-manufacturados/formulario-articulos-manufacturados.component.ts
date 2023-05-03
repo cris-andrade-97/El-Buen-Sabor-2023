@@ -9,6 +9,7 @@ interface ArticuloManufacturadoDetalle {
   nombre: string;
   cantidad: number;
   unidadDeMedida: string;
+  costoIngrediente: number;
 }
 interface ingrediente {
   id: number;
@@ -130,6 +131,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           nombre: this.listaIngredientes[i].nombre,
           cantidad: this.cantidad,
           unidadDeMedida: this.listaIngredientes[i].unidadMedida,
+          costoIngrediente: (this.cantidad * this.listaIngredientes[i].costoPorUnidad)
         };
         this.listaIngredientes.splice(i, 1);
         this.articuloManufacturadoDetalle.push(nuevoDetalle);
@@ -149,7 +151,16 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
       });
   }
 
-  async post() {
+  async calcularCostoTotal(){
+    let costo = 0;
+    for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
+      costo += this.articuloManufacturadoDetalle[i].costoIngrediente;
+    }
+    return costo;
+  }
+
+  async post() {    
+    
     if (this.imagen.length == 0) {
       return Swal.fire({
         icon: 'error',
@@ -164,9 +175,10 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
         text: 'El nombre no puede estar vacio',
       });
     } else {
+      let costoTotal: number = await this.calcularCostoTotal()
       if (this.esNuevo) {
         let url = 'http://localhost:3000/api/articulos-manufacturados/nuevo';
-
+        
         const data = {
           nombre: this.nombre,
           precioVenta: this.precioVenta,
@@ -174,6 +186,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           estado: this.estado,
           rubroArticulo: this.rubroArticulo,
           articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
+          costoTotal: costoTotal
         };
 
         this.http.post(url, data).subscribe(async (response) => {
@@ -195,6 +208,7 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
           estado: this.estado,
           rubroArticulo: this.rubroArticulo,
           articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
+          costoTotal: costoTotal
         };
 
         this.http.put(url, data).subscribe(async (response) => {

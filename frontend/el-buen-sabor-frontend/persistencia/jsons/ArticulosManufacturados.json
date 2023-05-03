@@ -3,7 +3,7 @@
         {
             "id": 0,
             "nombre": "Hamburguesa Clasica",
-            "precioVenta": 2500,
+            "precioVenta": 1900,
             "imagen": "https://i.ibb.co/F3bNhNk/Clasica.jpg",
             "estado": true,
             "rubroArticulo": "Hamburguesas",
@@ -12,27 +12,64 @@
                     "id": 1,
                     "nombre": "Carne Molida",
                     "cantidad": 200,
-                    "unidadDeMedida": "gr"
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 240
                 },
                 {
                     "id": 2,
                     "nombre": "Cebolla",
                     "cantidad": 20,
-                    "unidadDeMedida": "gr"
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 3.4
                 },
                 {
                     "id": 3,
                     "nombre": "Tomate",
                     "cantidad": 50,
-                    "unidadDeMedida": "gr"
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
                 },
                 {
                     "id": 4,
                     "nombre": "Lechuga",
                     "cantidad": 50,
-                    "unidadDeMedida": "gr"
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 35
                 }
-            ]
+            ],
+            "costoTotal": 313.4
+        },
+        {
+            "id": 1,
+            "nombre": "Pizza con Salchichas",
+            "precioVenta": 2300,
+            "imagen": "https://pizzasargentinas.com/wp-content/uploads/2020/11/Pizza-de-salchichas-1024x1022-1-731x411.jpg",
+            "estado": true,
+            "rubroArticulo": "Pizzas",
+            "articuloManufacturadoDetalle": [
+                {
+                    "id": 1,
+                    "nombre": "Queso Cremoso",
+                    "cantidad": 200,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 459.99999999999994
+                },
+                {
+                    "id": 2,
+                    "nombre": "Harina de Trigo 0000",
+                    "cantidad": 500,
+                    "unidadDeMedida": "gr",
+                    "costoIngrediente": 100
+                },
+                {
+                    "id": 3,
+                    "nombre": "Salchicha",
+                    "cantidad": 6,
+                    "unidadDeMedida": "unidad",
+                    "costoIngrediente": 312
+                }
+            ],
+            "costoTotal": 872
         }
     ]
 }
