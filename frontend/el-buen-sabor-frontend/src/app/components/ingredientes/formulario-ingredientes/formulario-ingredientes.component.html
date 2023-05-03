@@ -15,12 +15,12 @@
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Cantidad Actual</label>
-                    <input type="text" [(ngModel)]="cantidadActual" class="form-control" id="exampleInputEmail1" />
+                    <input type="number" [(ngModel)]="cantidadActual" class="form-control" id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Stock Mínimo</label>
-                    <input type="text" [(ngModel)]="stockMinimo" class="form-control" id="exampleInputEmail1" />
+                    <input type="number" [(ngModel)]="stockMinimo" class="form-control" id="exampleInputEmail1" />
                 </div>
                 <br>
                 <label for="exampleInputEmail1" class="form-label">Unidad de Medida</label>
@@ -32,6 +32,11 @@
                 <select class="form-select" [(ngModel)]="rubro">
                     <option *ngFor="let r of listaRubros">{{r}}</option>
                 </select>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Costo Por Unidad</label>
+                    <input type="number" [(ngModel)]="costoPorUnidad" class="form-control" id="exampleInputEmail1" />
+                </div>                
                 <br>
                 <div class="mb-3 form-check">
                     <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1">

@@ -42,7 +42,8 @@ router.post("/nuevo", (req, res) => {
         "unidadMedida": req.body.unidadMedida,
         "cantidadActual": req.body.cantidadActual,
         "rubroIngrediente": req.body.rubroIngrediente,
-        "estado": req.body.estado
+        "estado": req.body.estado,
+        "costoPorUnidad": req.body.costoPorUnidad
     })
 
     filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
@@ -75,6 +76,7 @@ router.put("/modificar-todo/:id", (req, res) => {
     ingredientes["ingredientes"][Number(req.params.id)].cantidadActual = Number(req.body.cantidadActual);
     ingredientes["ingredientes"][Number(req.params.id)].rubroIngrediente = req.body.rubroIngrediente;
     ingredientes["ingredientes"][Number(req.params.id)].estado = req.body.estado;
+    ingredientes["ingredientes"][Number(req.params.id)].costoPorUnidad = Number(req.body.costoPorUnidad);
 
     filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
 
@@ -84,6 +86,19 @@ router.put("/modificar-todo/:id", (req, res) => {
 
 })
 
+router.put("/registrar-compra/:id", (req, res) => {
+
+    const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
+
+    ingredientes["ingredientes"][Number(req.params.id)].cantidadActual = Number(req.body.cantidadActual);
+    ingredientes["ingredientes"][Number(req.params.id)].costoPorUnidad = Number(req.body.costoPorUnidad);
+
+    filesync.writeFileSync("./jsons/Ingredientes.json", JSON.stringify(ingredientes, null, 4))
+
+    res.send({
+        "message": "Compra de ingrediente registrada con éxito."
+    })
+})
 /*router.put("/modificar-nombre/:id", (req, res) => {
     const ingredientes = JSON.parse(filesync.readFileSync("./jsons/Ingredientes.json"));
 

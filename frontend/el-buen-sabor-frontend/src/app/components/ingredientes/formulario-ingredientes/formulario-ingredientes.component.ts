@@ -20,6 +20,7 @@ export class FormularioIngredientesComponent implements OnInit {
   rubro: string = "";
   cantidadActual: number = 0;
   stockMinimo: number = 0;
+  costoPorUnidad: number = 0;
   estado: boolean = false;
   esNuevo: boolean = false;
   listaUnidades: string[] = [];
@@ -52,6 +53,7 @@ export class FormularioIngredientesComponent implements OnInit {
           this.unidadMedida = this.ingrediente.unidadMedida;
           this.rubro = this.ingrediente.rubroIngrediente;
           this.estado = this.ingrediente.estado;
+          this.costoPorUnidad = this.ingrediente.costoPorUnidad
         }
       }
       )
@@ -80,6 +82,16 @@ export class FormularioIngredientesComponent implements OnInit {
   }
 
   async post() {
+    const data = {
+      "nombre": this.nombre,
+      "stockMinimoInsumo": this.stockMinimo,
+      "unidadMedida": this.unidadMedida,
+      "cantidadActual": this.cantidadActual,
+      "rubroIngrediente": this.rubro,
+      "estado": this.estado,
+      "costoPorUnidad": this.costoPorUnidad
+    };
+
     if (this.nombre.length == 0) {
       return Swal.fire({
         icon: 'error',
@@ -89,16 +101,6 @@ export class FormularioIngredientesComponent implements OnInit {
     } else {
       if (this.esNuevo) {
         let url = 'http://localhost:3000/api/ingredientes/nuevo';
-
-        const data = {
-          "nombre": this.nombre,
-          "stockMinimoInsumo": this.stockMinimo,
-          "unidadMedida": this.unidadMedida,
-          "cantidadActual": this.cantidadActual,
-          "rubroIngrediente": this.rubro,
-          "estado": this.estado
-        };
-
         this.http.post(url, data).subscribe(async (response) => {
           if (response) {
             await Swal.fire('Ingrediente agregado!');
@@ -108,16 +110,6 @@ export class FormularioIngredientesComponent implements OnInit {
         return;
       } else {
         let url = 'http://localhost:3000/api/ingredientes/modificar-todo/' + this.id;
-
-        const data = {
-          "nombre": this.nombre,
-          "stockMinimoInsumo": this.stockMinimo,
-          "unidadMedida": this.unidadMedida,
-          "cantidadActual": this.cantidadActual,
-          "rubroIngrediente": this.rubro,
-          "estado": this.estado
-        };
-
         this.http.put(url, data).subscribe(async (response) => {
           if (response) {
             await Swal.fire('Ingrediente actualizado!');

@@ -7,7 +7,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 150000,
             "rubroIngrediente": "Harinas",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 0.2
         },
         {
             "id": 1,
@@ -16,7 +17,8 @@
             "unidadMedida": "ml",
             "cantidadActual": 50000,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 0.5
         },
         {
             "id": 2,
@@ -25,7 +27,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 40000,
             "rubroIngrediente": "Lácteos",
-            "estado": false
+            "estado": false,
+            "costoPorUnidad": 2.28
         },
         {
             "id": 3,
@@ -34,7 +37,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 15000,
             "rubroIngrediente": "Embutidos",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 3
         },
         {
             "id": 4,
@@ -43,7 +47,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 50000,
             "rubroIngrediente": "Carne",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 1.2
         },
         {
             "id": 5,
@@ -52,7 +57,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 25000,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 0.7
         },
         {
             "id": 6,
@@ -61,7 +67,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 0,
             "rubroIngrediente": "Vegetales",
-            "estado": false
+            "estado": false,
+            "costoPorUnidad": 0.7
         },
         {
             "id": 7,
@@ -70,7 +77,8 @@
             "unidadMedida": "unidad",
             "cantidadActual": 80,
             "rubroIngrediente": "De Origen Animal",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 80
         },
         {
             "id": 8,
@@ -79,7 +87,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 45000,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 0.17
         },
         {
             "id": 9,
@@ -88,7 +97,8 @@
             "unidadMedida": "unidad",
             "cantidadActual": 60,
             "rubroIngrediente": "Pan",
-            "estado": false
+            "estado": false,
+            "costoPorUnidad": 45
         },
         {
             "id": 10,
@@ -97,7 +107,8 @@
             "unidadMedida": "unidad",
             "cantidadActual": 100,
             "rubroIngrediente": "Embutidos",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 52
         },
         {
             "id": 11,
@@ -106,7 +117,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 9000,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 0.5
         },
         {
             "id": 12,
@@ -115,7 +127,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 30000,
             "rubroIngrediente": "Lácteos",
-            "estado": false
+            "estado": false,
+            "costoPorUnidad": 3
         },
         {
             "id": 13,
@@ -124,7 +137,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 0,
             "rubroIngrediente": "Lácteos",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 4.3
         },
         {
             "id": 14,
@@ -133,7 +147,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 5000,
             "rubroIngrediente": "Vegetales",
-            "estado": true
+            "estado": true,
+            "costoPorUnidad": 3
         },
         {
             "id": 15,
@@ -142,16 +157,8 @@
             "unidadMedida": "gr",
             "cantidadActual": 1500,
             "rubroIngrediente": "Especias",
-            "estado": true
-        },
-        {
-            "id": 16,
-            "nombre": "Beteraba",
-            "stockMinimoInsumo": 0,
-            "unidadMedida": "kg",
-            "cantidadActual": "0",
-            "rubroIngrediente": "Vegetales",
-            "estado": false
+            "estado": true,
+            "costoPorUnidad": 5
         }
     ]
 }
