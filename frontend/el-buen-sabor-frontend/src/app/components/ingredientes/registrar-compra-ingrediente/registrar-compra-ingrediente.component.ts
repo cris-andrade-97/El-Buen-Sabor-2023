@@ -32,10 +32,15 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
   }
 
   async seleccionarIngrediente() {
-    this.ingrediente = this.ingredientes.find((obj: { nombre: string; }) => obj.nombre === this.nombre);
-    console.log(this.ingrediente)
-    this.cantidadActual = this.ingrediente.cantidadActual;
-    this.unidadMedida = this.ingrediente.unidadMedida
+    if (this.nombre != null) {
+      this.ingrediente = this.ingredientes.find((obj: { nombre: string; }) => obj.nombre === this.nombre);
+      console.log(this.ingrediente)
+      this.cantidadActual = this.ingrediente.cantidadActual;
+      this.unidadMedida = this.ingrediente.unidadMedida
+    } else {
+      this.cantidadActual = 0
+      this.unidadMedida = "gr"
+    }
   }
 
   actualizarCostoPorUnidad() {
@@ -70,7 +75,7 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
 
       const body = {
         cantidadActual: this.cantidadActual + this.cantidadComprada,
-        costoPorUnidad: this.costoCompra / this.cantidadComprada
+        costoPorUnidad: this.nuevoCostoPorUnidad
       }
 
       this.http.put(url, body).subscribe(

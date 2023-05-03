@@ -10,6 +10,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Seleccione el Ingrediente</label>
                     <select class="form-select" [(ngModel)]="nombre" (ngModelChange)="seleccionarIngrediente()">
+                        <option [ngValue]="null" selected>Seleccione una opción</option>
                         <option *ngFor="let i of ingredientes">{{i.nombre}}</option>
                     </select>                    
                 </div>
