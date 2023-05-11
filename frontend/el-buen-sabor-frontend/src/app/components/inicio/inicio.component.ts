@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import axios from 'axios';
+import { CartService } from 'src/app/services/cart-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inicio',
@@ -15,15 +17,22 @@ export class InicioComponent implements OnInit {
   pizzas: any[] = [];
   hamburguesas: any[] = [];
   lomosArray: any[] = [];
+  user: any;
 
   constructor(
     public auth: AuthService,
     private router: Router,
     private el: ElementRef,
-    private http: HttpClient
+    private http: HttpClient,
+    private carritoService: CartService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.auth.user$.subscribe(async (user) => {
+      if (user) {
+        this.user = user;
+      }
+    });
     await this.llenarLista();
     this.el.nativeElement
       .querySelectorAll('.scroll-to')
@@ -38,8 +47,21 @@ export class InicioComponent implements OnInit {
       });
   }
 
-  login() {
+  async login() {
     this.auth.loginWithRedirect();
+  }
+
+  async agregarAlCarrito(producto: any) {
+    if (this.user !== null) {
+      this.carritoService.addItem(producto);
+      await Swal.fire('Producto agregado!');
+    } else {
+      await Swal.fire(
+        'Debe estar logeado para agregar artículos al carrito',
+        'Será redireccionado al Log In'
+      );
+      await this.login();
+    }
   }
 
   async llenarLista() {

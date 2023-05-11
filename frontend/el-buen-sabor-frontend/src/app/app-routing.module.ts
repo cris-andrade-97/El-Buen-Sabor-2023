@@ -15,6 +15,7 @@ import { GrillaArticulosManufacturadosComponent } from './components/articulos-m
 import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
 import { RegistrarCompraIngredienteComponent } from './components/ingredientes/registrar-compra-ingrediente/registrar-compra-ingrediente.component';
 import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
+import { CartComponent } from './components/cart-component/cart-component.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'opciones', component: OpcionesComponent },
+  { path: 'carrito', component: CartComponent },
   {
     path: 'grilla-rubro-ingredientes',
     component: GrillaRubroIngredientesComponent,

@@ -27,9 +27,10 @@
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{articulo.nombre}}</h5>
-                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
-                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                            <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
+                                style="display: block; margin-bottom: 10px;">
                                 <i class="fas fa-shopping-cart"></i> Agregar al carrito
                             </a>
                             <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"
@@ -60,9 +61,10 @@
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{articulo.nombre}}</h5>
-                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
-                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                            <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
+                                style="display: block; margin-bottom: 10px;">
                                 <i class="fas fa-shopping-cart"></i> Agregar al carrito
                             </a>
                             <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"
@@ -93,9 +95,10 @@
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{articulo.nombre}}</h5>
-                        <p class="card-text">{{articulo.precioVenta}}</p>
+                        <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
-                            <a href="#" class="btn btn-outline-primary" style="display: block; margin-bottom: 10px;">
+                            <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
+                                style="display: block; margin-bottom: 10px;">
                                 <i class="fas fa-shopping-cart"></i> Agregar al carrito
                             </a>
                             <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]"

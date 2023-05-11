@@ -25,7 +25,6 @@ public class Cliente extends Base {
     @Column
     private String email;
 
-
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

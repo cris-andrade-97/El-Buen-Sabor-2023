@@ -30,9 +30,11 @@ import { GrillaIngredientesComponent } from './components/ingredientes/grilla-in
 import { GrillaArticulosManufacturadosComponent } from './components/articulos-manufacturados/grilla-articulos-manufacturados/grilla-articulos-manufacturados.component';
 import { FormularioArticulosManufacturadosComponent } from './components/articulos-manufacturados/formulario-articulos-manufacturados/formulario-articulos-manufacturados.component';
 
-
 import { RegistrarCompraIngredienteComponent } from './components/ingredientes/registrar-compra-ingrediente/registrar-compra-ingrediente.component';
 import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
+import { CartService } from './services/cart-service.service';
+import { CartComponent } from './components/cart-component/cart-component.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,7 @@ import { DetalleArticuloManufacturadoComponent } from './components/articulos-ma
     GrillaArticulosManufacturadosComponent,
     FormularioArticulosManufacturadosComponent,
     DetalleArticuloManufacturadoComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ import { DetalleArticuloManufacturadoComponent } from './components/articulos-ma
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
