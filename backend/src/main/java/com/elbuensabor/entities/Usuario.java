@@ -1,9 +1,6 @@
 package com.elbuensabor.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +18,9 @@ public class Usuario extends Base {
     @Column
     private String clave;
 
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
     private Rol rol;
-
 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;

@@ -10,7 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Entity
+
 @Table(name = "configuracion")
 @NoArgsConstructor
 @AllArgsConstructor

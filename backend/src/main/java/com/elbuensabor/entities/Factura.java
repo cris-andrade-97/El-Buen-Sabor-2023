@@ -1,8 +1,6 @@
 package com.elbuensabor.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +32,15 @@ public class Factura extends Base {
     @Column
     private Double totalCosto;
 
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "factura_detalleFactura",
+            joinColumns = @JoinColumn(name = "factura_id"),
+            inverseJoinColumns = @JoinColumn(name = "detalleFactura_id")
+    )
     private List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 }

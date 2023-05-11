@@ -1,8 +1,6 @@
 package com.elbuensabor.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,11 +25,33 @@ public class Pedido extends Base {
     @Column
     private Double total;
 
+    @ManyToOne
+    @JoinColumn(name = "envio_id")
     private Envio envio;
+
+    @OneToOne(mappedBy = "pedido")
     private MercadoPagoDatos mercadoPagoDatos;
+
+    @OneToOne(mappedBy = "pedido")
     private Factura factura;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "pedido_detallePedido",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "detallePedido_id")
+    )
     private List<DetallePedido> detallesPedido = new ArrayList<DetallePedido>();
+
+    @ManyToOne
+    @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
     private Estado estado;
 }

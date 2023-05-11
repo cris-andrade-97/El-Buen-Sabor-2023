@@ -1,8 +1,6 @@
 package com.elbuensabor.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +25,16 @@ public class Domicilio extends Base {
     @Column(name = "localidad")
     private String localidad;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "domicilio_pedido",
+            joinColumns = @JoinColumn(name = "domicilio_id"),
+            inverseJoinColumns = @JoinColumn(name = "pedido_id")
+    )
     private List<Pedido> pedidos = new ArrayList<Pedido>();
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
 }

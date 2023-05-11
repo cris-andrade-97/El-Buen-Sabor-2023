@@ -18,7 +18,9 @@ public class DetalleFactura extends Base {
     @Column
     private Double subtotal;
 
-    private Factura factura;
+    @ManyToOne
+    @JoinColumn(name = "factura_id")
+    private Factura factura = new Factura();
 
     @ManyToOne
     @JoinColumn(name = "articuloManufacturado_id")

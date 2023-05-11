@@ -1,8 +1,6 @@
 package com.elbuensabor.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +30,7 @@ public class MercadoPagoDatos extends Base {
     @Column
     private String estado;
 
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 }
