@@ -29,7 +29,7 @@ public class ArticuloManufacturado extends Base{
     @JoinTable(
             name = "articuloManufacturado_detalleFactura",
             joinColumns = @JoinColumn(name = "articuloManufacturado_id"),
-            inverseJoinColumns = @JoinColumn(name = "detalleFacturao_id")
+            inverseJoinColumns = @JoinColumn(name = "detalleFactura_id")
     )
     private List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 
