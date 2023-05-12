@@ -55,7 +55,7 @@
             "nombre": "Tomate",
             "stockMinimoInsumo": 20000,
             "unidadMedida": "gr",
-            "cantidadActual": 25000,
+            "cantidadActual": 21000,
             "rubroIngrediente": "Vegetales",
             "estado": true,
             "costoPorUnidad": 0.7

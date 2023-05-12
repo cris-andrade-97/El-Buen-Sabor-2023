@@ -45,7 +45,7 @@
         {
             "id": 7,
             "nombre": "Aderezos",
-            "estado": false,
+            "estado": true,
             "aLaVenta": false
         },
         {

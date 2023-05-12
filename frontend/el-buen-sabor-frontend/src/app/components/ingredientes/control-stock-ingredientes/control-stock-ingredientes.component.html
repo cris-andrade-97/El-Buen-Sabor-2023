@@ -1,0 +1,70 @@
+<div class="container">
+    <ngx-spinner type="ball-scale-multiple">
+        <h1>Cargando...</h1>
+    </ngx-spinner>
+    <br>
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-auto">
+            <h1>Control de Stock Ingredientes</h1>
+        </div>
+    </div>
+    <br>
+    <!--<div class="d-flex justify-content-between">
+        <div class="d-flex flex-row">
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" aria-describedby="Buscardor" placeholder="Buscar Ingrediente...">
+        </div>
+    </div>-->
+    <table class="table table-light table-striped">
+        <thead>
+            <tr>
+                <th scope="col" style="width:10%">Nombre</th>
+                <th scope="col" style="width:10%">Stock Mínimo</th>
+                <th scope="col" style="width:10%">Stock Actual</th>
+                <th scope="col" style="width:10%">Diferencia</th>
+                <th scope="col" style="width:10%">U. de Medida</th>
+                <th scope="col" style="width:10%">Registrar Compra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ingrediente of ingredientes">
+                <td>
+                    {{ingrediente.nombre}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
+                    {{ingrediente.stockMinimoInsumo/1000}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
+                    {{ingrediente.stockMinimoInsumo}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
+                    {{ingrediente.cantidadActual/1000}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
+                    {{ingrediente.cantidadActual}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='ml' || ingrediente.unidadMedida=='gr'">
+                    {{(ingrediente.cantidadActual-ingrediente.stockMinimoInsumo)/1000}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
+                    {{ingrediente.cantidadActual-ingrediente.stockMinimoInsumo}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'">
+                    kg
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='ml'">
+                    L
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
+                    {{ingrediente.unidadMedida}}
+                </td>
+                <td>
+                    <a [routerLink]="['/registrar-compra-ingrediente/',ingrediente.id]">
+                        <button type="button" class="btn btn-outline-primary">Registrar Compra</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

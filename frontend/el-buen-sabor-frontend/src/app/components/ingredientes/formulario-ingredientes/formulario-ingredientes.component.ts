@@ -43,8 +43,8 @@ export class FormularioIngredientesComponent implements OnInit {
       .subscribe((response) => {
         if (this.id == "nuevoIngrediente") {
           this.esNuevo = true
-          this.unidadMedida = "gr"
-          this.rubro = "Vegetales"
+          /*this.unidadMedida = "gr"
+          this.rubro = "Vegetales"*/
         } else {
           this.ingrediente = response;
           this.nombre = this.ingrediente.nombre;
@@ -97,6 +97,26 @@ export class FormularioIngredientesComponent implements OnInit {
         icon: 'error',
         title: 'Error',
         text: 'El nombre no puede estar vacio',
+      });
+
+    } else if (!this.unidadMedida) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Seleccione una unidad de medida',
+      });
+    } else if (!this.rubro) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Seleccione un rubro',
+      });
+
+    } else if (!this.rubro || !this.unidadMedida) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Rubro y Unidad de medida no pueden ser campos nulos',
       });
     } else {
       if (this.esNuevo) {

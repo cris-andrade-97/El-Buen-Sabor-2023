@@ -34,6 +34,7 @@ import { RegistrarCompraIngredienteComponent } from './components/ingredientes/r
 import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
 import { CartService } from './services/cart-service.service';
 import { CartComponent } from './components/cart-component/cart-component.component';
+import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CartComponent } from './components/cart-component/cart-component.compon
     FormularioArticulosManufacturadosComponent,
     DetalleArticuloManufacturadoComponent,
     CartComponent,
+    ControlStockIngredientesComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { FormularioArticulosManufacturadosComponent } from './components/articul
 import { RegistrarCompraIngredienteComponent } from './components/ingredientes/registrar-compra-ingrediente/registrar-compra-ingrediente.component';
 import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
 import { CartComponent } from './components/cart-component/cart-component.component';
+import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -66,6 +67,14 @@ const routes: Routes = [
     path: 'registrar-compra-ingrediente',
     component: RegistrarCompraIngredienteComponent,
   },
+  {
+    path: 'registrar-compra-ingrediente/:id',
+    component: RegistrarCompraIngredienteComponent
+  },
+  {
+    path: 'control-stock-ingredientes',
+    component: ControlStockIngredientesComponent
+  }
 ];
 
 @NgModule({
