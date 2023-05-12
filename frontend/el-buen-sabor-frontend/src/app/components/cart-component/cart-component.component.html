@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row animated fadeIn">
+
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table width="100%" class="table table-sm table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 15%;">Nombre</th>
+                            <th style="width: 20%;">Imagen</th>
+                            <th style="width: 20%;">Precio</th>
+                            <th style="width: 15%; text-align: center;">Cantidad</th>
+                            <th style="width: 20%; text-align: center">SubTotal</th>
+                            <th style="width: 10%; text-align: center">Opciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let articulo of articulos; let i = index">
+                            <td>{{ articulo.nombre }}</td>
+                            <td>
+                                <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
+                                    class="imagenTabla" alt="..." style="height: 50px;
+                                    width: 50px;">
+                                <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
+                                    class="imagenTabla" alt="..." style="height: 50px;
+                                    width: 50px;">
+                            </td>
+                            <td>${{ articulo.precioVenta}}
+                            </td>
+                            <td class="text-center w120">
+                                <button class="btn btn-outline-secondary" (click)="suma(articulo)"><i
+                                        class="fas fa-plus"></i></button>&nbsp;
+                                {{articulo.quantity}} &nbsp;<button class="btn btn-outline-secondary"
+                                    (click)="resta(articulo)"><i class="fas fa-minus"></i></button>
+                            </td>
+                            <td style="text-align: center">${{ articulo.precioVenta * articulo.quantity}}
+                            </td>
+                            <td class="text-center w120">
+                                <button class="btn btn-outline-secondary" (click)="removeItem(articulo)"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="articulos.length === 0">
+                    No hay elementos en el carrito.
+                </div>
+                <button class="btn btn-outline-secondary" *ngIf="articulos.length > 0" (click)="clearCart()">Vaciar
+                    carrito</button>
+                <div *ngIf="articulos.length > 0" style="text-align:right ;">
+                    <h1><b>TOTAL: ${{this.precioFinal}}</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+</div>
