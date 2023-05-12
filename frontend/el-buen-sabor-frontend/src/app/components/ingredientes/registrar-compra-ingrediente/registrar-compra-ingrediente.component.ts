@@ -14,34 +14,50 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registrar-compra-ingrediente.component.css']
 })
 export class RegistrarCompraIngredienteComponent implements OnInit {
+  ingredientes: any[] = [];
   ingrediente!: any;
   cantidadActual: number = 0;
   cantidadComprada: number = 0;
   costoCompra: number = 0;
+  auxiliar!: any;
   nombre: string = "";
-  unidadMedida: string = "";
+  unidadMedida: string = "gr";
   nuevoCostoPorUnidad: number = 0;
-  id = this.route.snapshot.paramMap.get('id')
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient) { }
 
   async ngOnInit() {
-    await this.obtenerIngrediente()   
+    await this.obtenerIngredientes()
+    await this.seleccionarIngrediente()
+  }
+
+  async seleccionarIngrediente() {
+    if (this.nombre != null) {
+      this.ingrediente = this.ingredientes.find((obj: { nombre: string; }) => obj.nombre === this.nombre);
+      console.log(this.ingrediente)
+      this.cantidadActual = this.ingrediente.cantidadActual;
+      this.unidadMedida = this.ingrediente.unidadMedida
+    } else {
+      this.cantidadActual = 0
+      this.unidadMedida = "gr"
+    }
   }
 
   actualizarCostoPorUnidad() {
     this.nuevoCostoPorUnidad = this.costoCompra / this.cantidadComprada;
   }
 
-  async obtenerIngrediente() {
-    let url = 'http://localhost:3000/api/ingredientes/buscar-por-id/' + this.id;
+  async obtenerIngredientes() {
+    let url = 'http://localhost:3000/api/ingredientes/listar';
 
     this.http.get(url).subscribe(
       (response) => {
-        this.ingrediente = response
-        this.nombre = this.ingrediente.nombre
-        this.cantidadActual = this.ingrediente.cantidadActual;
-        this.unidadMedida = this.ingrediente.unidadMedida;
+        if (true) {
+          this.auxiliar = response
+          for (let i = 0; i < this.auxiliar.length; i++) {
+            this.ingredientes.push(this.auxiliar[i])
+          }
+        }
       }
     );
   }
@@ -66,7 +82,7 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
         async (response) => {
           if (response) {
             await Swal.fire('Ingrediente actualizado!');
-            window.location.replace('/control-stock-ingredientes');
+            window.location.replace('/grilla-ingredientes');
           }
         }
       )
