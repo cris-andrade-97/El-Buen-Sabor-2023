@@ -19,10 +19,82 @@
             </a>
         </div>
         <div class="col-sm-4">
-            <input type="text" class="form-control" aria-describedby="Buscardor" placeholder="Buscar Ingrediente...">
+            <input type="text" [(ngModel)]="busqueda" (ngModelChange)="buscar()" class="form-control"
+                aria-describedby="Buscardor" placeholder="Buscar Ingrediente...">
         </div>
     </div>
-    <table class="table table-light table-striped">
+    <br>
+    <table class="table table-light table-striped" *ngIf="busqueda !== ''">
+        <thead>
+            <tr>
+                <th scope="col" style="width:10%">Nombre</th>
+                <th scope="col" style="width:10%">Stock Mínimo</th>
+                <th scope="col" style="width:10%">Stock Actual</th>
+                <th scope="col" style="width:10%">U. de Medida</th>
+                <th scope="col" style="width:10%">Rubro</th>
+                <th scope="col" style="width:10%">Costo</th>
+                <th scope="col" style="width:10%">Vigencia</th>
+                <th scope="col" style="width:10%">Modificar</th>
+                <th scope="col" style="width:10%">Dar de Alta/Baja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ingrediente of ingredientesBusqueda">
+                <td>
+                    {{ingrediente.nombre}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
+                    {{ingrediente.stockMinimoInsumo/1000}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
+                    {{ingrediente.stockMinimoInsumo}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
+                    {{ingrediente.cantidadActual/1000}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
+                    {{ingrediente.cantidadActual}}
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='gr'">
+                    kg
+                </td>
+                <td *ngIf="ingrediente.unidadMedida=='ml'">
+                    L
+                </td>
+                <td *ngIf="ingrediente.unidadMedida!='ml'&& ingrediente.unidadMedida!='gr'">
+                    {{ingrediente.unidadMedida}}
+                </td>
+                <td>
+                    {{ingrediente.rubroIngrediente}}
+                </td>
+                <td>
+                    ${{ingrediente.costoPorUnidad}}/{{ingrediente.unidadMedida}}
+                </td>
+                <td *ngIf="ingrediente.estado">
+                    <p>&#9989;</p>
+                </td>
+                <td *ngIf="!ingrediente.estado">
+                    <p>&#10060;</p>
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
+                        Modificar
+                    </a>
+                </td>
+                <td>
+                    <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
+                        (click)="actualizarVigencia(ingrediente.id, true)">
+                        Dar de Alta
+                    </button>
+                    <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
+                        (click)="actualizarVigencia(ingrediente.id, false)">
+                        Dar de Baja
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-light table-striped" *ngIf="busqueda == ''">
         <thead>
             <tr>
                 <th scope="col" style="width:10%">Nombre</th>
@@ -75,188 +147,24 @@
                     <p>&#10060;</p>
                 </td>
                 <td>
-                    <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
+                    <a class="btn btn-outline-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
                         Modificar
                     </a>
                 </td>
                 <td>
-                    <button *ngIf="!ingrediente.estado" class="btn btn-success"
+                    <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
                         (click)="actualizarVigencia(ingrediente.id, true)">
                         Dar de Alta
                     </button>
-                    <button *ngIf="ingrediente.estado" class="btn btn-danger"
+                    <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
                         (click)="actualizarVigencia(ingrediente.id, false)">
                         Dar de Baja
                     </button>
                 </td>
-                <!--<ng-template #stockNormal>
-                    <td class="table-success">
-                        {{ingrediente.nombre}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.stockMinimoInsumo/1000}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.stockMinimoInsumo}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.cantidadActual/1000}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.cantidadActual}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida=='gr'">
-                        kg
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida=='ml'">
-                        L
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.unidadMedida!='ml'&& ingrediente.unidadMedida!='gr'">
-                        {{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-success">
-                        {{ingrediente.rubroIngrediente}}
-                    </td>
-                    <td class="table-success">
-                        ${{ingrediente.costoPorUnidad}}/{{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-success" *ngIf="ingrediente.estado">
-                        <p>&#9989;</p>
-                    </td>
-                    <td class="table-success" *ngIf="!ingrediente.estado">
-                        <p>&#10060;</p>
-                    </td>
-                    <td class="table-success">
-                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar
-                        </a>
-                    </td>
-                    <td class="table-success">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
-                            (click)="actualizarVigencia(ingrediente.id, true)">
-                            Dar de Alta
-                        </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
-                            (click)="actualizarVigencia(ingrediente.id, false)">
-                            Dar de Baja
-                        </button>
-                    </td>
-
-                </ng-template>
-                <ng-template #superaStockMinimo>
-                    <td class="table-warning">
-                        {{ingrediente.nombre}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.stockMinimoInsumo/1000}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.stockMinimoInsumo}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.cantidadActual/1000}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.cantidadActual}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida=='gr'">
-                        kg
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida=='ml'">
-                        L
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.unidadMedida!='ml'&& ingrediente.unidadMedida!='gr'">
-                        {{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-warning">
-                        {{ingrediente.rubroIngrediente}}
-                    </td>
-                    <td class="table-warning">
-                        ${{ingrediente.costoPorUnidad}}/{{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-warning" *ngIf="ingrediente.estado">
-                        <p>&#9989;</p>
-                    </td>
-                    <td class="table-warning" *ngIf="!ingrediente.estado">
-                        <p>&#10060;</p>
-                    </td>
-                    <td class="table-warning">
-                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar
-                        </a>
-                    </td>
-                    <td class="table-warning">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
-                            (click)="actualizarVigencia(ingrediente.id, true)">
-                            Dar de Alta
-                        </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
-                            (click)="actualizarVigencia(ingrediente.id, false)">
-                            Dar de Baja
-                        </button>
-                    </td>
-
-                </ng-template>
-                <ng-template #cantidadNula>
-                    <td class="table-danger">
-                        {{ingrediente.nombre}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.stockMinimoInsumo/1000}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.stockMinimoInsumo}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida=='gr'||ingrediente.unidadMedida=='ml'">
-                        {{ingrediente.cantidadActual/1000}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida!='gr'&&ingrediente.unidadMedida!='ml'">
-                        {{ingrediente.cantidadActual}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida=='gr'">
-                        kg
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida=='ml'">
-                        L
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.unidadMedida!='ml'&& ingrediente.unidadMedida!='gr'">
-                        {{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-danger">
-                        {{ingrediente.rubroIngrediente}}
-                    </td>
-                    <td class="table-danger">
-                        ${{ingrediente.costoPorUnidad}}/{{ingrediente.unidadMedida}}
-                    </td>
-                    <td class="table-danger" *ngIf="ingrediente.estado">
-                        <p>&#9989;</p>
-                    </td>
-                    <td class="table-danger" *ngIf="!ingrediente.estado">
-                        <p>&#10060;</p>
-                    </td>
-                    <td class="table-danger">
-                        <a class="btn btn-warning" [routerLink]="['/formulario-ingredientes',ingrediente.id]">
-                            Modificar
-                        </a>
-                    </td>
-                    <td class="table-danger">
-                        <button *ngIf="!ingrediente.estado" class="btn btn-success"
-                            (click)="actualizarVigencia(ingrediente.id, true)">
-                            Dar de Alta
-                        </button>
-                        <button *ngIf="ingrediente.estado" class="btn btn-danger"
-                            (click)="actualizarVigencia(ingrediente.id, false)">
-                            Dar de Baja
-                        </button>
-                    </td>
-                </ng-template>-->
-                <!--<div *ngIf="ingrediente.cantidadActual > ingrediente.stockMinimoInsumo && ingrediente.cantidadActual != 0; then stockNormal">
-                </div>
-                <div *ngIf="ingrediente.stockMinimoInsumo - ingrediente.cantidadActual > 0 && ingrediente.cantidadActual != 0; then superaStockMinimo">
-                </div>
-                <div *ngIf="ingrediente.cantidadActual == 0; then cantidadNula">
-                </div>-->
             </tr>
         </tbody>
     </table>
+    <label *ngIf="ingredientesBusqueda.length == 0">
+        No se encontraron resultados.
+    </label>
 </div>

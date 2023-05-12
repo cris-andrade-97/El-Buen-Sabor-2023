@@ -10,7 +10,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class GrillaIngredientesComponent implements OnInit {
 
-  ingredientes!: any;
+  ingredientes: any[] = [];
+  ingredientesBusqueda: any[] = [];
+  busqueda: string = "";
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
@@ -21,9 +23,20 @@ export class GrillaIngredientesComponent implements OnInit {
   async llenarLista() {
     let url = 'http://localhost:3000/api/ingredientes/listar';
 
-    this.http.get(url).subscribe((response) => {
-      this.ingredientes = response;
+    this.http.get(url).subscribe((response: any) => {
+      this.ingredientes = response.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));;
+      this.ingredientesBusqueda = this.ingredientes
     });
+  }
+
+  async buscar() {
+    if (this.busqueda != "" || this.busqueda) {
+      this.ingredientesBusqueda = await this.ingredientes.filter((obj: { nombre: string; }) => {
+        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      })
+    } else {
+      this.ingredientesBusqueda = this.ingredientes
+    }
   }
 
   actualizarVigencia(id: number, estado: boolean) {

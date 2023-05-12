@@ -7,20 +7,33 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./grilla-rubro-ingredientes.component.css'],
 })
 export class GrillaRubroIngredientesComponent implements OnInit {
-  rubrosIngredientes: any;
+  busqueda: string = "";
+  rubrosIngredientes: any[] = [];
+  busquedaRubro: any[] = [];
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     await this.llenarLista();
   }
 
   async llenarLista() {
     let url = 'http://localhost:3000/api/rubro-ingredientes/listar';
 
-    this.http.get(url).subscribe((response) => {
-      this.rubrosIngredientes = response;
+    this.http.get(url).subscribe((response: any) => {
+      this.rubrosIngredientes = response.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));;
+      this.busquedaRubro = this.rubrosIngredientes
     });
+  }
+
+  async buscar() {
+    if (this.busqueda != "" || this.busqueda) {
+      this.busquedaRubro = await this.rubrosIngredientes.filter((obj: { nombre: string; }) => {
+        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      })
+    } else {
+      this.busquedaRubro = this.rubrosIngredientes
+    }
   }
 
   actualizarVigencia(id: number, estado: boolean) {

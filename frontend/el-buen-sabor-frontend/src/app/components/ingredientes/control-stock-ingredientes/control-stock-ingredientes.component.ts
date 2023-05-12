@@ -9,8 +9,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ControlStockIngredientesComponent {
 
-  ingredientes!: any;
+  ingredientes: any[] = [];
+  ingredientesBusqueda: any[] = [];
   ingredientesConStockBajo!: any;
+  busqueda: string = "";
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
@@ -18,28 +20,25 @@ export class ControlStockIngredientesComponent {
     await this.llenarLista()
   }
 
+  async buscar() {
+    if (this.busqueda != "" || this.busqueda) {
+      this.ingredientesBusqueda = await this.ingredientes.filter((obj: { nombre: string; }) => {
+        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      })
+    } else {
+      this.ingredientesBusqueda = this.ingredientes
+    }
+  }
+
   async llenarLista() {
     let url = 'http://localhost:3000/api/ingredientes/listar';
 
     this.http.get(url).subscribe((response: any) => {
       this.ingredientes = response.filter((obj: { cantidadActual: number; stockMinimoInsumo: number; }) => {
-        const cercaStockMinimo = obj.stockMinimoInsumo * 1.2
-        return obj.cantidadActual < obj.stockMinimoInsumo || obj.cantidadActual <= cercaStockMinimo
+        return obj.cantidadActual < obj.stockMinimoInsumo || obj.cantidadActual <= obj.stockMinimoInsumo * 1.2
       });
+      this.ingredientes = this.ingredientes.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));
+      this.ingredientesBusqueda = this.ingredientes
     });
-  }
-
-  actualizarVigencia(id: number, estado: boolean) {
-    this.spinner.show();
-    let url =
-      'http://localhost:3000/api/ingredientes/modificar-estado/' + id;
-
-    this.http
-      .put(url, {
-        estado: estado,
-      })
-      .subscribe((response) => console.log(response));
-
-    window.location.reload();
   }
 }

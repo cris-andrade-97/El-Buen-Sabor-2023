@@ -7,9 +7,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./grilla-rubro-productos.component.css'],
 })
 export class GrillaRubroProductosComponent implements OnInit {
-  rubrosProductos!: any;
+  rubrosProductos: any[] = [];
+  busquedaRubro: any[] = [];
+  busqueda: string = ""
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {}
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.llenarLista();
@@ -18,9 +20,20 @@ export class GrillaRubroProductosComponent implements OnInit {
   llenarLista() {
     let url = 'http://localhost:3000/api/rubro-articulos-manufacturados/listar';
 
-    this.http.get(url).subscribe((response) => {
-      this.rubrosProductos = response;
+    this.http.get(url).subscribe((response: any) => {
+      this.rubrosProductos = response.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));;
+      this.busquedaRubro = this.rubrosProductos;
     });
+  }
+
+  async buscar() {
+    if (this.busqueda != "" || this.busqueda) {
+      this.busquedaRubro = await this.rubrosProductos.filter((obj: { nombre: string; }) => {
+        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      })
+    } else {
+      this.busquedaRubro = this.rubrosProductos
+    }
   }
 
   actualizarVigencia(id: number, estado: boolean) {

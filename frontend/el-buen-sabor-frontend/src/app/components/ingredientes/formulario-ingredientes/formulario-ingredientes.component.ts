@@ -98,7 +98,12 @@ export class FormularioIngredientesComponent implements OnInit {
         title: 'Error',
         text: 'El nombre no puede estar vacio',
       });
-
+    } else if (this.stockMinimo <= 0) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El stock mínimo debe ser mayor a cero',
+      });
     } else if (!this.unidadMedida) {
       return Swal.fire({
         icon: 'error',
@@ -112,12 +117,6 @@ export class FormularioIngredientesComponent implements OnInit {
         text: 'Seleccione un rubro',
       });
 
-    } else if (!this.rubro || !this.unidadMedida) {
-      return Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Rubro y Unidad de medida no pueden ser campos nulos',
-      });
     } else {
       if (this.esNuevo) {
         let url = 'http://localhost:3000/api/ingredientes/nuevo';

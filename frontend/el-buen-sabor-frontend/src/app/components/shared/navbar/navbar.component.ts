@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -8,7 +9,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public auth: AuthService, private spinner: NgxSpinnerService) {}
+
+  ruta: string = window.location.pathname
+
+  constructor(public auth: AuthService, private spinner: NgxSpinnerService, private routes: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
     this.spinner.show();
