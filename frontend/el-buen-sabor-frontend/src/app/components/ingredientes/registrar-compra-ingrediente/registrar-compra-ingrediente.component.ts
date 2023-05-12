@@ -23,18 +23,22 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
   nombre: string = "";
   unidadMedida: string = "gr";
   nuevoCostoPorUnidad: number = 0;
+  id = this.route.snapshot.paramMap.get('id')
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    await this.obtenerIngredientes()
-    await this.seleccionarIngrediente()
+    if (!this.id) {
+      await this.obtenerIngredientes()
+      await this.seleccionarIngrediente()
+    } else {
+      await this.obtenerIngrediente()
+    }
   }
 
   async seleccionarIngrediente() {
     if (this.nombre != null) {
       this.ingrediente = this.ingredientes.find((obj: { nombre: string; }) => obj.nombre === this.nombre);
-      console.log(this.ingrediente)
       this.cantidadActual = this.ingrediente.cantidadActual;
       this.unidadMedida = this.ingrediente.unidadMedida
     } else {
@@ -47,16 +51,27 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
     this.nuevoCostoPorUnidad = this.costoCompra / this.cantidadComprada;
   }
 
+  async obtenerIngrediente() {
+    let url = 'http://localhost:3000/api/ingredientes/buscar-por-id/' + this.id;
+
+    this.http.get(url).subscribe(
+      (response) => {
+        this.ingrediente = response
+        this.nombre = this.ingrediente.nombre
+        this.cantidadActual = this.ingrediente.cantidadActual;
+        this.unidadMedida = this.ingrediente.unidadMedida;
+      }
+    );
+  }
+
   async obtenerIngredientes() {
     let url = 'http://localhost:3000/api/ingredientes/listar';
 
     this.http.get(url).subscribe(
       (response) => {
-        if (true) {
-          this.auxiliar = response
-          for (let i = 0; i < this.auxiliar.length; i++) {
-            this.ingredientes.push(this.auxiliar[i])
-          }
+        this.auxiliar = response
+        for (let i = 0; i < this.auxiliar.length; i++) {
+          this.ingredientes.push(this.auxiliar[i])
         }
       }
     );
