@@ -9,7 +9,7 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             </ul>
-            <div class="col-sm-4 d-flex" style="padding-right: 50px;" *ngIf="ruta.includes('/inicio')">
+            <div class="col-sm-4 d-flex" style="padding-right: 50px;" *ngIf="ruta.includes('/inicio') || !ruta || ruta == '/'">
                 <div class="form-outline">
                     <input type="search" [(ngModel)]="termino" id="form1" class="form-control"
                         placeholder="Buscar Artículo" (keydown.enter)="buscarArticuloManufacturado($event)"/>
