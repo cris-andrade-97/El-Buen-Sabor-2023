@@ -35,6 +35,7 @@ import { DetalleArticuloManufacturadoComponent } from './components/articulos-ma
 import { CartService } from './services/cart-service.service';
 import { CartComponent } from './components/cart-component/cart-component.component';
 import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
+import { DeliveryService } from './services/delivery.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { ControlStockIngredientesComponent } from './components/ingredientes/con
     FormularioArticulosManufacturadosComponent,
     DetalleArticuloManufacturadoComponent,
     CartComponent,
-    ControlStockIngredientesComponent
+    ControlStockIngredientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,7 @@ import { ControlStockIngredientesComponent } from './components/ingredientes/con
     HttpClientModule,
     NgbModule,
   ],
-  providers: [CartService],
+  providers: [CartService, DeliveryService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
