@@ -9,30 +9,57 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class GrillaRubroProductosComponent implements OnInit {
   rubrosProductos: any[] = [];
   busquedaRubro: any[] = [];
-  busqueda: string = ""
+  busqueda: string = "";
+  filtro: string = "ninguno";
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {
-    this.llenarLista();
+  async ngOnInit() {
+    await this.llenarLista();
   }
 
-  llenarLista() {
+  async llenarLista() {
     let url = 'http://localhost:3000/api/rubro-articulos-manufacturados/listar';
 
     this.http.get(url).subscribe((response: any) => {
-      this.rubrosProductos = response.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));;
+      this.rubrosProductos = response.sort((a: { nombre: string; }, b: { nombre: any; }) => a.nombre.localeCompare(b.nombre));;
       this.busquedaRubro = this.rubrosProductos;
     });
   }
 
-  async buscar() {
-    if (this.busqueda != "" || this.busqueda) {
-      this.busquedaRubro = await this.rubrosProductos.filter((obj: { nombre: string; }) => {
-        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-      })
-    } else {
-      this.busquedaRubro = this.rubrosProductos
+  async filtrar() {
+    switch (this.filtro) {
+      case "ninguno":        
+        if (this.busqueda != "" || this.busqueda) {
+          this.busquedaRubro = this.rubrosProductos.filter((obj: { nombre: string; }) => {
+            return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+          })
+        } else {
+          this.busquedaRubro = this.rubrosProductos;
+        }
+        break;
+      case "vigencia":
+        if (this.busqueda != "" || this.busqueda) {
+          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; nombre: string }) => {
+            return obj.estado && obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+          })
+        } else {
+          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; }) => {
+            return obj.estado;
+          });
+        }
+        break;
+      case "no-vigencia":
+        if (this.busqueda != "" || this.busqueda) {
+          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; nombre: string }) => {
+            return !obj.estado && obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+          });
+        } else {
+          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; }) => {
+            return !obj.estado;
+          });
+        }
+        break;
     }
   }
 

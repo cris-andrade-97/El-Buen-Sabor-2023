@@ -27,7 +27,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 40000,
             "rubroIngrediente": "Lácteos",
-            "estado": false,
+            "estado": true,
             "costoPorUnidad": 2.3
         },
         {
@@ -67,7 +67,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 0,
             "rubroIngrediente": "Vegetales",
-            "estado": false,
+            "estado": true,
             "costoPorUnidad": 0.7
         },
         {
@@ -127,7 +127,7 @@
             "unidadMedida": "gr",
             "cantidadActual": 30000,
             "rubroIngrediente": "Lácteos",
-            "estado": false,
+            "estado": true,
             "costoPorUnidad": 3
         },
         {

@@ -16,12 +16,29 @@
             </a>
         </div>
         <div class="col-sm-4">
-            <input type="text" [(ngModel)]="busqueda" (ngModelChange)="buscar()" class="form-control"
+            <input type="text" [(ngModel)]="busqueda" (ngModelChange)="filtrar()" class="form-control"
                 aria-describedby="Buscardor" placeholder="Buscar Artículo...">
+        </div>
+        <div>
+            <label>Filtros de búsqueda</label>
+            <br>           
+            <select [(ngModel)]="filtro" (ngModelChange)="filtrar()">
+                <option value="ninguno" selected>--Seleccione un Filtro--</option>
+                <option value="vigencia">En vigencia</option>                
+                <option value="no-vigencia">Sin vigencia</option>                              
+            </select>
+        </div>
+        <div>
+            <label>Filtrar por rubro</label>
+            <br>           
+            <select [(ngModel)]="filtroRubro" (ngModelChange)="filtrar()">
+                <option value="ninguno" selected>--Seleccione un Filtro--</option>                
+                <option *ngFor="let r of listaRubros">{{r}}</option>                
+            </select>
         </div>
     </div>
     <br>
-    <table class="table table-light" *ngIf="busqueda==''">
+    <table class="table table-light">
         <thead>
             <tr>
                 <th scope="col" style="width:14%">Nombre</th>
@@ -34,7 +51,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let articulo of articulosManufacturados">
+            <tr *ngFor="let articulo of articulosBusqueda">
                 <td>
                     {{articulo.nombre}}
                 </td>
@@ -77,65 +94,8 @@
                 </td>
             </tr>
         </tbody>
-    </table>
-    <table class="table table-light" *ngIf="busqueda!==''">
-        <thead>
-            <tr>
-                <th scope="col" style="width:14%">Nombre</th>
-                <th scope="col" style="width:12%">Imagen</th>
-                <th scope="col" style="width:11%">Precio</th>
-                <th scope="col" style="width:12%">Rubro</th>
-                <th scope="col" style="width:10%">Vigencia</th>
-                <th scope="col" style="width:18%">Modificar</th>
-                <th scope="col" style="width:13%">Dar de Alta/Baja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let articulo of busquedaArticulos">
-                <td>
-                    {{articulo.nombre}}
-                </td>
-                <td>
-                    <div *ngIf="(articulo.imagen).indexOf('http')>=0">
-                        <img class="card-img-top" src={{articulo.imagen}} alt="Card image cap" id="imagenTabla">
-                    </div>
-                    <div *ngIf="(articulo.imagen).indexOf('http')!=0">
-                        <img class="card-img-top" src="../../../../assets/img/{{articulo.imagen}}.jpg"
-                            alt="Card image cap" id="imagenTabla">
-                    </div>
-                </td>
-                <td>
-                    ${{articulo.precioVenta}}
-                </td>
-                <td>
-                    {{articulo.rubroArticulo}}
-                </td>
-                <td *ngIf="articulo.estado">
-                    <p>&#9989;</p>
-                </td>
-                <td *ngIf="!articulo.estado">
-                    <p>&#10060;</p>
-                </td>
-                <td>
-                    <a class="btn btn-outline-warning"
-                        [routerLink]="['/formulario-articulos-manufacturados',articulo.id]">
-                        Modificar Articulo
-                    </a>
-                </td>
-                <td>
-                    <button *ngIf="!articulo.estado" class="btn btn-outline-success"
-                        (click)="actualizarVigencia(articulo.id,true)">
-                        Dar de Alta
-                    </button>
-                    <button *ngIf="articulo.estado" class="btn btn-outline-danger"
-                        (click)="actualizarVigencia(articulo.id, false)">
-                        Dar de Baja
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <label *ngIf="busquedaArticulos.length == 0">
+    </table>    
+    <label *ngIf="articulosBusqueda.length == 0">
         No se encontraron resultados.
     </label>
 </div>

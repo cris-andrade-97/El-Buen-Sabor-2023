@@ -8,34 +8,34 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./grilla-unidad-de-medida.component.css']
 })
 export class GrillaUnidadDeMedidaComponent implements OnInit {
-  unidadDeMedidas!: any;
+  unidadesDeMedida: any[] = [];
+  busquedaUnidad: any[] = [];
+  busqueda: string = ""
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {}
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.llenarLista();
   }
 
+  async buscar() {
+    if (this.busqueda || this.busqueda != "") {
+      this.busquedaUnidad = this.unidadesDeMedida.filter((obj) => {
+        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
+      })
+    } else {
+      this.busquedaUnidad = this.unidadesDeMedida;
+    }
+  }
+
   llenarLista() {
     let url = 'http://localhost:3000/api/unidad-de-medida/listar';
 
-    this.http.get(url).subscribe((response) => {
-      this.unidadDeMedidas = response;
+    this.http.get(url).subscribe((response: any) => {
+      this.unidadesDeMedida = response.sort((a: { nombre: string }, b: { nombre: string }) =>
+        a.nombre.localeCompare(b.nombre)
+      );
+      this.busquedaUnidad = this.unidadesDeMedida
     });
   }
-
-  /*actualizarVigencia(id: number, estado: boolean) {
-    this.spinner.show();
-    let url =
-      'http://localhost:3000/api/unidad-de-medida/modificar-estado-unidad/' +
-      id;
-
-    this.http
-      .put(url, {
-        estado: estado,
-      })
-      .subscribe((response) => console.log(response));
-
-    window.location.reload();
-  }*/
 }
