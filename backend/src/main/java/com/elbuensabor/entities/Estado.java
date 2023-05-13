@@ -19,11 +19,6 @@ public class Estado extends Base{
     @Column
     private String denominacion;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "estado_pedido",
-            joinColumns = @JoinColumn(name = "estado_id"),
-            inverseJoinColumns = @JoinColumn(name = "pedido_id")
-    )
+    @OneToMany(mappedBy = "estado")
     private List<Pedido> pedidos = new ArrayList<>();
 }

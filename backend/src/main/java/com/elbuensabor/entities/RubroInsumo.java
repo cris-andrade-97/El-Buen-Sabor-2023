@@ -1,5 +1,7 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,17 +17,24 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+
 public class RubroInsumo extends Base {
     @Column
     private String denominacion;
+    @Column
+    private Boolean estado;
+    @Column
+    private Boolean aLaVenta;
 
     @ManyToOne
-    @JoinColumn(name = "rubro_padre_id")
+    @JoinColumn(name = "rubroPadre_id")
     private RubroInsumo rubroPadre;
 
-    @OneToMany(mappedBy = "rubroPadre")
+    @OneToMany(mappedBy = "rubroPadre", cascade = CascadeType.ALL)
     private List<RubroInsumo> rubrosHijos = new ArrayList<RubroInsumo>();
 
-    @OneToMany(mappedBy = "rubroInsumo")
+
+    @OneToMany(mappedBy = "rubroInsumo", cascade = CascadeType.ALL)
     private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
+
 }

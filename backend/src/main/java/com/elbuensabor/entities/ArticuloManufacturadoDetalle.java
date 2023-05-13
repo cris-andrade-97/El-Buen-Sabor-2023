@@ -17,14 +17,16 @@ public class ArticuloManufacturadoDetalle extends Base{
     private Double cantidad;
 
     @ManyToOne
-    @JoinColumn(name = "unidadMedida_id")
+    @JoinColumn(name = "unidad_medida_id")
     private UnidadMedida unidadMedida;
 
-    @ManyToOne
-    @JoinColumn(name = "articuloInsumo_id")
-    private ArticuloInsumo articuloInsumo;
 
     @ManyToOne
-    @JoinColumn(name = "articuloManufacturado_id")
-    private ArticuloManufacturado articuloManufacturado = new ArticuloManufacturado();
+    @JoinColumn(name = "articulo_insumo_id")
+    private ArticuloInsumo articuloInsumo;
+
+
+    @ManyToOne
+    @JoinColumn(name = "articulo_manufacturado_id")
+    private ArticuloManufacturado articuloManufacturado;
 }

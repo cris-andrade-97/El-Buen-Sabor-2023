@@ -20,7 +20,7 @@ public class DetallePedido extends Base {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
-    private Pedido pedido = new Pedido();
+    private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "articuloManufacturado_id")
@@ -29,4 +29,5 @@ public class DetallePedido extends Base {
     @ManyToOne
     @JoinColumn(name = "articuloInsumo_id")
     private ArticuloInsumo articuloInsumo;
+
 }

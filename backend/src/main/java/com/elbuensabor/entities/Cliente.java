@@ -29,19 +29,10 @@ public class Cliente extends Base {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "cliente_pedido",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "pedido_id")
-    )
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<Pedido>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "cliente_domicilio",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "domicilio_id")
-    )
-    private List<Domicilio> domicilio = new ArrayList<Domicilio>();
+    @OneToMany(mappedBy = "cliente")
+    private List<Domicilio> domicilios = new ArrayList<Domicilio>();
+
 }

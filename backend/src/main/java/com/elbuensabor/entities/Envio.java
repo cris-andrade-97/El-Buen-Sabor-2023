@@ -19,11 +19,7 @@ public class Envio extends Base {
     @Column
     private String tipoEnvio;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "envio_pedido",
-            joinColumns = @JoinColumn(name = "envio_id"),
-            inverseJoinColumns = @JoinColumn(name = "pedido_id")
-    )
+    @OneToMany(mappedBy = "envio")
     private List<Pedido> pedidos = new ArrayList<>();
+
 }

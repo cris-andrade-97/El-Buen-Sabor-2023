@@ -19,12 +19,7 @@ public class Rol extends Base {
     @Column
     private String denominacion;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "rol_usuario",
-            joinColumns = @JoinColumn(name = "rol_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id")
-    )
+    @OneToMany(mappedBy = "rol")
     private List<Usuario> usuarios = new ArrayList<>();
 
 }

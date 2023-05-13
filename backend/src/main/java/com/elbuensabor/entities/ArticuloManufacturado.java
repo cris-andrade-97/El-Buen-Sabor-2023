@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ArticuloManufacturado extends Base{
+public class ArticuloManufacturado extends Base {
     @Column
     private Integer tiempoEstimadoCocina;
     @Column
@@ -24,24 +24,23 @@ public class ArticuloManufacturado extends Base{
     private Double precioVenta;
     @Column
     private String imagen;
+    @Column
+    private Boolean estado;
+    @Column
+    private Double precioCosto;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "articuloManufacturado_detalleFactura",
-            joinColumns = @JoinColumn(name = "articuloManufacturado_id"),
-            inverseJoinColumns = @JoinColumn(name = "detalleFactura_id")
-    )
-    private List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "articuloManufacturado_detallePedido",
-            joinColumns = @JoinColumn(name = "articuloManufacturado_id"),
-            inverseJoinColumns = @JoinColumn(name = "detallePedido_id")
-    )
-    private List<DetallePedido> detallesPedido = new ArrayList<DetallePedido>();
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<DetalleFactura> detallesFactura = new ArrayList<>();
+
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<ArticuloManufacturadoDetalle> articuloManufacturadoDetalles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<DetallePedido> detallesPedido = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "rubroArticuloManufacturado_id")
+    @JoinColumn(name = "rubro_articulo_manufacturado_id")
     private RubroArticuloManufacturado rubroArticuloManufacturado;
+
 }

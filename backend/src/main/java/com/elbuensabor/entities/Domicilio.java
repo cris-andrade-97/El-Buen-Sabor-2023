@@ -25,12 +25,7 @@ public class Domicilio extends Base {
     @Column(name = "localidad")
     private String localidad;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "domicilio_pedido",
-            joinColumns = @JoinColumn(name = "domicilio_id"),
-            inverseJoinColumns = @JoinColumn(name = "pedido_id")
-    )
+    @OneToMany(mappedBy = "domicilio")
     private List<Pedido> pedidos = new ArrayList<Pedido>();
 
     @ManyToOne

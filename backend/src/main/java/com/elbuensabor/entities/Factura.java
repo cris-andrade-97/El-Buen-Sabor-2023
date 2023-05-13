@@ -36,11 +36,6 @@ public class Factura extends Base {
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "factura_detalleFactura",
-            joinColumns = @JoinColumn(name = "factura_id"),
-            inverseJoinColumns = @JoinColumn(name = "detalleFactura_id")
-    )
+    @OneToMany(mappedBy = "factura")
     private List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 }

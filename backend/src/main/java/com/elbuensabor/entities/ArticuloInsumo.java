@@ -1,5 +1,7 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,50 +17,45 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ArticuloInsumo extends Base {
     @Column
     private String denominacion;
+
     @Column
     private Double precioCompra;
+
     @Column
     private Double precioVenta;
+
     @Column
     private Double stockActual;
+
     @Column
     private Double stockMinimo;
+
     @Column
     private Boolean esInsumo;
 
+    @Column
+    private Boolean estado;
+
+    @JsonIgnoreProperties("articulosInsumo")
     @ManyToOne
-    @JoinColumn(name = "unidadMedida_id")
     private UnidadMedida unidadMedida;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "articuloInsumo_detallePedido",
-            joinColumns = @JoinColumn(name = "articuloInsumo_id"),
-            inverseJoinColumns = @JoinColumn(name = "detallePedido_id")
-    )
+    @OneToMany(mappedBy = "articuloInsumo")
     private List<DetallePedido> detallesPedido = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "articuloInsumo_detalleFactura",
-            joinColumns = @JoinColumn(name = "articuloInsumo_id"),
-            inverseJoinColumns = @JoinColumn(name = "detalleFactura_id")
-    )
+    @OneToMany(mappedBy = "articuloInsumo")
     private List<DetalleFactura> detallesFactura = new ArrayList<>();
 
+    @JsonIgnoreProperties("articulosInsumo")
     @ManyToOne
-    @JoinColumn(name = "rubroInsumo_id")
     private RubroInsumo rubroInsumo;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "articuloInsumo_articuloManufacturadoDetalle",
-            joinColumns = @JoinColumn(name = "articuloInsumo_id"),
-            inverseJoinColumns = @JoinColumn(name = "articuloManufacturadoDetalle_id")
-    )
+    @OneToMany(mappedBy = "articuloInsumo")
     private List<ArticuloManufacturadoDetalle> articulosManufacturadoDetalle = new ArrayList<>();
+
 
 }
