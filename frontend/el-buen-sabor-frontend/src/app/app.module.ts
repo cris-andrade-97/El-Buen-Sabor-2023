@@ -57,7 +57,7 @@ import { ControlStockIngredientesComponent } from './components/ingredientes/con
     FormularioArticulosManufacturadosComponent,
     DetalleArticuloManufacturadoComponent,
     CartComponent,
-    ControlStockIngredientesComponent,
+    ControlStockIngredientesComponent
   ],
   imports: [
     BrowserModule,
@@ -83,4 +83,4 @@ import { ControlStockIngredientesComponent } from './components/ingredientes/con
   providers: [CartService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

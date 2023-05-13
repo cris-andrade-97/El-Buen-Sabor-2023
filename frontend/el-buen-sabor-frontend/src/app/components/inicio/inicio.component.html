@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!termino">
     <div class="frame-27">
         <a href="inicio#pizzas"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Pizzas.png" /></a>
 
@@ -6,8 +6,6 @@
                 src="../../../assets/img/Hamburguesas.png" /></a>
 
         <a href="inicio#lomos"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Lomos.png" /></a>
-
-        <img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Promos.png" />
     </div>
 
     <section id="pizzas">
@@ -111,5 +109,37 @@
             </div>
         </div>
     </section>
+</div>
+<div class="container" *ngIf="termino">
+    <br>
+    <div class="col-sm-auto">
+        <h1>Artículos que contengan '{{termino}}':</h1>
+    </div>    
+    <br>
+    <div class="bloques">
+        <div class="card" style="width: 18rem;" *ngFor="let articulo of articulosManufacturados">
+            <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
+                class="card-img-top card-img-fixed-height" alt="...">
+            <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
+                class="card-img-top card-img-fixed-height" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{articulo.nombre}}</h5>
+                <p class="card-text">${{articulo.precioVenta}}</p>
+                <div>
+                    <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
+                        style="display: block; margin-bottom: 10px;">
+                        <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                    </a>
+                    <a [routerLink]="['/detalle-articulo-manufacturado',articulo.id]" class="btn btn-outline-info"
+                        style="display: block;">
+                        Ver detalle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <label *ngIf="articulosManufacturados.length == 0">
+        No hay artículos que contengan '{{termino}}'.
+    </label>
 </div>
 <br>

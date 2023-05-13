@@ -9,13 +9,18 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             </ul>
-            <form class="col-sm-4" role="search" style="padding-right: 50px;" *ngIf="ruta=='/inicio'">
-                <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
-            </form>
+            <div class="col-sm-4 d-flex" style="padding-right: 50px;" *ngIf="ruta.includes('/inicio')">
+                <div class="form-outline">
+                    <input type="search" [(ngModel)]="termino" id="form1" class="form-control"
+                        placeholder="Buscar Artículo" (keydown.enter)="buscarArticuloManufacturado($event)"/>
+                </div>
+                <button type="button" id="boton-buscar" class="btn" style="border: 1px solid #CED4DA;" (click)="buscarArticuloManufacturado($event)">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
             &nbsp;
             <div class="dropdown text-end" ngbDropdown>
-                <a href="/carrito"><i class="fas fa-shopping-cart"
-                        style="color: black;font-size: 30px;"></i></a>
+                <a href="/carrito"><i class="fas fa-shopping-cart" style="color: black;font-size: 30px;"></i></a>
                 <button style="border:none; background:#f4f4f4"> <a *ngIf="!(auth.user$ | async) as notUser"
                         class="d-block link-dark text-decoration-none" ngbDropdownToggle>
                         <img src="../../../assets/img/usuario.png" alt="mdo" width="50" height="50"

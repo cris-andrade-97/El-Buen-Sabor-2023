@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import axios from 'axios';
@@ -13,21 +13,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  articulosManufacturados!: any;
+  articulosManufacturados: any[] = [];
   pizzas: any[] = [];
   hamburguesas: any[] = [];
   lomosArray: any[] = [];
   user: any;
+  termino: string = "";
 
   constructor(
     public auth: AuthService,
+    private route: ActivatedRoute,
     private router: Router,
     private el: ElementRef,
     private http: HttpClient,
     private carritoService: CartService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    this.termino = urlParams.get('busqueda')?.toString()!;
+
     this.auth.user$.subscribe(async (user) => {
       if (user) {
         this.user = user;
@@ -67,22 +73,30 @@ export class InicioComponent implements OnInit {
   async llenarLista() {
     let url = 'http://localhost:3000/api/articulos-manufacturados/listar';
 
-    this.http.get(url).subscribe((response) => {
-      this.articulosManufacturados = response;
-      for (let i = 0; i < this.articulosManufacturados.length; i++) {
-        if (this.articulosManufacturados[i].estado == true) {
-          if (this.articulosManufacturados[i].rubroArticulo == 'Pizzas') {
-            this.pizzas.push(this.articulosManufacturados[i]);
-          } else if (
-            this.articulosManufacturados[i].rubroArticulo == 'Hamburguesas'
-          ) {
-            this.hamburguesas.push(this.articulosManufacturados[i]);
-          } else if (this.articulosManufacturados[i].rubroArticulo == 'Lomos') {
-            this.lomosArray.push(this.articulosManufacturados[i]);
+    this.http.get(url).subscribe((response: any) => {
+      if (this.termino) {
+        this.articulosManufacturados = response.filter((obj: { nombre: string; }) => {
+          return obj.nombre.toLowerCase().includes(this.termino.toLowerCase())
+        }
+        );
+      } else {
+        this.articulosManufacturados = response;
+        for (let i = 0; i < this.articulosManufacturados.length; i++) {
+          if (this.articulosManufacturados[i].estado == true) {
+            if (this.articulosManufacturados[i].rubroArticulo == 'Pizzas') {
+              this.pizzas.push(this.articulosManufacturados[i]);
+            } else if (
+              this.articulosManufacturados[i].rubroArticulo == 'Hamburguesas'
+            ) {
+              this.hamburguesas.push(this.articulosManufacturados[i]);
+            } else if (this.articulosManufacturados[i].rubroArticulo == 'Lomos') {
+              this.lomosArray.push(this.articulosManufacturados[i]);
+            }
           }
         }
       }
     });
+
   }
 
   // async addRolesToUser(userId: string, roles: string) {

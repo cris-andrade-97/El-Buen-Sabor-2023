@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class NavbarComponent implements OnInit {
 
-  ruta: string = window.location.pathname
+  ruta: string = ""
+  termino: string = ""
 
-  constructor(public auth: AuthService, private spinner: NgxSpinnerService, private routes: ActivatedRoute) { }
+  constructor(
+    public auth: AuthService,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) { }
 
   async ngOnInit(): Promise<void> {
-    this.spinner.show();
+    this.ruta = window.location.pathname
+    this.spinner.show();    
     this.auth.user$.subscribe(async (user) => {
       if (user) {
         this.spinner.hide();
@@ -23,6 +30,25 @@ export class NavbarComponent implements OnInit {
         this.spinner.hide();
       }
     });
+  }
+
+  buscarArticuloManufacturado(event: any) {
+    if (this.termino == "" || !this.termino) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'La búsqueda no puede ser vacía!',
+      });
+    } else {
+      /*let url = new URL("http://localhost:4200/inicio")
+      url.searchParams.append('busqueda', this.termino)
+      window.location.replace(url)
+      return;*/
+      let url = new URL("http://localhost:4200/inicio")
+      url.searchParams.append('busqueda', this.termino)
+      window.location.href = url.toString()
+      return;
+    }
   }
 
   async login() {
