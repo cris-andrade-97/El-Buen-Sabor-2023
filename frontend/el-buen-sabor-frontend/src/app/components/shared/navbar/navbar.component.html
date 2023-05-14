@@ -9,12 +9,14 @@
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             </ul>
-            <div class="col-sm-4 d-flex" style="padding-right: 50px;" *ngIf="ruta.includes('/inicio') || !ruta || ruta == '/'">
+            <div class="col-sm-4 d-flex" style="padding-right: 50px;"
+                *ngIf="ruta.includes('/inicio') || !ruta || ruta == '/'">
                 <div class="form-outline">
                     <input type="search" [(ngModel)]="termino" id="form1" class="form-control"
-                        placeholder="Buscar Artículo" (keydown.enter)="buscarArticuloManufacturado($event)"/>
+                        placeholder="Buscar Artículo" (keydown.enter)="buscarArticuloManufacturado($event)" />
                 </div>
-                <button type="button" id="boton-buscar" class="btn" style="border: 1px solid #CED4DA;" (click)="buscarArticuloManufacturado($event)">
+                <button type="button" id="boton-buscar" class="btn" style="border: 1px solid #CED4DA;"
+                    (click)="buscarArticuloManufacturado($event)">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -33,16 +35,30 @@
                     </a></button>
 
                 <ul ngbDropdownMenu class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li *ngIf="!(auth.user$ | async) as notUser"><button (click)="login()"
-                            *ngIf="!(auth.user$ | async) as notUser" type="button"
-                            class="dropdown-item">Ingresar</button></li>
-                    <li *ngIf="(auth.user$ | async) as user"><a class="dropdown-item" href="/opciones">Opciones</a></li>
+
+                    <li *ngIf="!(auth.user$ | async) as notUser">
+                        <button (click)="login()" *ngIf="!(auth.user$ | async) as notUser" type="button"
+                            class="dropdown-item">
+                            Ingresar
+                        </button>
+                    </li>
+
+                    <li *ngIf="(auth.user$ | async) as user">
+                        <a class="dropdown-item" href="/opciones">
+                            Opciones
+                        </a>
+                    </li>
+
                     <li *ngIf="(auth.user$ | async) as user">
                         <hr class="dropdown-divider">
                     </li>
-                    <li *ngIf="(auth.user$ | async) as user"><button class="dropdown-item" (click)="logOut()"
-                            href="#">Cerrar
-                            sesión</button></li>
+
+                    <li *ngIf="(auth.user$ | async) as user">
+                        <button class="dropdown-item" (click)="logOut()" href="#">
+                            Cerrar sesión
+                        </button>
+                    </li>
+
                 </ul>
 
             </div>

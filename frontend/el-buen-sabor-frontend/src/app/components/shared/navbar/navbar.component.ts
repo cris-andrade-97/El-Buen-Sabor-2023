@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.ruta = window.location.pathname
-    this.spinner.show();    
-    this.auth.user$.subscribe(async (user) => {
+    this.spinner.show();
+    this.auth.user$.subscribe(async (user: any) => {
       if (user) {
         this.spinner.hide();
       } else {
@@ -31,7 +31,15 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-
+/**
+ * { user_rol: "Usuario", nickname: "cristian201097", name: "cristian201097@gmail.com", 
+ * picture: "https://s.gravatar.com/avatar/ea1df0e093f29d88aaaeb2260800ebeb?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fcr.png", 
+ * updated_at: "2023-05-13T17:52:40.882Z", 
+ * email: "cristian201097@gmail.com", 
+ * email_verified: true, 
+ * sub: "auth0|6440313fe671c7c9c591ad81" }
+ *
+ */
   buscarArticuloManufacturado(event: any) {
     if (this.termino == "" || !this.termino) {
       return Swal.fire({
