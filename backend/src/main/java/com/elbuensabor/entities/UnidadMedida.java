@@ -18,13 +18,17 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+
 public class UnidadMedida extends Base {
     @Column
     private String denominacion;
+    @Column
+    private String unidad;
 
     @OneToMany(mappedBy = "unidadMedida")
     private List<ArticuloInsumo> articulosInsumo = new ArrayList<>();
 
     @OneToMany(mappedBy = "unidadMedida")
     private List<ArticuloManufacturadoDetalle> articulosManufacturadosDetalle = new ArrayList<>();
+
 }

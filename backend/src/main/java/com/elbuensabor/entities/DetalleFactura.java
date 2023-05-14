@@ -20,7 +20,7 @@ public class DetalleFactura extends Base {
 
     @ManyToOne
     @JoinColumn(name = "factura_id")
-    private Factura factura = new Factura();
+    private Factura factura;
 
     @ManyToOne
     @JoinColumn(name = "articuloManufacturado_id")
@@ -29,4 +29,5 @@ public class DetalleFactura extends Base {
     @ManyToOne
     @JoinColumn(name = "articuloInsumo_id")
     private ArticuloInsumo articuloInsumo;
+
 }

@@ -24,4 +24,5 @@ public class Usuario extends Base {
 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+
 }

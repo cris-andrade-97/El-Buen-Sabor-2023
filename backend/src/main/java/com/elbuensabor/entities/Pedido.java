@@ -39,12 +39,7 @@ public class Pedido extends Base {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "pedido_detallePedido",
-            joinColumns = @JoinColumn(name = "pedido_id"),
-            inverseJoinColumns = @JoinColumn(name = "detallePedido_id")
-    )
+    @OneToMany(mappedBy = "pedido")
     private List<DetallePedido> detallesPedido = new ArrayList<DetallePedido>();
 
     @ManyToOne

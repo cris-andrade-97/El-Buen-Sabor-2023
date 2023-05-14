@@ -22,6 +22,9 @@ public class RubroArticuloManufacturado extends Base {
     @Column
     private String denominacion;
 
+    @Column
+    private Boolean estado;
+
     @OneToMany(mappedBy = "rubroArticuloManufacturado")
     private List<ArticuloManufacturado> articulosManufacturados = new ArrayList<ArticuloManufacturado>();
 }
