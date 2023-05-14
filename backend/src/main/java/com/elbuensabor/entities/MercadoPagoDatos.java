@@ -16,7 +16,7 @@ import java.sql.Date;
 @Setter
 public class MercadoPagoDatos extends Base {
     @Column
-    private Long identificadoPago;
+    private Long identificadorPago;
     @Column
     private Date fechaCreacion;
     @Column
