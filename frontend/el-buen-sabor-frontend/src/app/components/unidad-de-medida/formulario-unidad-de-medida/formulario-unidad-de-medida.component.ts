@@ -24,7 +24,7 @@ export class FormularioUnidadDeMedidaComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private servicioDelivery: DeliveryService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     //Obtengo Rubro

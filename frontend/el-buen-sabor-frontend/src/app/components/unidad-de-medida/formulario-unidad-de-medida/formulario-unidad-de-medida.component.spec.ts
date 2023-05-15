@@ -8,9 +8,9 @@ describe('FormularioUnidadDeMedidaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormularioUnidadDeMedidaComponent ]
+      declarations: [FormularioUnidadDeMedidaComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FormularioUnidadDeMedidaComponent);
     component = fixture.componentInstance;
