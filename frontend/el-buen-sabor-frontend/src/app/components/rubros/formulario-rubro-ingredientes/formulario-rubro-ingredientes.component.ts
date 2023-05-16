@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { RubroInsumo } from 'src/app/entidades/RubroInsumo';
+import { DeliveryService } from 'src/app/services/delivery.service';
 //import RubroIngredientesJSON from '../grilla-rubro-ingredientes/RubroIngredientes.json';
 
 //import { lecturaDatos } from 'persistencia/persistencia';
@@ -17,94 +19,63 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-rubro-ingredientes.component.css'],
 })
 export class FormularioRubroIngredientesComponent implements OnInit {
-  rubroIngrediente: any;
   esNuevo: boolean = false;
-  nombre: string = '';
-  estado: boolean = false;
-  aLaVenta: boolean = false;
-
+  rubroInsumo: RubroInsumo = new RubroInsumo();
+  rubrosInsumos: RubroInsumo[] = [];
   id = this.route.snapshot.paramMap.get('id');
 
   constructor(
     private route: ActivatedRoute,
-    private fb: UntypedFormBuilder,
-    private http: HttpClient
+    private servicioDelivery: DeliveryService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    //Obtengo Rubros
+    await this.getRubros();
     //Obtengo Rubro
-    await this.obtenerRubro();
+    await this.getRubroInsumo();
   }
 
-  async obtenerRubro() {
-    let url =
-      'http://localhost:3000/api/rubro-ingredientes/buscar-por-id/' + this.id;
+  async getRubroInsumo() {
+    //Si es nuevo deja el formulario en blanco
+    if (this.id == 'nuevoRubro') {
+      this.esNuevo = true;
+    } else {
+      const id: number = parseInt(this.id || '0', 10);
+      this.rubroInsumo = await this.servicioDelivery.getXId('rubroInsumo', id);
+    }
+  }
 
-    this.http.get(url).subscribe((response) => {
-      //Si es nuevo deja el formulario en blanco
-      if (this.id == 'nuevoRubro') {
-        this.esNuevo = true;
-      } else {
-        //Si es modificación seteo los valores
-        this.rubroIngrediente = response;
-        this.estado = this.rubroIngrediente.estado;
-        this.nombre = this.rubroIngrediente.nombre;
-        this.aLaVenta = this.rubroIngrediente.aLaVenta;
+  async getRubros() {
+    this.rubrosInsumos = await this.servicioDelivery.get('rubroInsumo');
+    this.rubrosInsumos.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
       }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
     });
   }
 
   async post() {
     //Verifico si el nombre está vacio
-    if (this.nombre.length == 0) {
-      return Swal.fire({
+    if (this.rubroInsumo.denominacion.length == 0) {
+      Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'El nombre no puede estar vacio',
+        text: 'Hay campos vacíos.',
       });
     } else {
-      //Si esta todo ok, verifico si es put o post mediante ID
-      //POST
+      await this.servicioDelivery.save(this.rubroInsumo, 'rubroInsumo');
       if (this.esNuevo) {
-        let url = 'http://localhost:3000/api/rubro-ingredientes/nuevo-rubro';
-
-        const data = {
-          nombre: this.nombre,
-          estado: this.estado,
-          aLaVenta: this.aLaVenta,
-        };
-
-        this.http.post(url, data).subscribe(async (response) => {
-          if (response) {
-            await Swal.fire('Rubro agregado!');
-            window.location.replace('/grilla-rubro-ingredientes');
-          }
-        });
-        return;
+        await Swal.fire('Rubro agregado');
+        window.location.replace('/grilla-rubro-ingredientes');
       } else {
-        //PUT
-        let url =
-          'http://localhost:3000/api/rubro-ingredientes/modificar-rubro/' +
-          this.id;
-
-        const data = {
-          nombre: this.nombre,
-          estado: this.estado,
-          aLaVenta: this.aLaVenta,
-        };
-
-        this.http.put(url, data).subscribe(async (response) => {
-          if (response) {
-            await Swal.fire('Rubro actualizado!');
-            window.location.replace('/grilla-rubro-ingredientes');
-          }
-        });
-        return;
+        await Swal.fire('Rubro Actualizado');
+        window.location.replace('/grilla-rubro-ingredientes');
       }
     }
-  }
-
-  onSubmit() {
-    window.location.replace('/grilla-rubro-ingredientes');
   }
 }

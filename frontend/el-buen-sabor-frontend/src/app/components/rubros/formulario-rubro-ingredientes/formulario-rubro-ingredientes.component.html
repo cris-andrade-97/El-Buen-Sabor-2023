@@ -6,16 +6,25 @@
             <div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Nombre del Rubro</label>
-                    <input type="text" [(ngModel)]="nombre" class="form-control" id="exampleInputEmail1" />
+                    <input type="text" [(ngModel)]="rubroInsumo.denominacion" class="form-control" id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" [(ngModel)]="rubroInsumo.estado" class="form-check-input" id="exampleCheck1" checked>
                     <label class="form-check-label" for="exampleCheck1">Vigente</label>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="aLaVenta" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" [(ngModel)]="rubroInsumo.aLaVenta" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">A la Venta</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <label for="exampleInputEmail1" class="form-label">Rubro padre</label>
+                    <select class="form-select" [(ngModel)]="rubroInsumo.rubroPadre">
+                        <option [ngValue]="null" selected>-- Seleccione una opción --</option>
+                        <option *ngFor="let rubro of rubrosInsumos" [ngValue]="rubro">
+                            {{rubro.denominacion}}
+                        </option>
+                    </select>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-primary" (click)="post()">Confirmar</button>

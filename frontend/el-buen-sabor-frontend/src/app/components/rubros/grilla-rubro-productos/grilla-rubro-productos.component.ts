@@ -1,63 +1,99 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { RubroArticuloManufacturado } from 'src/app/entidades/RubroArticuloManufacturado';
+import { DeliveryService } from 'src/app/services/delivery.service';
 @Component({
   selector: 'app-grilla-rubro-productos',
   templateUrl: './grilla-rubro-productos.component.html',
   styleUrls: ['./grilla-rubro-productos.component.css'],
 })
 export class GrillaRubroProductosComponent implements OnInit {
-  rubrosProductos: any[] = [];
-  busquedaRubro: any[] = [];
-  busqueda: string = "";
-  filtro: string = "ninguno";
+  busquedaRubro: RubroArticuloManufacturado[] = [];
+  busqueda: string = '';
+  filtro: string = 'ninguno';
+  rubroArticuloManufacturado: RubroArticuloManufacturado[] = [];
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
+  constructor(
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private servicioDelivery: DeliveryService
+  ) {}
 
   async ngOnInit() {
-    await this.llenarLista();
+    await this.getRubros();
   }
 
-  async llenarLista() {
-    let url = 'http://localhost:3000/api/rubro-articulos-manufacturados/listar';
-
-    this.http.get(url).subscribe((response: any) => {
-      this.rubrosProductos = response.sort((a: { nombre: string; }, b: { nombre: any; }) => a.nombre.localeCompare(b.nombre));;
-      this.busquedaRubro = this.rubrosProductos;
+  async getRubros() {
+    this.rubroArticuloManufacturado = await this.servicioDelivery.get(
+      'rubroArticuloManufacturado'
+    );
+    this.rubroArticuloManufacturado.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
     });
+
+    this.busquedaRubro = this.rubroArticuloManufacturado;
   }
 
   async filtrar() {
     switch (this.filtro) {
-      case "ninguno":        
-        if (this.busqueda != "" || this.busqueda) {
-          this.busquedaRubro = this.rubrosProductos.filter((obj: { nombre: string; }) => {
-            return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-          })
+      case 'ninguno':
+        if (this.busqueda != '' || this.busqueda) {
+          this.busquedaRubro = this.rubroArticuloManufacturado.filter(
+            (obj: { denominacion: string }) => {
+              return obj.denominacion
+                .toLowerCase()
+                .includes(this.busqueda.toLowerCase());
+            }
+          );
         } else {
-          this.busquedaRubro = this.rubrosProductos;
+          this.busquedaRubro = this.rubroArticuloManufacturado;
         }
         break;
-      case "vigencia":
-        if (this.busqueda != "" || this.busqueda) {
-          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; nombre: string }) => {
-            return obj.estado && obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-          })
+      case 'vigencia':
+        if (this.busqueda != '' || this.busqueda) {
+          this.busquedaRubro = this.rubroArticuloManufacturado.filter(
+            (obj: { estado: boolean; denominacion: string }) => {
+              return (
+                obj.estado &&
+                obj.denominacion
+                  .toLowerCase()
+                  .includes(this.busqueda.toLowerCase())
+              );
+            }
+          );
         } else {
-          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; }) => {
-            return obj.estado;
-          });
+          this.busquedaRubro = this.rubroArticuloManufacturado.filter(
+            (obj: { estado: boolean }) => {
+              return obj.estado;
+            }
+          );
         }
         break;
-      case "no-vigencia":
-        if (this.busqueda != "" || this.busqueda) {
-          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; nombre: string }) => {
-            return !obj.estado && obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-          });
+      case 'no-vigencia':
+        if (this.busqueda != '' || this.busqueda) {
+          this.busquedaRubro = this.rubroArticuloManufacturado.filter(
+            (obj: { estado: boolean; denominacion: string }) => {
+              return (
+                !obj.estado &&
+                obj.denominacion
+                  .toLowerCase()
+                  .includes(this.busqueda.toLowerCase())
+              );
+            }
+          );
         } else {
-          this.busquedaRubro = this.rubrosProductos.filter((obj: { estado: boolean; }) => {
-            return !obj.estado;
-          });
+          this.busquedaRubro = this.rubroArticuloManufacturado.filter(
+            (obj: { estado: boolean }) => {
+              return !obj.estado;
+            }
+          );
         }
         break;
     }

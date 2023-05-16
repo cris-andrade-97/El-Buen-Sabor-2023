@@ -21,11 +21,11 @@
         </div>
         <div>
             <label>Filtros de búsqueda</label>
-            <br>           
+            <br>
             <select [(ngModel)]="filtro" (ngModelChange)="filtrar()">
                 <option value="ninguno" selected>--Seleccione un Filtro--</option>
-                <option value="vigencia">En vigencia</option>                
-                <option value="no-vigencia">Sin vigencia</option>                
+                <option value="vigencia">En vigencia</option>
+                <option value="no-vigencia">Sin vigencia</option>
             </select>
         </div>
     </div>
@@ -42,7 +42,7 @@
         <tbody>
             <tr *ngFor="let rubro of busquedaRubro">
                 <td>
-                    {{rubro.nombre}}
+                    {{rubro.denominacion}}
                 </td>
                 <td *ngIf="rubro.estado">
                     <p>&#9989;</p>
@@ -67,7 +67,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>    
+    </table>
     <label *ngIf="busquedaRubro.length == 0">
         No se encontraron resultados.
     </label>

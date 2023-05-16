@@ -10,7 +10,6 @@ import { DeliveryService } from 'src/app/services/delivery.service';
   styleUrls: ['./grilla-unidad-de-medida.component.css'],
 })
 export class GrillaUnidadDeMedidaComponent implements OnInit {
-  //unidadesMedida: any[] = [];
   busquedaUnidad: UnidadMedida[] = [];
   busqueda: string = '';
   unidadesMedida: UnidadMedida[] = [];
@@ -27,7 +26,7 @@ export class GrillaUnidadDeMedidaComponent implements OnInit {
   }
 
   async getUnidadesMedida() {
-    this.unidadesMedida = await this.servicioDelivery.getUnidadesMedida();
+    this.unidadesMedida = await this.servicioDelivery.get('unidadMedida');
     this.unidadesMedida.sort((a, b) => {
       if (a.denominacion < b.denominacion) {
         return -1;
@@ -52,16 +51,4 @@ export class GrillaUnidadDeMedidaComponent implements OnInit {
       this.busquedaUnidad = this.unidadesMedida;
     }
   }
-
-  // llenarLista() {
-  //   let url = 'http://localhost:3000/api/unidad-de-medida/listar';
-
-  //   this.http.get(url).subscribe((response: any) => {
-  //     this.unidadesMedida = response.sort(
-  //       (a: { nombre: string }, b: { nombre: string }) =>
-  //         a.nombre.localeCompare(b.nombre)
-  //     );
-  //     this.busquedaUnidad = this.unidadesMedida;
-  //   });
-  // }
 }
