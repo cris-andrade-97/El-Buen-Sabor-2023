@@ -7,11 +7,13 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { DeliveryService } from 'src/app/services/delivery.service';
+import { ArticuloInsumo } from 'src/app/entidades/ArticuloInsumo';
 
 @Component({
   selector: 'app-registrar-compra-ingrediente',
   templateUrl: './registrar-compra-ingrediente.component.html',
-  styleUrls: ['./registrar-compra-ingrediente.component.css']
+  styleUrls: ['./registrar-compra-ingrediente.component.css'],
 })
 export class RegistrarCompraIngredienteComponent implements OnInit {
   ingredientes: any[] = [];
@@ -20,65 +22,50 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
   cantidadComprada: number = 0;
   costoCompra: number = 0;
   auxiliar!: any;
-  nombre: string = "";
-  unidadMedida: string = "gr";
+  nombre: string = '';
+  unidadMedida: string = 'gr';
   nuevoCostoPorUnidad: number = 0;
-  id = this.route.snapshot.paramMap.get('id')
+  id = this.route.snapshot.paramMap.get('id');
+  articuloInsumo: ArticuloInsumo = new ArticuloInsumo();
+  articulosInsumo: ArticuloInsumo[] = [];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private servicioDelivery: DeliveryService
+  ) {}
 
   async ngOnInit() {
     if (!this.id) {
-      await this.obtenerIngredientes()
-      await this.seleccionarIngrediente()
+      await this.getArticulosInsumos();
+      //await this.seleccionarIngrediente();
     } else {
-      await this.obtenerIngrediente()
+      await this.getArticuloInsumo();
     }
   }
 
-  async seleccionarIngrediente() {
-    if (this.nombre != null) {
-      this.ingrediente = this.ingredientes.find((obj: { nombre: string; }) => obj.nombre === this.nombre);
-      this.cantidadActual = this.ingrediente.cantidadActual;
-      this.unidadMedida = this.ingrediente.unidadMedida
-    } else {
-      this.cantidadActual = 0
-      this.unidadMedida = "gr"
-    }
-  }
-
-  actualizarCostoPorUnidad() {
-    this.nuevoCostoPorUnidad = this.costoCompra / this.cantidadComprada;
-  }
-
-  async obtenerIngrediente() {
-    let url = 'http://localhost:3000/api/ingredientes/buscar-por-id/' + this.id;
-
-    this.http.get(url).subscribe(
-      (response) => {
-        this.ingrediente = response
-        this.nombre = this.ingrediente.nombre
-        this.cantidadActual = this.ingrediente.cantidadActual;
-        this.unidadMedida = this.ingrediente.unidadMedida;
-      }
+  async getArticuloInsumo() {
+    const id: number = parseInt(this.id || '0', 10);
+    this.articuloInsumo = await this.servicioDelivery.getXId(
+      'articuloInsumo',
+      id
     );
   }
 
-  async obtenerIngredientes() {
-    let url = 'http://localhost:3000/api/ingredientes/listar';
-
-    this.http.get(url).subscribe(
-      (response) => {
-        this.auxiliar = response
-        for (let i = 0; i < this.auxiliar.length; i++) {
-          this.ingredientes.push(this.auxiliar[i])
-        }
+  async getArticulosInsumos() {
+    this.articulosInsumo = await this.servicioDelivery.get('articuloInsumo');
+    this.articulosInsumo.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
       }
-    );
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
   async post() {
-
     if (this.cantidadComprada <= 0 || this.costoCompra <= 0) {
       return Swal.fire({
         icon: 'error',
@@ -86,21 +73,10 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
         text: 'No pueden haber campos negativos o nulos',
       });
     } else {
-      let url = 'http://localhost:3000/api/ingredientes/registrar-compra/' + this.ingrediente.id;
-
-      const body = {
-        cantidadActual: this.cantidadActual + this.cantidadComprada,
-        costoPorUnidad: this.nuevoCostoPorUnidad
-      }
-
-      this.http.put(url, body).subscribe(
-        async (response) => {
-          if (response) {
-            await Swal.fire('Ingrediente actualizado!');
-            window.location.replace('/grilla-ingredientes');
-          }
-        }
-      )
+      this.articuloInsumo.stockActual += this.cantidadComprada;
+      await this.servicioDelivery.save(this.articuloInsumo, 'articuloInsumo');
+      await Swal.fire('Ingrediente actualizado!');
+      window.location.replace('/grilla-ingredientes');
       return;
     }
   }

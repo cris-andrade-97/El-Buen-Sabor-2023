@@ -1,44 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DeliveryService } from 'src/app/services/delivery.service';
+import { ArticuloInsumo } from 'src/app/entidades/ArticuloInsumo';
 
 @Component({
   selector: 'app-control-stock-ingredientes',
   templateUrl: './control-stock-ingredientes.component.html',
-  styleUrls: ['./control-stock-ingredientes.component.css']
+  styleUrls: ['./control-stock-ingredientes.component.css'],
 })
 export class ControlStockIngredientesComponent {
-
   ingredientes: any[] = [];
-  ingredientesBusqueda: any[] = [];
+  ingredientesBusqueda: ArticuloInsumo[] = [];
   ingredientesConStockBajo!: any;
-  busqueda: string = "";
+  busqueda: string = '';
+  articuloInsumo: ArticuloInsumo[] = [];
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
+  constructor(private servicioDelivery: DeliveryService) {}
 
   async ngOnInit() {
-    await this.llenarLista()
+    await this.getInsumos();
+  }
+
+  async getInsumos() {
+    this.articuloInsumo = await this.servicioDelivery.get('articuloInsumo');
+    this.articuloInsumo.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
+    this.ingredientesBusqueda = this.articuloInsumo;
   }
 
   async buscar() {
-    if (this.busqueda != "" || this.busqueda) {
-      this.ingredientesBusqueda = await this.ingredientes.filter((obj: { nombre: string; }) => {
-        return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase());
-      })
+    if (this.busqueda != '' || this.busqueda) {
+      this.ingredientesBusqueda = this.articuloInsumo.filter(
+        (obj: { denominacion: string }) => {
+          return obj.denominacion
+            .toLowerCase()
+            .includes(this.busqueda.toLowerCase());
+        }
+      );
     } else {
-      this.ingredientesBusqueda = this.ingredientes
+      this.ingredientesBusqueda = this.articuloInsumo;
     }
-  }
-
-  async llenarLista() {
-    let url = 'http://localhost:3000/api/ingredientes/listar';
-
-    this.http.get(url).subscribe((response: any) => {
-      this.ingredientes = response.filter((obj: { cantidadActual: number; stockMinimoInsumo: number; }) => {
-        return obj.cantidadActual < obj.stockMinimoInsumo || obj.cantidadActual <= obj.stockMinimoInsumo * 1.2
-      });
-      this.ingredientes = this.ingredientes.sort((a: { nombre: string; },b: { nombre: any; })=>a.nombre.localeCompare(b.nombre));
-      this.ingredientesBusqueda = this.ingredientes
-    });
   }
 }

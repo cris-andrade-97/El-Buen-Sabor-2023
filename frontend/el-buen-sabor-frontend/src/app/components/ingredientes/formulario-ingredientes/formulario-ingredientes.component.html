@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex justify-content-center">
-        <h2 *ngIf="id=='nuevoIngrediente'">Agregar Nuevo Ingrediente</h2>
-        <h2 *ngIf="id!='nuevoIngrediente'">Modificar Ingrediente Existente</h2>
+        <h2 *ngIf="id=='nuevoIngrediente'">Agregar Nuevo Insumo</h2>
+        <h2 *ngIf="id!='nuevoIngrediente'">Modificar Insumo Existente</h2>
     </div>
     <br>
     <div class="form-11">
@@ -9,39 +9,38 @@
         <div class="register-form">
             <div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="form-label">Nombre del Ingrediente</label>
-                    <input type="text" [(ngModel)]="nombre" class="form-control" id="exampleInputEmail1" />
+                    <label for="exampleInputEmail1" class="form-label">Nombre del Insumo</label>
+                    <input type="text" [(ngModel)]="articuloInsumo.denominacion" class="form-control"
+                        id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="form-label">Cantidad Actual</label>
-                    <input type="number" [(ngModel)]="cantidadActual" class="form-control" id="exampleInputEmail1" />
+                    <label for="exampleInputEmail1" class="form-label">Stock Actual</label>
+                    <input type="number" [(ngModel)]="articuloInsumo.stockActual" class="form-control"
+                        id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Stock Mínimo</label>
-                    <input type="number" [(ngModel)]="stockMinimo" class="form-control" id="exampleInputEmail1" />
+                    <input type="number" [(ngModel)]="articuloInsumo.stockMinimo" class="form-control"
+                        id="exampleInputEmail1" />
                 </div>
                 <br>
                 <label for="exampleInputEmail1" class="form-label">Unidad de Medida</label>
-                <select class="form-select" [(ngModel)]="unidadMedida" >
+                <select class="form-select" [(ngModel)]="articuloInsumo.unidadMedida">
                     <option [ngValue]="null" selected>-- Seleccione una opción --</option>
-                    <option *ngFor="let u of listaUnidades">{{u}}</option>
+                    <option *ngFor="let u of unidadesMedida" [ngValue]="u">{{u.denominacion}}</option>
                 </select>
                 <br>
-                <label for="exampleInputEmail1" class="form-label">Rubro de Ingrediente</label>
-                <select class="form-select" [(ngModel)]="rubro" >
+                <label for="exampleInputEmail1" class="form-label">Rubro de Insumo</label>
+                <select class="form-select" [(ngModel)]="articuloInsumo.rubroInsumo">
                     <option [ngValue]="null" selected>-- Seleccione una opción --</option>
-                    <option *ngFor="let r of listaRubros">{{r}}</option>
+                    <option *ngFor="let r of rubrosInsumos" [ngValue]="r">{{r.denominacion}}</option>
                 </select>
-                <br>
-                <div class="form-group">
-                    <label for="exampleInputEmail1" class="form-label">Costo Por Unidad</label>
-                    <input type="number" [(ngModel)]="costoPorUnidad" class="form-control" id="exampleInputEmail1" />
-                </div>                
                 <br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" [(ngModel)]="articuloInsumo.estado" class="form-check-input"
+                        id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Vigente</label>
                 </div>
                 <div class="d-grid gap-2">

@@ -1,121 +1,212 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ArticuloInsumo } from 'src/app/entidades/ArticuloInsumo';
+import { RubroInsumo } from 'src/app/entidades/RubroInsumo';
+import { DeliveryService } from 'src/app/services/delivery.service';
 
 @Component({
   selector: 'app-grilla-ingredientes',
   templateUrl: './grilla-ingredientes.component.html',
-  styleUrls: ['./grilla-ingredientes.component.css']
+  styleUrls: ['./grilla-ingredientes.component.css'],
 })
-
 export class GrillaIngredientesComponent implements OnInit {
+  ingredientesBusqueda: ArticuloInsumo[] = [];
+  busqueda: string = '';
+  filtro: string = 'ninguno';
+  filtroRubro: string = 'ninguno';
+  articuloInsumo: ArticuloInsumo[] = [];
+  rubrosInsumos: RubroInsumo[] = [];
 
-  ingredientes: any[] = [];
-  ingredientesBusqueda: any[] = [];
-  busqueda: string = "";
-  filtro: string = "ninguno";
-  listaRubros: any[] = [];
-  auxiliar: any[] = [];
-  filtroRubro: string = "ninguno";
-
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
+  constructor(
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private servicioDelivery: DeliveryService
+  ) {}
 
   async ngOnInit() {
-    await this.llenarLista()
-    await this.obtenerRubros()
-    this.auxiliar = [];
+    await this.getInsumos();
+    await this.getRubros();
   }
 
-  async obtenerRubros() {
-    this.http.get('http://localhost:3000/api/rubro-ingredientes/listar').subscribe(
-      (response: any) => {
-        for (let i = 0; i < response.length; i++) {
-          this.auxiliar.push(response[i]['nombre']);
-        }
-        this.listaRubros = this.auxiliar.sort((a, b) =>
-          a.localeCompare(b)
-        )
+  async getInsumos() {
+    this.articuloInsumo = await this.servicioDelivery.get('articuloInsumo');
+    this.articuloInsumo.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
       }
-    )
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
+    this.ingredientesBusqueda = this.articuloInsumo;
   }
+
+  async getRubros() {
+    this.rubrosInsumos = await this.servicioDelivery.get('rubroInsumo');
+    this.rubrosInsumos.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  // async obtenerRubros() {
+  //   this.http
+  //     .get('http://localhost:3000/api/rubro-ingredientes/listar')
+  //     .subscribe((response: any) => {
+  //       for (let i = 0; i < response.length; i++) {
+  //         this.auxiliar.push(response[i]['nombre']);
+  //       }
+  //       this.listaRubros = this.auxiliar.sort((a, b) => a.localeCompare(b));
+  //     });
+  // }
 
   async filtrar() {
     switch (this.filtro) {
-      case "ninguno":
+      case 'ninguno':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes;
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo;
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { rubroIngrediente: string; }) => {
-                return obj.rubroIngrediente == this.filtroRubro;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { rubroInsumo: RubroInsumo }) => {
+                  return obj.rubroInsumo.denominacion === this.filtroRubro;
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase())
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { denominacion: string }) => {
+                  return obj.denominacion
+                    .toLowerCase()
+                    .includes(this.busqueda.toLowerCase());
+                }
+              );
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; rubroIngrediente: string; }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroIngrediente == this.filtroRubro;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { denominacion: string; rubroInsumo: RubroInsumo }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroInsumo.denominacion == this.filtroRubro
+                  );
+                }
+              );
             }
             break;
         }
         break;
-      case "vigencia":
+      case 'vigencia':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { rubroIngrediente: string; estado: boolean }) => {
-                return obj.estado;
-              })
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { rubroInsumo: RubroInsumo; estado: boolean }) => {
+                  return obj.estado;
+                }
+              );
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { rubroIngrediente: string; estado: boolean }) => {
-                return obj.rubroIngrediente == this.filtroRubro && obj.estado;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { rubroInsumo: RubroInsumo; estado: boolean }) => {
+                  return (
+                    obj.rubroInsumo.denominacion == this.filtroRubro &&
+                    obj.estado
+                  );
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.estado
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { denominacion: string; estado: boolean }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) && obj.estado
+                  );
+                }
+              );
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; rubroIngrediente: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroIngrediente == this.filtroRubro && obj.estado;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: {
+                  denominacion: string;
+                  rubroInsumo: RubroInsumo;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroInsumo.denominacion == this.filtroRubro &&
+                    obj.estado
+                  );
+                }
+              );
             }
             break;
         }
         break;
-      case "no-vigencia":
+      case 'no-vigencia':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { rubroIngrediente: string; estado: boolean }) => {
-                return !obj.estado;
-              })
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { rubroInsumo: RubroInsumo; estado: boolean }) => {
+                  return !obj.estado;
+                }
+              );
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { rubroIngrediente: string; estado: boolean }) => {
-                return obj.rubroIngrediente == this.filtroRubro && obj.estado;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { rubroInsumo: RubroInsumo; estado: boolean }) => {
+                  return (
+                    obj.rubroInsumo.denominacion == this.filtroRubro &&
+                    obj.estado
+                  );
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && !obj.estado
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: { denominacion: string; estado: boolean }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) && !obj.estado
+                  );
+                }
+              );
             } else {
-              this.ingredientesBusqueda = this.ingredientes.filter((obj: { nombre: string; rubroIngrediente: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroIngrediente == this.filtroRubro && !obj.estado;
-              })
+              this.ingredientesBusqueda = this.articuloInsumo.filter(
+                (obj: {
+                  denominacion: string;
+                  rubroInsumo: RubroInsumo;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroInsumo.denominacion == this.filtroRubro &&
+                    !obj.estado
+                  );
+                }
+              );
             }
             break;
         }
@@ -123,21 +214,21 @@ export class GrillaIngredientesComponent implements OnInit {
     }
   }
 
-  async llenarLista() {
-    let url = 'http://localhost:3000/api/ingredientes/listar';
+  // async llenarLista() {
+  //   let url = 'http://localhost:3000/api/ingredientes/listar';
 
-    this.http.get(url).subscribe((response: any) => {
-      this.ingredientes = response.sort((a: { nombre: string; }, b: { nombre: any; }) => a.nombre.localeCompare(b.nombre));;
-      this.ingredientesBusqueda = this.ingredientes
-    });
-  }
-
-
+  //   this.http.get(url).subscribe((response: any) => {
+  //     this.articuloInsumo = response.sort(
+  //       (a: { nombre: string }, b: { nombre: any }) =>
+  //         a.nombre.localeCompare(b.nombre)
+  //     );
+  //     this.ingredientesBusqueda = this.articuloInsumo;
+  //   });
+  // }
 
   actualizarVigencia(id: number, estado: boolean) {
     this.spinner.show();
-    let url =
-      'http://localhost:3000/api/ingredientes/modificar-estado/' + id;
+    let url = 'http://localhost:3000/api/ingredientes/modificar-estado/' + id;
 
     this.http
       .put(url, {

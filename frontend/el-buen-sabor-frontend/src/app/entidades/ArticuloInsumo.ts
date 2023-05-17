@@ -12,7 +12,7 @@ export class ArticuloInsumo {
   stockActual: number = 0;
   stockMinimo: number = 0;
   esInsumo: boolean = false;
-  estado: boolean = false;
+  estado: boolean = true;
   unidadMedida: UnidadMedida = new UnidadMedida();
   detallesPedido: DetallePedido[] = [];
   detallesFactura: DetalleFactura[] = [];

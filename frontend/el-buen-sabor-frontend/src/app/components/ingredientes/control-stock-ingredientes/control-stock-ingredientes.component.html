@@ -5,14 +5,14 @@
     <br>
     <div class="d-flex justify-content-center">
         <div class="col-sm-auto">
-            <h1>Control de Stock Ingredientes</h1>
+            <h1>Control de Stock Insumos</h1>
         </div>
     </div>
     <br>
     <div class="d-flex justify-content-end">
         <div class="col-sm-4">
             <input type="text" [(ngModel)]="busqueda" (ngModelChange)="buscar()" class="form-control"
-                aria-describedby="Buscardor" placeholder="Buscar Ingrediente...">
+                aria-describedby="Buscardor" placeholder="Buscar Insumo...">
         </div>
     </div>    
     <br>
@@ -30,34 +30,34 @@
         <tbody>
             <tr *ngFor="let ingrediente of ingredientesBusqueda">
                 <td>
-                    {{ingrediente.nombre}}
+                    {{ingrediente.denominacion}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
-                    {{ingrediente.stockMinimoInsumo/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'|| ingrediente.unidadMedida.unidad=='ml'">
+                    {{ingrediente.stockMinimo/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
-                    {{ingrediente.stockMinimoInsumo}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='gr' && ingrediente.unidadMedida.unidad!='ml'">
+                    {{ingrediente.stockMinimo}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
-                    {{ingrediente.cantidadActual/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'|| ingrediente.unidadMedida.unidad=='ml'">
+                    {{ingrediente.stockActual/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
-                    {{ingrediente.cantidadActual}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='gr' && ingrediente.unidadMedida.unidad!='ml'">
+                    {{ingrediente.stockActual}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='ml' || ingrediente.unidadMedida=='gr'">
-                    {{(ingrediente.cantidadActual-ingrediente.stockMinimoInsumo)/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='ml' || ingrediente.unidadMedida.unidad=='gr'">
+                    {{(ingrediente.stockActual-ingrediente.stockMinimo)/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
-                    {{ingrediente.cantidadActual-ingrediente.stockMinimoInsumo}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='ml' && ingrediente.unidadMedida.unidad!='gr'">
+                    {{ingrediente.stockActual-ingrediente.stockMinimo}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'">
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'">
                     kg
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='ml'">
+                <td *ngIf="ingrediente.unidadMedida.unidad=='ml'">
                     L
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
-                    {{ingrediente.unidadMedida}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='ml' && ingrediente.unidadMedida.unidad!='gr'">
+                    {{ingrediente.unidadMedida.denominacion}}
                 </td>
                 <td>
                     <a [routerLink]="['/registrar-compra-ingrediente/',ingrediente.id]">
@@ -79,36 +79,36 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ingrediente of ingredientes">
+            <tr *ngFor="let ingrediente of articuloInsumo">
                 <td>
-                    {{ingrediente.nombre}}
+                    {{ingrediente.denominacion}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
-                    {{ingrediente.stockMinimoInsumo/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'|| ingrediente.unidadMedida.unidad=='ml'">
+                    {{ingrediente.stockMinimo/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
-                    {{ingrediente.stockMinimoInsumo}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='gr' && ingrediente.unidadMedida.unidad!='ml'">
+                    {{ingrediente.stockMinimo}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'|| ingrediente.unidadMedida=='ml'">
-                    {{ingrediente.cantidadActual/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'|| ingrediente.unidadMedida.unidad=='ml'">
+                    {{ingrediente.stockActual/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='gr' && ingrediente.unidadMedida!='ml'">
-                    {{ingrediente.cantidadActual}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='gr' && ingrediente.unidadMedida.unidad!='ml'">
+                    {{ingrediente.stockActual}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='ml' || ingrediente.unidadMedida=='gr'">
-                    {{(ingrediente.cantidadActual-ingrediente.stockMinimoInsumo)/1000}}
+                <td *ngIf="ingrediente.unidadMedida.unidad=='ml' || ingrediente.unidadMedida.unidad=='gr'">
+                    {{(ingrediente.stockActual-ingrediente.stockMinimo)/1000}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
-                    {{ingrediente.cantidadActual-ingrediente.stockMinimoInsumo}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='ml' && ingrediente.unidadMedida.unidad!='gr'">
+                    {{ingrediente.stockActual-ingrediente.stockMinimo}}
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='gr'">
+                <td *ngIf="ingrediente.unidadMedida.unidad=='gr'">
                     kg
                 </td>
-                <td *ngIf="ingrediente.unidadMedida=='ml'">
+                <td *ngIf="ingrediente.unidadMedida.unidad=='ml'">
                     L
                 </td>
-                <td *ngIf="ingrediente.unidadMedida!='ml' && ingrediente.unidadMedida!='gr'">
-                    {{ingrediente.unidadMedida}}
+                <td *ngIf="ingrediente.unidadMedida.unidad!='ml' && ingrediente.unidadMedida.unidad!='gr'">
+                    {{ingrediente.unidadMedida.denominacion}}
                 </td>
                 <td>
                     <a [routerLink]="['/registrar-compra-ingrediente/',ingrediente.id]">
