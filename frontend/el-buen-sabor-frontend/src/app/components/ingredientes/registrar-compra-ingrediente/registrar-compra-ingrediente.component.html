@@ -41,7 +41,17 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">ARS</span>
                     </div>
-                    <input type="number" [(ngModel)]="costoCompra" class="form-control" id="exampleInputEmail1" />
+                    <input type="number" [(ngModel)]="costoCompra" class="form-control" id="exampleInputEmail1"
+                    (ngModelChange)="actualizaCosto()" />
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Precio por Unidad</label>
+                <div class="input-group">
+                    <input readonly type="number" [(ngModel)]="articuloInsumo.precioCostoXUnidad" class="form-control"
+                        id="exampleInputEmail1"  />
+                    <div class="input-group-append">
+                        <span class="input-group-text">{{articuloInsumo.unidadMedida.unidad}}</span>
+                    </div>
                 </div>
                 <br>
                 <div class="d-grid gap-2">

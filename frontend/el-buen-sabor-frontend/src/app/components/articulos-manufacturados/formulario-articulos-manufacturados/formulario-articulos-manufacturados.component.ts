@@ -2,26 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ArticuloInsumo } from 'src/app/entidades/ArticuloInsumo';
+import { ArticuloManufacturado } from 'src/app/entidades/ArticuloManufacturado';
+import { ArticuloManufacturadoDetalle } from 'src/app/entidades/ArticuloManufacturadoDetalle';
+import { RubroArticuloManufacturado } from 'src/app/entidades/RubroArticuloManufacturado';
+import { DeliveryService } from 'src/app/services/delivery.service';
 import Swal from 'sweetalert2';
 
-interface ArticuloManufacturadoDetalle {
-  id: number;
-  nombre: string;
-  cantidad: number;
-  unidadDeMedida: string;
-  costoIngrediente: number;
-}
-interface ingrediente {
-  id: number;
-  nombre: string;
-  stockMinimoInsumo: number;
-  unidadMedida: string;
-  cantidadActual: number;
-  rubroIngrediente: string;
-  estado: true;
-}
+// interface ArticuloManufacturadoDetalle {
+//   id: number;
+//   nombre: string;
+//   cantidad: number;
+//   unidadDeMedida: string;
+//   costoIngrediente: number;
+// }
+// interface ingrediente {
+//   id: number;
+//   nombre: string;
+//   stockMinimoInsumo: number;
+//   unidadMedida: string;
+//   cantidadActual: number;
+//   rubroIngrediente: string;
+//   estado: true;
+// }
 
-type NewType = ingrediente;
+// type NewType = ingrediente;
 
 @Component({
   selector: 'app-formulario-articulos-manufacturados',
@@ -29,7 +34,7 @@ type NewType = ingrediente;
   styleUrls: ['./formulario-articulos-manufacturados.component.css'],
 })
 export class FormularioArticulosManufacturadosComponent implements OnInit {
-  articuloManufacturado!: any;
+  //articuloManufacturado!: any;
   nombre: string = '';
   unidadMedida: string = '';
   rubroArticulo: string = '';
@@ -38,98 +43,169 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   estado: boolean = false;
   esNuevo: boolean = false;
   listaUnidades: string[] = [];
-  listaIngredientes: any[] = [];
-  listaIngredientesTotal: ingrediente[] = [];
-  articuloManufacturadoDetalle: ArticuloManufacturadoDetalle[] = [];
+  //listaIngredientesTotal: ingrediente[] = [];
+  //articuloManufacturado.articulosManufacturadoDetalle: ArticuloManufacturadoDetalle[] = [];
   listaRubros: string[] = [];
   auxiliar!: any;
   cantidad: number = 0;
-  ingrediente: NewType = {
-    id: 0,
-    nombre: '',
-    stockMinimoInsumo: 0,
-    unidadMedida: '',
-    cantidadActual: 0,
-    rubroIngrediente: '',
-    estado: true,
-  };
+  // ingrediente: NewType = {
+  //   id: 0,
+  //   nombre: '',
+  //   stockMinimoInsumo: 0,
+  //   unidadMedida: '',
+  //   cantidadActual: 0,
+  //   rubroIngrediente: '',
+  //   estado: true,
+  // };
   costoTotal: number = 0;
 
+  nuevoIngrediente: ArticuloManufacturadoDetalle =
+    new ArticuloManufacturadoDetalle();
+  listaIngredientes: ArticuloInsumo[] = [];
+  articulosInsumo: ArticuloInsumo[] = [];
+  rubroArticuloManufacturado: RubroArticuloManufacturado[] = [];
+  articuloManufacturado: ArticuloManufacturado = new ArticuloManufacturado();
   id = this.route.snapshot.paramMap.get('id');
 
   constructor(
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private servicioDelivery: DeliveryService
   ) {}
 
   async ngOnInit() {
-    await this.obtenerRubros();
-    await this.obtenerUnidades();
-    await this.obtenerIngredientes();
-    await this.obtenerArticulo();
+    await this.getRubros();
+    await this.getInsumos();
+    this.listaIngredientes = this.articulosInsumo;
+    await this.getArticuloManufacturado();
+    await this.calcularCostoTotal();
+    await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
     this.auxiliar = null;
   }
-
-  async obtenerArticulo() {
-    this.articuloManufacturado = this.http
-      .get(
-        'http://localhost:3000/api/articulos-manufacturados/buscar-por-id/' +
-          this.id
-      )
-      .subscribe(async (response) => {
-        if (this.id == 'nuevoArticulo') {
-          this.esNuevo = true;
-          await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-        } else {
-          this.articuloManufacturado = response;
-          this.nombre = this.articuloManufacturado.nombre;
-          this.imagen = this.articuloManufacturado.imagen;
-          this.precioVenta = this.articuloManufacturado.precioVenta;
-          this.rubroArticulo = this.articuloManufacturado.rubroArticulo;
-          this.estado = this.articuloManufacturado.estado;
-          this.articuloManufacturadoDetalle =
-            this.articuloManufacturado.articuloManufacturadoDetalle;
-          await this.calcularCostoTotal();
-          await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-        }
-      });
+  async getRubros() {
+    this.rubroArticuloManufacturado = await this.servicioDelivery.get(
+      'rubroArticuloManufacturado'
+    );
+    this.rubroArticuloManufacturado.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
-  async obtenerUnidades() {
-    this.http
-      .get('http://localhost:3000/api/unidad-de-medida/listar')
-      .subscribe((response) => {
-        this.auxiliar = response;
-        for (let i = 0; i < this.auxiliar.length; i++) {
-          this.listaUnidades.push(this.auxiliar[i]['unidad']);
-        }
-      });
+  async getInsumos() {
+    this.articulosInsumo = await this.servicioDelivery.get('articuloInsumo');
+    this.articulosInsumo.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
-  async obtenerIngredientes() {
-    this.http
-      .get('http://localhost:3000/api/ingredientes/listar')
-      .subscribe((response) => {
-        this.auxiliar = response;
-        this.listaIngredientesTotal = [];
-        for (let i = 0; i < this.auxiliar.length; i++) {
-          this.listaIngredientesTotal.push(this.auxiliar[i]);
-        }
-        this.listaIngredientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
-      });
+  async getArticuloManufacturado() {
+    //Si es nuevo deja el formulario en blanco
+    if (this.id == 'nuevoArticulo') {
+      this.esNuevo = true;
+    } else {
+      const id: number = parseInt(this.id || '0', 10);
+      this.articuloManufacturado = await this.servicioDelivery.getXId(
+        'articuloManufacturado',
+        id
+      );
+    }
   }
+
+  // async obtenerArticulo() {
+  //   this.articuloManufacturado = this.http
+  //     .get(
+  //       'http://localhost:3000/api/articulos-manufacturados/buscar-por-id/' +
+  //         this.id
+  //     )
+  //     .subscribe(async (response) => {
+  //       if (this.id == 'nuevoArticulo') {
+  //         this.esNuevo = true;
+  //         await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
+  //       } else {
+  //         this.articuloManufacturado = response;
+  //         this.nombre = this.articuloManufacturado.nombre;
+  //         this.imagen = this.articuloManufacturado.imagen;
+  //         this.precioVenta = this.articuloManufacturado.precioVenta;
+  //         this.rubroArticulo = this.articuloManufacturado.rubroArticulo;
+  //         this.estado = this.articuloManufacturado.estado;
+  //         this.articuloManufacturadoDetalle =
+  //           this.articuloManufacturado.articuloManufacturadoDetalle;
+  //         await this.calcularCostoTotal();
+  //         await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
+  //       }
+  //     });
+  // }
+
+  // async obtenerUnidades() {
+  //   this.http
+  //     .get('http://localhost:3000/api/unidad-de-medida/listar')
+  //     .subscribe((response) => {
+  //       this.auxiliar = response;
+  //       for (let i = 0; i < this.auxiliar.length; i++) {
+  //         this.listaUnidades.push(this.auxiliar[i]['unidad']);
+  //       }
+  //     });
+  // }
+
+  // async obtenerIngredientes() {
+  //   this.http
+  //     .get('http://localhost:3000/api/ingredientes/listar')
+  //     .subscribe((response) => {
+  //       this.auxiliar = response;
+  //       this.listaIngredientesTotal = [];
+  //       for (let i = 0; i < this.auxiliar.length; i++) {
+  //         this.listaIngredientesTotal.push(this.auxiliar[i]);
+  //       }
+  //       this.listaIngredientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  //     });
+  // }
+
+  // async eliminarIngredientesEnArticuloManufacturadoDetalle() {
+  //   await this.getInsumos();
+  //   this.listaIngredientes = [];
+  //   this.listaIngredientes = this.articulosInsumo;
+
+  //   for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
+  //     const nombreIngredienteDetalle =
+  //       this.articuloManufacturadoDetalle[i].nombre;
+  //     for (let j = 0; j < this.listaIngredientes.length; j++) {
+  //       const nombreIngredienteLista = this.listaIngredientes[j].nombre;
+  //       if (nombreIngredienteDetalle === nombreIngredienteLista) {
+  //         this.listaIngredientes.splice(j, 1);
+  //         j--;
+  //       }
+  //     }
+  //   }
+  // }
 
   async eliminarIngredientesEnArticuloManufacturadoDetalle() {
-    await this.obtenerIngredientes();
+    await this.getInsumos();
     this.listaIngredientes = [];
-    this.listaIngredientes = this.listaIngredientesTotal;
+    this.listaIngredientes = this.articulosInsumo;
 
-    for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
+    for (
+      let i = 0;
+      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i++
+    ) {
       const nombreIngredienteDetalle =
-        this.articuloManufacturadoDetalle[i].nombre;
+        this.articuloManufacturado.articulosManufacturadoDetalle[i]
+          .articuloInsumo.denominacion;
       for (let j = 0; j < this.listaIngredientes.length; j++) {
-        const nombreIngredienteLista = this.listaIngredientes[j].nombre;
+        const nombreIngredienteLista = this.listaIngredientes[j].denominacion;
         if (nombreIngredienteDetalle === nombreIngredienteLista) {
           this.listaIngredientes.splice(j, 1);
           j--;
@@ -139,118 +215,88 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   }
 
   async eliminarIngrediente(id: number) {
-    for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
-      if (this.articuloManufacturadoDetalle[i].id == id) {
-        this.articuloManufacturadoDetalle.splice(i, 1);
+    for (
+      let i = 0;
+      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i++
+    ) {
+      if (
+        this.articuloManufacturado.articulosManufacturadoDetalle[i].id == id
+      ) {
+        this.articuloManufacturado.articulosManufacturadoDetalle.splice(i, 1);
       }
     }
     await this.calcularCostoTotal();
     await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
   }
 
-  async agregarIngrediente(id: number) {
-    let numero = this.articuloManufacturadoDetalle.length + 1;
+  async agregarIngrediente() {
     for (let i = 0; i < this.listaIngredientes.length; i++) {
-      if (this.listaIngredientes[i].id == id) {
-        const nuevoDetalle: ArticuloManufacturadoDetalle = {
-          id: numero,
-          nombre: this.listaIngredientes[i].nombre,
-          cantidad: this.cantidad,
-          unidadDeMedida: this.listaIngredientes[i].unidadMedida,
-          costoIngrediente:
-            this.cantidad * this.listaIngredientes[i].costoPorUnidad,
-        };
+      if (
+        this.listaIngredientes[i].id == this.nuevoIngrediente.articuloInsumo.id
+      ) {
         this.listaIngredientes.splice(i, 1);
-        this.articuloManufacturadoDetalle.push(nuevoDetalle);
-        this.cantidad = 0;
+        this.articuloManufacturado.articulosManufacturadoDetalle.push(
+          this.nuevoIngrediente
+        );
+        this.nuevoIngrediente = new ArticuloManufacturadoDetalle();
       }
     }
     await this.calcularCostoTotal();
     await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-  }
-
-  async obtenerRubros() {
-    this.http
-      .get('http://localhost:3000/api/rubro-articulos-manufacturados/listar')
-      .subscribe((response) => {
-        this.auxiliar = response;
-        for (let i = 0; i < this.auxiliar.length; i++) {
-          this.listaRubros.push(this.auxiliar[i]['nombre']);
-        }
-      });
   }
 
   async calcularCostoTotal() {
     this.costoTotal = 0;
-    for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
-      this.costoTotal += this.articuloManufacturadoDetalle[i].costoIngrediente;
+    for (
+      let i = 0;
+      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i++
+    ) {
+      this.costoTotal +=
+        this.articuloManufacturado.articulosManufacturadoDetalle[i].cantidad *
+        this.articuloManufacturado.articulosManufacturadoDetalle[i]
+          .articuloInsumo.precioCostoXUnidad;
     }
+    this.costoTotal = parseFloat(this.costoTotal.toFixed(2));
     return this.costoTotal;
   }
 
   async post() {
-    if (this.imagen.length == 0) {
+    if (this.articuloManufacturado.imagen.length == 0) {
       return Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'La imagen no puede estar vacia',
       });
     }
-    if (this.nombre.length == 0) {
+    if (this.articuloManufacturado.denominacion.length == 0) {
       return Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'El nombre no puede estar vacio',
       });
     } else {
-      let costoTotal: number = await this.calcularCostoTotal();
+      this.articuloManufacturado.precioCosto = this.costoTotal;
       if (this.esNuevo) {
-        let url = 'http://localhost:3000/api/articulos-manufacturados/nuevo';
+        await this.servicioDelivery.save(
+          this.articuloManufacturado,
+          'articuloManufacturado'
+        );
+        await Swal.fire('Articulo agregado!');
+        window.location.replace('/grilla-articulos-manufacturados');
 
-        const data = {
-          nombre: this.nombre,
-          precioVenta: this.precioVenta,
-          imagen: this.imagen,
-          estado: this.estado,
-          rubroArticulo: this.rubroArticulo,
-          articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
-          costoTotal: costoTotal,
-        };
-
-        this.http.post(url, data).subscribe(async (response) => {
-          if (response) {
-            await Swal.fire('Articulo agregado!');
-            window.location.replace('/grilla-articulos-manufacturados');
-          }
-        });
         return;
       } else {
-        let url =
-          'http://localhost:3000/api/articulos-manufacturados/modificar-todo/' +
-          this.id;
+        await this.servicioDelivery.save(
+          this.articuloManufacturado,
+          'articuloManufacturado'
+        );
+        await Swal.fire('Articulo Actualizado!');
+        window.location.replace('/grilla-articulos-manufacturados');
 
-        const data = {
-          nombre: this.nombre,
-          precioVenta: this.precioVenta,
-          imagen: this.imagen,
-          estado: this.estado,
-          rubroArticulo: this.rubroArticulo,
-          articuloManufacturadoDetalle: this.articuloManufacturadoDetalle,
-          costoTotal: costoTotal,
-        };
-
-        this.http.put(url, data).subscribe(async (response) => {
-          if (response) {
-            await Swal.fire('Articulo actualizado!');
-            window.location.replace('/grilla-articulos-manufacturados');
-          }
-        });
         return;
       }
     }
-  }
-
-  onSubmit() {
-    window.location.replace('/grilla-ingredientes');
   }
 }

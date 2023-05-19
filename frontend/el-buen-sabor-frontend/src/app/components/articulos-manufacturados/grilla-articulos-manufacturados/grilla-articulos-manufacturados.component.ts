@@ -1,128 +1,222 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ArticuloManufacturado } from 'src/app/entidades/ArticuloManufacturado';
+import { RubroArticuloManufacturado } from 'src/app/entidades/RubroArticuloManufacturado';
+import { DeliveryService } from 'src/app/services/delivery.service';
 
 @Component({
   selector: 'app-grilla-articulos-manufacturados',
   templateUrl: './grilla-articulos-manufacturados.component.html',
-  styleUrls: ['./grilla-articulos-manufacturados.component.css']
+  styleUrls: ['./grilla-articulos-manufacturados.component.css'],
 })
 export class GrillaArticulosManufacturadosComponent implements OnInit {
-  articulosManufacturados: any[] = [];
-  articulosBusqueda: any[] = [];
-  busqueda: string = "";
-  filtro: string = "ninguno";
-  filtroRubro: string = "ninguno";
-  listaRubros: any[] = [];
-  auxiliar: any[] = [];
-
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { }
+  articulosBusqueda: ArticuloManufacturado[] = [];
+  busqueda: string = '';
+  filtro: string = 'ninguno';
+  filtroRubro: string = 'ninguno';
+  rubroArticuloManufacturado: RubroArticuloManufacturado[] = [];
+  articulosManufacturados: ArticuloManufacturado[] = [];
+  constructor(
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private servicioDelivery: DeliveryService
+  ) {}
 
   async ngOnInit() {
-    await this.obtenerRubros()
-    await this.llenarLista()
-    this.auxiliar = []
+    await this.getRubros();
+    await this.getArticulos();
   }
 
-  async llenarLista() {
-    let url = 'http://localhost:3000/api/articulos-manufacturados/listar';
-
-    this.http.get(url).subscribe((response: any) => {
-      this.articulosManufacturados = response.sort((a: { nombre: string; }, b: { nombre: string; }) => a.nombre.localeCompare(b.nombre));
-      this.articulosBusqueda = this.articulosManufacturados
-    });
-  }
-
-  async obtenerRubros() {
-    this.http.get('http://localhost:3000/api/rubro-articulos-manufacturados/listar').subscribe(
-      (response: any) => {
-        for (let i = 0; i < response.length; i++) {
-          this.auxiliar.push(response[i]['nombre']);
-        }
-        this.listaRubros = this.auxiliar.sort((a, b) =>
-          a.localeCompare(b)
-        )
+  async getArticulos() {
+    this.articulosManufacturados = await this.servicioDelivery.get(
+      'articuloManufacturado'
+    );
+    this.articulosManufacturados.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
       }
-    )
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
+    this.articulosBusqueda = this.articulosManufacturados;
+  }
+
+  async getRubros() {
+    this.rubroArticuloManufacturado = await this.servicioDelivery.get(
+      'rubroArticuloManufacturado'
+    );
+    this.rubroArticuloManufacturado.sort((a, b) => {
+      if (a.denominacion < b.denominacion) {
+        return -1;
+      }
+      if (a.denominacion > b.denominacion) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
   async filtrar() {
     switch (this.filtro) {
-      case "ninguno":
+      case 'ninguno':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
               this.articulosBusqueda = this.articulosManufacturados;
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { rubroArticulo: string; }) => {
-                return obj.rubroArticulo == this.filtroRubro;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: { denominacion: string }) => {
+                  return obj.denominacion == this.filtroRubro;
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase())
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: { denominacion: string }) => {
+                  return obj.denominacion
+                    .toLowerCase()
+                    .includes(this.busqueda.toLowerCase());
+                }
+              );
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; rubroArticulo: string; }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroArticulo == this.filtroRubro;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  denominacion: string;
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroArticuloManufacturado.denominacion ==
+                      this.filtroRubro
+                  );
+                }
+              );
             }
             break;
         }
         break;
-      case "vigencia":
+      case 'vigencia':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { rubroArticulo: string; estado: boolean }) => {
-                return obj.estado;
-              })
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return obj.estado;
+                }
+              );
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { rubroArticulo: string; estado: boolean }) => {
-                return obj.rubroArticulo == this.filtroRubro && obj.estado;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.rubroArticuloManufacturado.denominacion ==
+                      this.filtroRubro && obj.estado
+                  );
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.estado
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: { denominacion: string; estado: boolean }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) && obj.estado
+                  );
+                }
+              );
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; rubroArticulo: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroArticulo == this.filtroRubro && obj.estado;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  denominacion: string;
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroArticuloManufacturado.denominacion ==
+                      this.filtroRubro &&
+                    obj.estado
+                  );
+                }
+              );
             }
             break;
         }
         break;
-      case "no-vigencia":
+      case 'no-vigencia':
         switch (this.busqueda) {
-          case "" || null:
-            if (this.filtroRubro == "ninguno") {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { rubroArticulo: string; estado: boolean }) => {
-                return !obj.estado;
-              })
+          case '' || null:
+            if (this.filtroRubro == 'ninguno') {
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return !obj.estado;
+                }
+              );
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { rubroArticulo: string; estado: boolean }) => {
-                return obj.rubroArticulo == this.filtroRubro && obj.estado;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.rubroArticuloManufacturado.denominacion ==
+                      this.filtroRubro && obj.estado
+                  );
+                }
+              );
             }
             break;
 
           default:
-            if (this.filtroRubro == "ninguno") {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && !obj.estado
-              })
+            if (this.filtroRubro == 'ninguno') {
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: { denominacion: string; estado: boolean }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) && !obj.estado
+                  );
+                }
+              );
             } else {
-              this.articulosBusqueda = this.articulosManufacturados.filter((obj: { nombre: string; rubroArticulo: string; estado: boolean }) => {
-                return obj.nombre.toLowerCase().includes(this.busqueda.toLowerCase()) && obj.rubroArticulo == this.filtroRubro && !obj.estado;
-              })
+              this.articulosBusqueda = this.articulosManufacturados.filter(
+                (obj: {
+                  denominacion: string;
+                  rubroArticuloManufacturado: RubroArticuloManufacturado;
+                  estado: boolean;
+                }) => {
+                  return (
+                    obj.denominacion
+                      .toLowerCase()
+                      .includes(this.busqueda.toLowerCase()) &&
+                    obj.rubroArticuloManufacturado.denominacion ==
+                      this.filtroRubro &&
+                    !obj.estado
+                  );
+                }
+              );
             }
             break;
         }
@@ -133,7 +227,8 @@ export class GrillaArticulosManufacturadosComponent implements OnInit {
   actualizarVigencia(id: number, estado: boolean) {
     this.spinner.show();
     let url =
-      'http://localhost:3000/api/articulos-manufacturados/modificar-estado/' + id;
+      'http://localhost:3000/api/articulos-manufacturados/modificar-estado/' +
+      id;
 
     this.http
       .put(url, {

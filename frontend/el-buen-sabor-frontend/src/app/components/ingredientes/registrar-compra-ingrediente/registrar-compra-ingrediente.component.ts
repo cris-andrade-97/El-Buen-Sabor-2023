@@ -52,6 +52,11 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
     );
   }
 
+  async actualizaCosto() {
+    this.articuloInsumo.precioCostoXUnidad =
+      this.costoCompra / this.cantidadComprada;
+  }
+
   async getArticulosInsumos() {
     this.articulosInsumo = await this.servicioDelivery.get('articuloInsumo');
     this.articulosInsumo.sort((a, b) => {

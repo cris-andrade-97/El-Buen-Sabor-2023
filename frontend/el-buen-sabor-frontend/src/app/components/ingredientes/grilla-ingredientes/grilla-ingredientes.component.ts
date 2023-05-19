@@ -56,17 +56,6 @@ export class GrillaIngredientesComponent implements OnInit {
     });
   }
 
-  // async obtenerRubros() {
-  //   this.http
-  //     .get('http://localhost:3000/api/rubro-ingredientes/listar')
-  //     .subscribe((response: any) => {
-  //       for (let i = 0; i < response.length; i++) {
-  //         this.auxiliar.push(response[i]['nombre']);
-  //       }
-  //       this.listaRubros = this.auxiliar.sort((a, b) => a.localeCompare(b));
-  //     });
-  // }
-
   async filtrar() {
     switch (this.filtro) {
       case 'ninguno':
@@ -213,18 +202,6 @@ export class GrillaIngredientesComponent implements OnInit {
         break;
     }
   }
-
-  // async llenarLista() {
-  //   let url = 'http://localhost:3000/api/ingredientes/listar';
-
-  //   this.http.get(url).subscribe((response: any) => {
-  //     this.articuloInsumo = response.sort(
-  //       (a: { nombre: string }, b: { nombre: any }) =>
-  //         a.nombre.localeCompare(b.nombre)
-  //     );
-  //     this.ingredientesBusqueda = this.articuloInsumo;
-  //   });
-  // }
 
   actualizarVigencia(id: number, estado: boolean) {
     this.spinner.show();

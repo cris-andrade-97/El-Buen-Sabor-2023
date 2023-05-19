@@ -21,19 +21,19 @@
         </div>
         <div>
             <label>Filtros de búsqueda</label>
-            <br>           
+            <br>
             <select [(ngModel)]="filtro" (ngModelChange)="filtrar()">
                 <option value="ninguno" selected>--Seleccione un Filtro--</option>
-                <option value="vigencia">En vigencia</option>                
-                <option value="no-vigencia">Sin vigencia</option>                              
+                <option value="vigencia">En vigencia</option>
+                <option value="no-vigencia">Sin vigencia</option>
             </select>
         </div>
         <div>
             <label>Filtrar por rubro</label>
-            <br>           
+            <br>
             <select [(ngModel)]="filtroRubro" (ngModelChange)="filtrar()">
-                <option value="ninguno" selected>--Seleccione un Filtro--</option>                
-                <option *ngFor="let r of listaRubros">{{r}}</option>                
+                <option value="ninguno" selected>--Seleccione un Filtro--</option>
+                <option *ngFor="let r of rubroArticuloManufacturado">{{r.denominacion}}</option>
             </select>
         </div>
     </div>
@@ -53,7 +53,7 @@
         <tbody>
             <tr *ngFor="let articulo of articulosBusqueda">
                 <td>
-                    {{articulo.nombre}}
+                    {{articulo.denominacion}}
                 </td>
                 <td>
                     <div *ngIf="(articulo.imagen).indexOf('http')>=0">
@@ -68,7 +68,7 @@
                     ${{articulo.precioVenta}}
                 </td>
                 <td>
-                    {{articulo.rubroArticulo}}
+                    {{articulo.rubroArticuloManufacturado.denominacion}}
                 </td>
                 <td *ngIf="articulo.estado">
                     <p>&#9989;</p>
@@ -94,7 +94,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>    
+    </table>
     <label *ngIf="articulosBusqueda.length == 0">
         No se encontraron resultados.
     </label>

@@ -10,31 +10,31 @@
             <div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Nombre del Articulo</label>
-                    <input type="text" [(ngModel)]="nombre" name="myInput" class="form-control"
+                    <input type="text" [(ngModel)]="articuloManufacturado.denominacion" name="myInput" class="form-control"
                         id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Imagen</label>
-                    <input type="text" name="myInput" [(ngModel)]="imagen" class="form-control"
+                    <input type="text" name="myInput" [(ngModel)]="articuloManufacturado.imagen" class="form-control"
                         id="exampleInputEmail1" />
                 </div>
                 <br>
                 <label for="exampleInputEmail1" class="form-label">Rubro de Articulo</label>
-                <select class="form-select" [(ngModel)]="rubroArticulo">
+                <select class="form-select" [(ngModel)]="articuloManufacturado.rubroArticuloManufacturado">
                     <option [ngValue]="null" selected>-- Seleccione una opción --</option>
-                    <option *ngFor="let r of listaRubros">{{r}}</option>
+                    <option *ngFor="let r of rubroArticuloManufacturado" [ngValue]="r">{{r.denominacion}}</option>
                 </select>
                 <br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="estado" class="form-check-input" name="myInput"
+                    <input type="checkbox" [(ngModel)]="articuloManufacturado.estado" class="form-check-input" name="myInput"
                         id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Vigente</label>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Precio de Venta</label>
-                    $<input type="number" name="myInput" [(ngModel)]="precioVenta" class="form-control"
+                    $<input type="number" name="myInput" [(ngModel)]="articuloManufacturado.precioVenta" class="form-control"
                         id="exampleInputEmail1" />
                 </div>
                 <br>
@@ -55,19 +55,19 @@
                 <th scope="col" style="width:13%">Opciones</th>
             </tr>
         </thead>
-        <tbody [(ngModel)]="articuloManufacturadoDetalle">
-            <tr *ngFor="let ingrediente of articuloManufacturadoDetalle">
+        <tbody >
+            <tr *ngFor="let detalle of articuloManufacturado.articulosManufacturadoDetalle">
                 <td>
-                    {{ingrediente.nombre}}
+                    {{detalle.articuloInsumo.denominacion}}
                 </td>
                 <td>
-                    {{ingrediente.cantidad}}
+                    {{detalle.cantidad}}
                 </td>
                 <td>
-                    {{ingrediente.unidadDeMedida}}
+                    {{detalle.articuloInsumo.unidadMedida.unidad}}
                 </td>
                 <td>
-                    <button class="btn btn-outline-success" (click)="eliminarIngrediente(ingrediente.id)">
+                    <button class="btn btn-outline-success" (click)="eliminarIngrediente(detalle.id)">
                         Eliminar
                     </button>
                 </td>
@@ -76,22 +76,22 @@
         <tbody>
             <tr>
                 <td>
-                    <select class="form-select" [(ngModel)]="ingrediente">
+                    <select class="form-select" [(ngModel)]="nuevoIngrediente.articuloInsumo">
                         <option [ngValue]="null" selected>-- Seleccione una opción --</option>
                         <option *ngFor="let ingrediente of listaIngredientes" [ngValue]="ingrediente">
-                            {{ingrediente.nombre}}
+                            {{ingrediente.denominacion}}
                         </option>
                     </select>
                 </td>
                 <td>
-                    <input type="number" [(ngModel)]="cantidad" name="myInput" class="form-control"
+                    <input type="number" [(ngModel)]="nuevoIngrediente.cantidad" name="myInput" class="form-control"
                         id="exampleInputEmail1" />
                 </td>
                 <td>
-                    {{ingrediente.unidadMedida}}
+                    {{nuevoIngrediente.articuloInsumo.unidadMedida.unidad}}
                 </td>
                 <td>
-                    <button class="btn btn-outline-success" (click)="agregarIngrediente(ingrediente.id)">
+                    <button class="btn btn-outline-success" (click)="agregarIngrediente()">
                         Agregar Ingrediente
                     </button>
                 </td>
