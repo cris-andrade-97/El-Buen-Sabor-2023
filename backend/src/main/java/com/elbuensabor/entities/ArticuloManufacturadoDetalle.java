@@ -16,9 +16,9 @@ public class ArticuloManufacturadoDetalle extends Base{
     @Column
     private Double cantidad;
 
-    @ManyToOne
-    @JoinColumn(name = "unidad_medida_id")
-    private UnidadMedida unidadMedida;
+    //@ManyToOne
+    //@JoinColumn(name = "unidad_medida_id")
+   // private UnidadMedida unidadMedida;
 
 
     @ManyToOne

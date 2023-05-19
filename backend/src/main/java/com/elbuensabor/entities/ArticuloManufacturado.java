@@ -1,5 +1,6 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +40,7 @@ public class ArticuloManufacturado extends Base {
     @OneToMany(mappedBy = "articuloManufacturado")
     private List<DetallePedido> detallesPedido = new ArrayList<>();
 
+    @JsonIgnoreProperties("articulosManufacturados")
     @ManyToOne
     @JoinColumn(name = "rubro_articulo_manufacturado_id")
     private RubroArticuloManufacturado rubroArticuloManufacturado;

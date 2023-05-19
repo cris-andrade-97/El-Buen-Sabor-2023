@@ -1,7 +1,6 @@
 package com.elbuensabor.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,13 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ArticuloInsumo extends Base {
     @Column
     private String denominacion;
 
-    @Column
-    private Double precioCompra;
 
     @Column
     private Double precioVenta;
@@ -39,6 +36,9 @@ public class ArticuloInsumo extends Base {
 
     @Column
     private Boolean estado;
+
+    @Column
+    private Double precioCostoXUnidad;
 
     @JsonIgnoreProperties("articulosInsumo")
     @ManyToOne

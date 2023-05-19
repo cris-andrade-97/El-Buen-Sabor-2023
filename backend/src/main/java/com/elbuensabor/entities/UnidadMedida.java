@@ -28,7 +28,7 @@ public class UnidadMedida extends Base {
     @OneToMany(mappedBy = "unidadMedida")
     private List<ArticuloInsumo> articulosInsumo = new ArrayList<>();
 
-    @OneToMany(mappedBy = "unidadMedida")
-    private List<ArticuloManufacturadoDetalle> articulosManufacturadosDetalle = new ArrayList<>();
+  //  @OneToMany(mappedBy = "unidadMedida")
+   // private List<ArticuloManufacturadoDetalle> articulosManufacturadosDetalle = new ArrayList<>();
 
 }
