@@ -36,6 +36,7 @@ import { CartService } from './services/cart-service.service';
 import { CartComponent } from './components/cart-component/cart-component.component';
 import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
 import { DeliveryService } from './services/delivery.service';
+import { GrillaPedidosComponent } from './components/grilla-pedidos/grilla-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DeliveryService } from './services/delivery.service';
     DetalleArticuloManufacturadoComponent,
     CartComponent,
     ControlStockIngredientesComponent,
+    GrillaPedidosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,78 @@
+<div class="container">
+    <ngx-spinner type="ball-scale-multiple">
+        <h1>Cargando...</h1>
+    </ngx-spinner>
+    <br>
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-auto">
+            <h1>Rubros de Ingredientes</h1>
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a href="/formulario-rubro-ingredientes/nuevoRubro">
+                <button type="button" class="btn btn-outline-primary">Agregar nuevo rubro</button>
+            </a>
+        </div>
+        <!--<div>
+            <input type="text" [(ngModel)]="busqueda" (ngModelChange)="filtrar()" class="form-control"
+                aria-describedby="Buscardor" placeholder="Buscar Rubro...">
+        </div>-->
+        <div>
+            <label>Filtros de búsqueda</label>
+            <br>
+            <!--<select [(ngModel)]="filtro" (ngModelChange)="filtrar()">
+                <option value="ninguno" selected>--Seleccione un Filtro--</option>
+                <option value="vigencia">En Vigencia</option>
+                <option value="no-vigencia">Sin Vigencia</option>
+                <option value="venta">A la venta</option>
+                <option value="no-venta">No a la venta</option>
+            </select>-->
+        </div>
+    </div>
+    <br>
+    <table class="table table-striped table-light">
+        <thead>
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Tipo de envío</th>
+                <th scope="col">Total</th>
+                <th scope="col">Estado Actual</th>
+                <th scope="col">Ver Detalles</th>
+                <th scope="col">Confirmar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--<tr *ngFor="let rubro of busquedaRubro">-->
+            <tr *ngFor="let pedido of grillaPedidosTemporal['pedidos']">
+                <td>
+                    {{pedido.id}}
+                </td>
+                <td>
+                    {{pedido.usuario}}
+                </td>
+                <td>
+                    {{pedido.tipoEnvio}}
+                </td>
+                <td>
+                    ${{pedido.total}}
+                </td>
+                <td>
+                    {{pedido.estado}}
+                </td>
+                <td>
+                    <a href="" class="btn btn-primary">Ver detalle de pedido</a>
+                    <!---<button *ngIf="rubro.estado" class="btn btn-outline-danger"
+                        (click)="actualizarVigencia(rubro.id, false)">
+                        Dar de Baja
+                    </button>-->
+                </td>
+                <td>
+                    <a href="" class="btn btn-success">Confirmar Pedido</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -17,6 +17,7 @@ import { RegistrarCompraIngredienteComponent } from './components/ingredientes/r
 import { DetalleArticuloManufacturadoComponent } from './components/articulos-manufacturados/detalle-articulo-manufacturado/detalle-articulo-manufacturado.component';
 import { CartComponent } from './components/cart-component/cart-component.component';
 import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
+import { GrillaPedidosComponent } from './components/grilla-pedidos/grilla-pedidos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'control-stock-ingredientes',
     component: ControlStockIngredientesComponent
+  },
+  {
+    path: 'grilla-pedidos',
+    component: GrillaPedidosComponent
   }
 ];
 
