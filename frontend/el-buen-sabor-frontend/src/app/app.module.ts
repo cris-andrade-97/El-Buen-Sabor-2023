@@ -36,7 +36,8 @@ import { CartService } from './services/cart-service.service';
 import { CartComponent } from './components/cart-component/cart-component.component';
 import { ControlStockIngredientesComponent } from './components/ingredientes/control-stock-ingredientes/control-stock-ingredientes.component';
 import { DeliveryService } from './services/delivery.service';
-import { GrillaPedidosComponent } from './components/grilla-pedidos/grilla-pedidos.component';
+import { GrillaPedidosComponent } from './components/pedidos/grilla-pedidos/grilla-pedidos.component';
+import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { GrillaPedidosComponent } from './components/grilla-pedidos/grilla-pedid
     CartComponent,
     ControlStockIngredientesComponent,
     GrillaPedidosComponent,
+    DetallesPedidoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,60 @@
+<div class="container">
+    <ngx-spinner type="ball-scale-multiple">
+        <h1>Cargando...</h1>
+    </ngx-spinner>
+    <br>
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-auto">
+            <h1>Detalles Pedido</h1>
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-between">
+        <a href="/grilla-pedidos" class="btn btn-outline-primary">Volver a Pedidos</a>
+        <!--<div>
+            <input type="text" [(ngModel)]="busqueda" (ngModelChange)="filtrar()" class="form-control"
+                aria-describedby="Buscardor" placeholder="Buscar Rubro...">
+        </div>-->
+        <div>
+            <!--<label>Filtros de búsqueda</label>
+            <br>
+            <select [(ngModel)]="filtro" (ngModelChange)="filtrar()">
+                <option value="ninguno" selected>--Seleccione un Filtro--</option>
+                <option value="vigencia">En Vigencia</option>
+                <option value="no-vigencia">Sin Vigencia</option>
+                <option value="venta">A la venta</option>
+                <option value="no-venta">No a la venta</option>
+            </select>-->
+        </div>
+    </div>
+       
+    <br>
+    <table class="table table-striped table-light">
+        <thead>
+            <tr>
+                <th scope="col">Nombre Plato</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Lista Ingredientes</th>                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detalles of detalles_pedido">
+                <td>
+                    {{detalles['producto'].nombre}}
+                </td>
+                <td>
+                    {{detalles.quantity}}
+                </td>
+                <td>
+                    <div *ngFor="let ingredientes of detalles['producto']['articuloManufacturadoDetalle']">
+                        <ul>
+                            <li>
+                                {{ingredientes.nombre}}, {{ingredientes.cantidad}} {{ingredientes.unidadDeMedida}}
+                            </li>
+                        </ul>
+                    </div>
+                </td>                
+            </tr>
+        </tbody>
+    </table>
+</div>
