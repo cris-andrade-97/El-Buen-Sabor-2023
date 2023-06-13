@@ -43,7 +43,8 @@ confirmación de pago.
 
 ### Backend
 1. Use el JDK de Java en su versión 17
-2. Ejecute ElbuensaborApplication.java desde su IDE de preferencia. Se recomienda el uso de IntelliJ.
-3. Si presenta problemas con Gradle al intentar ejecutar, cambie manualmente el Gradle JVM a Java 17 como lo indica la siguiente imagen:
+2. Abra el proyecto llamado backend
+3. Ejecute ElbuensaborApplication.java desde su IDE de preferencia. Se recomienda el uso de IntelliJ.
+4. Si presenta problemas con Gradle al intentar ejecutar, cambie manualmente el Gradle JVM a Java 17 como lo indica la siguiente imagen:
 
 ![Settings Gradle](https://drive.google.com/uc?export=view&id=1TloozOAWpTn4nlgD4eQSRc5lcMsgyDBX)
