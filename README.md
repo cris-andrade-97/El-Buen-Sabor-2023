@@ -27,6 +27,19 @@ confirmación de pago.
   Todo nuestro maquetado fue realizado en el sitio web Figma. Click [aquí](https://www.figma.com/file/OzT2PpGUtaMjaLf7ZOQtxa/El-Buen-Sabor?node-id=20%3A659&t=DVCg058lPWQwdfK8-1) para ver el proyecto. Haga zoom en la página/maqueta que desee ver con detenimiento. Consejo: Ayúdese usando el Ctrl + rueda del mouse hacia adelante para más zoom o hacia atrás para menos zoom.
   
 
+## Tecnologías usadas
+<p align="center">
+  <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/>
+  <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="angular" width="40" height="40"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="ts" width="40" height="40"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>    
+    <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/>
+   <img src="https://i.blogs.es/53044d/java/1366_521.jpg" alt="java" width="105" height="40"/>
+  <img src="https://gradle.com/wp-content/themes/fuel/assets/img/branding/gradle-elephant-icon-gradient.svg" alt="gradle" width="40" height="40"/>   
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/>
+</p>
+
 ## Obtención del proyecto
 
 1. Ubíquese en la carpeta que desee con la terminal
