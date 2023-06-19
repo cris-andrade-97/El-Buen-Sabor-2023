@@ -99,17 +99,13 @@ export class GrillaRubroProductosComponent implements OnInit {
     }
   }
 
-  actualizarVigencia(id: number, estado: boolean) {
+  async actualizarVigencia(rubro: RubroArticuloManufacturado, estado: boolean) {
     this.spinner.show();
-    let url =
-      'http://localhost:3000/api/rubro-articulos-manufacturados/modificar-estado-rubro/' +
-      id;
+    //cambio estado
+    rubro.estado = estado;
 
-    this.http
-      .put(url, {
-        estado: estado,
-      })
-      .subscribe((response) => console.log(response));
+    //Guardo el artículo
+    await this.servicioDelivery.save(rubro, 'rubroArticuloManufacturado');
 
     window.location.reload();
   }

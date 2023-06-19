@@ -2,7 +2,7 @@
     <br>
     <div class="row animated fadeIn d-flex justify-content-center">
         <div class="shadow p-3 mb-5 bg-white rounded col-9">
-            <h1>{{articuloManufacturado.nombre | uppercase}}</h1>
+            <h1>{{articuloManufacturado.denominacion | uppercase}}</h1>
             <hr>
             <div class="row">
                 <div class="col-md-4" style="text-align: center">
@@ -18,16 +18,17 @@
                         <p>
                             <b>Ingredientes:</b>
                             <li
-                                *ngFor="let detalle of articuloManufacturado.articuloManufacturadoDetalle;let i = index">
-                                {{detalle.nombre}}
+                                *ngFor="let detalle of articuloManufacturado.articuloManufacturadoDetalles;let i = index">
+                                {{detalle.articuloInsumo.denominacion}}
                             </li>
                         </p>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-outline-primary" ><i class="fas fa-shopping-cart"></i>
-                        Agregar al
-                        carrito</a>
+                        <a (click)="agregarAlCarrito()" class="btn btn-outline-primary"
+                            style="display: block; margin-bottom: 10px;">
+                            <i class="fas fa-shopping-cart"></i> Agregar al carrito
+                        </a>
                     </div>
                 </div>
             </div>

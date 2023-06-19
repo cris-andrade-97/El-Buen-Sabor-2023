@@ -12,10 +12,10 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-row">
             <a href="/formulario-ingredientes/nuevoIngrediente">
-                <button type="button" class="btn btn-outline-primary">Agregar Nuevo Insumo</button>
+                <button type="button" class="btn btn-outline-dark">Agregar Nuevo Insumo</button>
             </a>
             <a href="/registrar-compra-ingrediente">
-                <button type="button" class="btn btn-outline-primary">Registrar Compra</button>
+                <button type="button" class="btn btn-outline-dark">Registrar Compra</button>
             </a>
         </div>
         <div>
@@ -96,11 +96,11 @@
                 </td>
                 <td>
                     <button *ngIf="!ingrediente.estado" class="btn btn-outline-success"
-                        (click)="actualizarVigencia(ingrediente.id, true)">
+                        (click)="actualizarVigencia(ingrediente, true)">
                         Dar de Alta
                     </button>
                     <button *ngIf="ingrediente.estado" class="btn btn-outline-danger"
-                        (click)="actualizarVigencia(ingrediente.id, false)">
+                        (click)="actualizarVigencia(ingrediente, false)">
                         Dar de Baja
                     </button>
                 </td>

@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-between">
         <div>
             <a href="/formulario-rubro-productos/nuevoRubro">
-                <button type="button" class="btn btn-outline-primary">Agregar nuevo rubro</button>
+                <button type="button" class="btn btn-outline-dark">Agregar nuevo rubro</button>
             </a>
         </div>
         <div class="col-sm-4">
@@ -57,11 +57,11 @@
                 </td>
                 <td>
                     <button *ngIf="!rubro.estado" class="btn btn-outline-success"
-                        (click)="actualizarVigencia(rubro.id,true)">
+                        (click)="actualizarVigencia(rubro,true)">
                         Dar de Alta
                     </button>
                     <button *ngIf="rubro.estado" class="btn btn-outline-danger"
-                        (click)="actualizarVigencia(rubro.id, false)">
+                        (click)="actualizarVigencia(rubro, false)">
                         Dar de Baja
                     </button>
                 </td>

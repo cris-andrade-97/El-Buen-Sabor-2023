@@ -224,17 +224,13 @@ export class GrillaArticulosManufacturadosComponent implements OnInit {
     }
   }
 
-  actualizarVigencia(id: number, estado: boolean) {
+  async actualizarVigencia(articulo: ArticuloManufacturado, estado: boolean) {
     this.spinner.show();
-    let url =
-      'http://localhost:3000/api/articulos-manufacturados/modificar-estado/' +
-      id;
+    //cambio estado
+    articulo.estado = estado;
 
-    this.http
-      .put(url, {
-        estado: estado,
-      })
-      .subscribe((response) => console.log(response));
+    //Guardo el artículo
+    await this.servicioDelivery.save(articulo, 'articuloManufacturado');
 
     window.location.reload();
   }

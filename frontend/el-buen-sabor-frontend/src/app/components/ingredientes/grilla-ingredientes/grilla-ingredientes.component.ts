@@ -203,15 +203,13 @@ export class GrillaIngredientesComponent implements OnInit {
     }
   }
 
-  actualizarVigencia(id: number, estado: boolean) {
+  async actualizarVigencia(ingrediente: ArticuloInsumo, estado: boolean) {
     this.spinner.show();
-    let url = 'http://localhost:3000/api/ingredientes/modificar-estado/' + id;
+    //cambio estado
+    ingrediente.estado = estado;
 
-    this.http
-      .put(url, {
-        estado: estado,
-      })
-      .subscribe((response) => console.log(response));
+    //Guardo el artículo
+    await this.servicioDelivery.save(ingrediente, 'articuloInsumo');
 
     window.location.reload();
   }

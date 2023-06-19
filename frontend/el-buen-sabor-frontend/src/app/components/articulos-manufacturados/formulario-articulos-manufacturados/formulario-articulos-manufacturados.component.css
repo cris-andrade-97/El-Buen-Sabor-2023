@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
-  
+
   position: relative;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.07),
     0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -181,3 +181,57 @@
   font: 500 16px/16px "Inter", sans-serif;
   position: relative;
 }
+/* Modificaciones para pantallas pequeñas (menos de 768px) */
+@media screen and (max-width: 767px) {
+  .form-11 {
+    flex-direction: column;
+  }
+
+  .wtmpz-tg-j-eb-u {
+    height: auto;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  .register-form {
+    padding: 24px 48px 24px 48px;
+  }
+
+  .get-s-started {
+    width: auto;
+  }
+
+  .button2 {
+    width: 100%;
+  }
+}
+
+/* Modificaciones para pantallas medianas (entre 768px y 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .register-form {
+    padding: 24px 48px 24px 48px;
+  }
+
+  .get-s-started {
+    width: auto;
+  }
+
+  .button2 {
+    width: auto;
+  }
+}
+
+/* Modificaciones para pantallas grandes (mayores de 1024px) */
+@media screen and (min-width: 1025px) {
+  .register-form {
+    padding: 48px 96px 48px 96px;
+  }
+
+  .get-s-started {
+    width: auto;
+  }
+
+  .button2 {
+    width: auto;
+  }
+}
+

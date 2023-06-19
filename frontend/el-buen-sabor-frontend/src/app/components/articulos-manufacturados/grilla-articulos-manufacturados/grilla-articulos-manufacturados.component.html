@@ -12,7 +12,7 @@
     <div class="d-flex justify-content-between">
         <div>
             <a href="/formulario-articulos-manufacturados/nuevoArticulo">
-                <button type="button" class="btn btn-outline-primary">Agregar Nuevo Articulo Manufacturado</button>
+                <button type="button" class="btn btn-outline-dark">Agregar Nuevo Articulo Manufacturado</button>
             </a>
         </div>
         <div class="col-sm-4">
@@ -84,11 +84,11 @@
                 </td>
                 <td>
                     <button *ngIf="!articulo.estado" class="btn btn-outline-success"
-                        (click)="actualizarVigencia(articulo.id,true)">
+                        (click)="actualizarVigencia(articulo,true)">
                         Dar de Alta
                     </button>
                     <button *ngIf="articulo.estado" class="btn btn-outline-danger"
-                        (click)="actualizarVigencia(articulo.id, false)">
+                        (click)="actualizarVigencia(articulo, false)">
                         Dar de Baja
                     </button>
                 </td>

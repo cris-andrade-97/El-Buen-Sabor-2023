@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import axios from 'axios';
+import { ArticuloManufacturado } from 'src/app/entidades/ArticuloManufacturado';
 import { CartService } from 'src/app/services/cart-service.service';
+import { DeliveryService } from 'src/app/services/delivery.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,12 +15,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  articulosManufacturados: any[] = [];
+  articulosManufacturados: ArticuloManufacturado[] = [];
   pizzas: any[] = [];
   hamburguesas: any[] = [];
   lomosArray: any[] = [];
   user: any;
-  termino: string = "";
+  termino: string = '';
 
   constructor(
     public auth: AuthService,
@@ -26,11 +28,11 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private el: ElementRef,
     private http: HttpClient,
-    private carritoService: CartService
-  ) { }
+    private carritoService: CartService,
+    private servicioDelivery: DeliveryService
+  ) {}
 
   async ngOnInit(): Promise<void> {
-
     const urlParams = new URLSearchParams(window.location.search);
     this.termino = urlParams.get('busqueda')?.toString()!;
 
@@ -71,32 +73,32 @@ export class InicioComponent implements OnInit {
   }
 
   async llenarLista() {
-    let url = 'http://localhost:3000/api/articulos-manufacturados/listar';
+    //Obtengo los Articulos Manufacturados
+    this.articulosManufacturados = await this.servicioDelivery.get(
+      'articuloManufacturado'
+    );
 
-    this.http.get(url).subscribe((response: any) => {
-      if (this.termino) {
-        this.articulosManufacturados = response.filter((obj: { nombre: string; }) => {
-          return obj.nombre.toLowerCase().includes(this.termino.toLowerCase())
-        }
-        );
-      } else {
-        this.articulosManufacturados = response;
-        for (let i = 0; i < this.articulosManufacturados.length; i++) {
-          if (this.articulosManufacturados[i].estado == true) {
-            if (this.articulosManufacturados[i].rubroArticulo == 'Pizzas') {
-              this.pizzas.push(this.articulosManufacturados[i]);
-            } else if (
-              this.articulosManufacturados[i].rubroArticulo == 'Hamburguesas'
-            ) {
-              this.hamburguesas.push(this.articulosManufacturados[i]);
-            } else if (this.articulosManufacturados[i].rubroArticulo == 'Lomos') {
-              this.lomosArray.push(this.articulosManufacturados[i]);
-            }
-          }
+    //Ordeno por Rubro
+    for (let i = 0; i < this.articulosManufacturados.length; i++) {
+      if (this.articulosManufacturados[i].estado == true) {
+        if (
+          this.articulosManufacturados[i].rubroArticuloManufacturado
+            .denominacion == 'Pizzas'
+        ) {
+          this.pizzas.push(this.articulosManufacturados[i]);
+        } else if (
+          this.articulosManufacturados[i].rubroArticuloManufacturado
+            .denominacion == 'Hamburguesas'
+        ) {
+          this.hamburguesas.push(this.articulosManufacturados[i]);
+        } else if (
+          this.articulosManufacturados[i].rubroArticuloManufacturado
+            .denominacion == 'Lomos'
+        ) {
+          this.lomosArray.push(this.articulosManufacturados[i]);
         }
       }
-    });
-
+    }
   }
 
   // async addRolesToUser(userId: string, roles: string) {

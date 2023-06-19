@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row animated fadeIn">
-
+        <div class="d-flex flex-row">
+            <button class="btn btn-outline-dark" *ngIf="articulos.length > 0" (click)="clearCart()">Vaciar
+                carrito</button>
+        </div>
         <div class="col-md-12">
             <div class="table-responsive">
                 <table width="100%" class="table table-sm table-hover">
@@ -17,7 +20,7 @@
 
                     <tbody>
                         <tr *ngFor="let articulo of articulos; let i = index">
-                            <td>{{ articulo.nombre }}</td>
+                            <td>{{ articulo.denominacion }}</td>
                             <td>
                                 <img *ngIf="(articulo.imagen).indexOf('http')>=0" src={{articulo.imagen}}
                                     class="imagenTabla" alt="..." style="height: 50px;
@@ -29,15 +32,15 @@
                             <td>${{ articulo.precioVenta}}
                             </td>
                             <td class="text-center w120">
-                                <button class="btn btn-outline-secondary" (click)="suma(articulo)"><i
+                                <button class="btn btn-outline-dark" (click)="suma(articulo)"><i
                                         class="fas fa-plus"></i></button>&nbsp;
-                                {{articulo.quantity}} &nbsp;<button class="btn btn-outline-secondary"
+                                {{articulo.quantity}} &nbsp;<button class="btn btn-outline-dark"
                                     (click)="resta(articulo)"><i class="fas fa-minus"></i></button>
                             </td>
                             <td style="text-align: center">${{ articulo.precioVenta * articulo.quantity}}
                             </td>
                             <td class="text-center w120">
-                                <button class="btn btn-outline-secondary" (click)="removeItem(articulo)"><i
+                                <button class="btn btn-outline-dark" (click)="removeItem(articulo)"><i
                                         class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
@@ -46,11 +49,16 @@
                 <div *ngIf="articulos.length === 0">
                     No hay elementos en el carrito.
                 </div>
-                <button class="btn btn-outline-secondary" *ngIf="articulos.length > 0" (click)="clearCart()">Vaciar
-                    carrito</button>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="button" class="btn btn-outline-dark">
+                        <img class="Realizar" src="assets/img/cheque.png" alt="Card image cap">
+                        Realizar Pedido
+                    </button>
+                </div>
                 <div *ngIf="articulos.length > 0" style="text-align:right ;">
                     <h1><b>TOTAL: ${{this.precioFinal}}</b></h1>
                 </div>
+
             </div>
         </div>
     </div>

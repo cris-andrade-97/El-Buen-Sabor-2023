@@ -24,7 +24,7 @@
                     <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <h5 class="card-title">{{articulo.denominacion}}</h5>
                         <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
                             <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
@@ -58,7 +58,7 @@
                     <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <h5 class="card-title">{{articulo.denominacion}}</h5>
                         <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
                             <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
@@ -92,7 +92,7 @@
                     <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
                         class="card-img-top card-img-fixed-height" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{articulo.nombre}}</h5>
+                        <h5 class="card-title">{{articulo.denominacion}}</h5>
                         <p class="card-text">${{articulo.precioVenta}}</p>
                         <div>
                             <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
@@ -123,7 +123,7 @@
             <img *ngIf="(articulo.imagen).indexOf('http')!=0" src={{articulo.imagen}}
                 class="card-img-top card-img-fixed-height" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{articulo.nombre}}</h5>
+                <h5 class="card-title">{{articulo.denominacion}}</h5>
                 <p class="card-text">${{articulo.precioVenta}}</p>
                 <div>
                     <a (click)="agregarAlCarrito(articulo)" class="btn btn-outline-primary"
