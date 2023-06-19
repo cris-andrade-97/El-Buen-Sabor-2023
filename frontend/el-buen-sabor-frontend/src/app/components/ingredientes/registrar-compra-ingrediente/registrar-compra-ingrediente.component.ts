@@ -55,6 +55,9 @@ export class RegistrarCompraIngredienteComponent implements OnInit {
   async actualizaCosto() {
     this.articuloInsumo.precioCostoXUnidad =
       this.costoCompra / this.cantidadComprada;
+    this.articuloInsumo.precioCostoXUnidad = parseFloat(
+      this.articuloInsumo.precioCostoXUnidad.toFixed(2)
+    );
   }
 
   async getArticulosInsumos() {

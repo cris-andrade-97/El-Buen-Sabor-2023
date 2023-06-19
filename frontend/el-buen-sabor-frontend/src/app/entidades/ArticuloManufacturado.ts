@@ -9,11 +9,11 @@ export class ArticuloManufacturado {
   denominacion: string = '';
   precioVenta: number = 0;
   imagen: string = '';
-  estado: boolean = false;
+  estado: boolean = true;
   precioCosto: number = 0;
   detallesPedido: DetallePedido[] = [];
   detallesFactura: DetalleFactura[] = [];
   rubroArticuloManufacturado: RubroArticuloManufacturado =
     new RubroArticuloManufacturado();
-  articulosManufacturadoDetalle: ArticuloManufacturadoDetalle[] = [];
+  articuloManufacturadoDetalles: ArticuloManufacturadoDetalle[] = [];
 }

@@ -34,7 +34,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-articulos-manufacturados.component.css'],
 })
 export class FormularioArticulosManufacturadosComponent implements OnInit {
-  //articuloManufacturado!: any;
   nombre: string = '';
   unidadMedida: string = '';
   rubroArticulo: string = '';
@@ -43,22 +42,12 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   estado: boolean = false;
   esNuevo: boolean = false;
   listaUnidades: string[] = [];
-  //listaIngredientesTotal: ingrediente[] = [];
-  //articuloManufacturado.articulosManufacturadoDetalle: ArticuloManufacturadoDetalle[] = [];
   listaRubros: string[] = [];
   auxiliar!: any;
   cantidad: number = 0;
-  // ingrediente: NewType = {
-  //   id: 0,
-  //   nombre: '',
-  //   stockMinimoInsumo: 0,
-  //   unidadMedida: '',
-  //   cantidadActual: 0,
-  //   rubroIngrediente: '',
-  //   estado: true,
-  // };
   costoTotal: number = 0;
 
+  listaConID: ArticuloManufacturadoDetalle[] = [];
   nuevoIngrediente: ArticuloManufacturadoDetalle =
     new ArticuloManufacturadoDetalle();
   listaIngredientes: ArticuloInsumo[] = [];
@@ -79,14 +68,17 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     await this.getInsumos();
     this.listaIngredientes = this.articulosInsumo;
     await this.getArticuloManufacturado();
-    await this.calcularCostoTotal();
-    await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-    this.auxiliar = null;
+    if (this.articuloManufacturado.articuloManufacturadoDetalles) {
+      await this.calcularCostoTotal();
+      await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
+    }
   }
   async getRubros() {
+    //Obtengo los rubros
     this.rubroArticuloManufacturado = await this.servicioDelivery.get(
       'rubroArticuloManufacturado'
     );
+    //Ordeno alfabeticamente
     this.rubroArticuloManufacturado.sort((a, b) => {
       if (a.denominacion < b.denominacion) {
         return -1;
@@ -99,7 +91,9 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   }
 
   async getInsumos() {
+    //Obtengo los insumos
     this.articulosInsumo = await this.servicioDelivery.get('articuloInsumo');
+    //Ordeno alfabeticamente
     this.articulosInsumo.sort((a, b) => {
       if (a.denominacion < b.denominacion) {
         return -1;
@@ -124,73 +118,6 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     }
   }
 
-  // async obtenerArticulo() {
-  //   this.articuloManufacturado = this.http
-  //     .get(
-  //       'http://localhost:3000/api/articulos-manufacturados/buscar-por-id/' +
-  //         this.id
-  //     )
-  //     .subscribe(async (response) => {
-  //       if (this.id == 'nuevoArticulo') {
-  //         this.esNuevo = true;
-  //         await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-  //       } else {
-  //         this.articuloManufacturado = response;
-  //         this.nombre = this.articuloManufacturado.nombre;
-  //         this.imagen = this.articuloManufacturado.imagen;
-  //         this.precioVenta = this.articuloManufacturado.precioVenta;
-  //         this.rubroArticulo = this.articuloManufacturado.rubroArticulo;
-  //         this.estado = this.articuloManufacturado.estado;
-  //         this.articuloManufacturadoDetalle =
-  //           this.articuloManufacturado.articuloManufacturadoDetalle;
-  //         await this.calcularCostoTotal();
-  //         await this.eliminarIngredientesEnArticuloManufacturadoDetalle();
-  //       }
-  //     });
-  // }
-
-  // async obtenerUnidades() {
-  //   this.http
-  //     .get('http://localhost:3000/api/unidad-de-medida/listar')
-  //     .subscribe((response) => {
-  //       this.auxiliar = response;
-  //       for (let i = 0; i < this.auxiliar.length; i++) {
-  //         this.listaUnidades.push(this.auxiliar[i]['unidad']);
-  //       }
-  //     });
-  // }
-
-  // async obtenerIngredientes() {
-  //   this.http
-  //     .get('http://localhost:3000/api/ingredientes/listar')
-  //     .subscribe((response) => {
-  //       this.auxiliar = response;
-  //       this.listaIngredientesTotal = [];
-  //       for (let i = 0; i < this.auxiliar.length; i++) {
-  //         this.listaIngredientesTotal.push(this.auxiliar[i]);
-  //       }
-  //       this.listaIngredientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
-  //     });
-  // }
-
-  // async eliminarIngredientesEnArticuloManufacturadoDetalle() {
-  //   await this.getInsumos();
-  //   this.listaIngredientes = [];
-  //   this.listaIngredientes = this.articulosInsumo;
-
-  //   for (let i = 0; i < this.articuloManufacturadoDetalle.length; i++) {
-  //     const nombreIngredienteDetalle =
-  //       this.articuloManufacturadoDetalle[i].nombre;
-  //     for (let j = 0; j < this.listaIngredientes.length; j++) {
-  //       const nombreIngredienteLista = this.listaIngredientes[j].nombre;
-  //       if (nombreIngredienteDetalle === nombreIngredienteLista) {
-  //         this.listaIngredientes.splice(j, 1);
-  //         j--;
-  //       }
-  //     }
-  //   }
-  // }
-
   async eliminarIngredientesEnArticuloManufacturadoDetalle() {
     await this.getInsumos();
     this.listaIngredientes = [];
@@ -198,11 +125,11 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
 
     for (
       let i = 0;
-      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i < this.articuloManufacturado.articuloManufacturadoDetalles.length;
       i++
     ) {
       const nombreIngredienteDetalle =
-        this.articuloManufacturado.articulosManufacturadoDetalle[i]
+        this.articuloManufacturado.articuloManufacturadoDetalles[i]
           .articuloInsumo.denominacion;
       for (let j = 0; j < this.listaIngredientes.length; j++) {
         const nombreIngredienteLista = this.listaIngredientes[j].denominacion;
@@ -214,16 +141,16 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     }
   }
 
-  async eliminarIngrediente(id: number) {
+  async eliminarIngrediente(detalle: ArticuloManufacturadoDetalle) {
     for (
       let i = 0;
-      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i < this.articuloManufacturado.articuloManufacturadoDetalles.length;
       i++
     ) {
       if (
-        this.articuloManufacturado.articulosManufacturadoDetalle[i].id == id
+        this.articuloManufacturado.articuloManufacturadoDetalles[i] == detalle
       ) {
-        this.articuloManufacturado.articulosManufacturadoDetalle.splice(i, 1);
+        this.articuloManufacturado.articuloManufacturadoDetalles.splice(i, 1);
       }
     }
     await this.calcularCostoTotal();
@@ -231,15 +158,31 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
   }
 
   async agregarIngrediente() {
+    //Elimino el ArticuloInsumo de la lista que se muestra en el ComboBox
     for (let i = 0; i < this.listaIngredientes.length; i++) {
       if (
         this.listaIngredientes[i].id == this.nuevoIngrediente.articuloInsumo.id
       ) {
         this.listaIngredientes.splice(i, 1);
-        this.articuloManufacturado.articulosManufacturadoDetalle.push(
-          this.nuevoIngrediente
-        );
-        this.nuevoIngrediente = new ArticuloManufacturadoDetalle();
+
+        //Asigno el articulo manufactuardo al nuevo ingrediente
+        if (this.articuloManufacturado.id > 0) {
+          this.nuevoIngrediente.articuloManufacturado.id =
+            this.articuloManufacturado.id;
+        }
+        //Si no tiene detalles lo inicializo, sino hago directamente el push
+        if (!this.articuloManufacturado.articuloManufacturadoDetalles) {
+          this.articuloManufacturado.articuloManufacturadoDetalles = [];
+          this.articuloManufacturado.articuloManufacturadoDetalles.push(
+            this.nuevoIngrediente
+          );
+          this.nuevoIngrediente = new ArticuloManufacturadoDetalle();
+        } else {
+          this.articuloManufacturado.articuloManufacturadoDetalles.push(
+            this.nuevoIngrediente
+          );
+          this.nuevoIngrediente = new ArticuloManufacturadoDetalle();
+        }
       }
     }
     await this.calcularCostoTotal();
@@ -250,12 +193,12 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     this.costoTotal = 0;
     for (
       let i = 0;
-      i < this.articuloManufacturado.articulosManufacturadoDetalle.length;
+      i < this.articuloManufacturado.articuloManufacturadoDetalles.length;
       i++
     ) {
       this.costoTotal +=
-        this.articuloManufacturado.articulosManufacturadoDetalle[i].cantidad *
-        this.articuloManufacturado.articulosManufacturadoDetalle[i]
+        this.articuloManufacturado.articuloManufacturadoDetalles[i].cantidad *
+        this.articuloManufacturado.articuloManufacturadoDetalles[i]
           .articuloInsumo.precioCostoXUnidad;
     }
     this.costoTotal = parseFloat(this.costoTotal.toFixed(2));
@@ -279,19 +222,63 @@ export class FormularioArticulosManufacturadosComponent implements OnInit {
     } else {
       this.articuloManufacturado.precioCosto = this.costoTotal;
       if (this.esNuevo) {
+        //Extraigo detalles
+        let ingredientes: ArticuloManufacturadoDetalle[] =
+          this.articuloManufacturado.articuloManufacturadoDetalles;
+        this.articuloManufacturado.articuloManufacturadoDetalles = [];
+        //Guardo el artículo
         await this.servicioDelivery.save(
           this.articuloManufacturado,
           'articuloManufacturado'
         );
+        //Obtengo el ID Asignado
+        this.articuloManufacturado = await this.servicioDelivery.getMax(
+          'articuloManufacturado'
+        );
+        console.log('el id que se obtiene: ' + this.articuloManufacturado.id);
+
+        //Recorro el array de datalles
+        for (let i = 0; i < ingredientes.length; i++) {
+          //Asigno el id del articuloManufacturado a cada detalle
+          ingredientes[i].articuloManufacturado.id =
+            this.articuloManufacturado.id;
+          console.log('el id que se asigna: ' + this.articuloManufacturado.id);
+          console.log(JSON.stringify(ingredientes[i]));
+
+          //guardo cada detalle
+          await this.servicioDelivery.save(
+            ingredientes[i],
+            'articuloManufacturadoDetalle'
+          );
+        }
         await Swal.fire('Articulo agregado!');
         window.location.replace('/grilla-articulos-manufacturados');
 
         return;
       } else {
+        //Extraigo detalles
+        let ingredientes: ArticuloManufacturadoDetalle[] =
+          this.articuloManufacturado.articuloManufacturadoDetalles;
+        this.articuloManufacturado.articuloManufacturadoDetalles = [];
+        //Guardo el artículo
         await this.servicioDelivery.save(
           this.articuloManufacturado,
           'articuloManufacturado'
         );
+        this.articuloManufacturado.articuloManufacturadoDetalles = ingredientes;
+        //Si no es nuevo, recorro el array de detalles
+        for (
+          let i = 0;
+          i < this.articuloManufacturado.articuloManufacturadoDetalles.length;
+          i++
+        ) {
+          //guardo cada detalle
+          await this.servicioDelivery.save(
+            this.articuloManufacturado.articuloManufacturadoDetalles[i],
+            'articuloManufacturadoDetalle'
+          );
+        }
+
         await Swal.fire('Articulo Actualizado!');
         window.location.replace('/grilla-articulos-manufacturados');
 

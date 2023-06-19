@@ -1,5 +1,6 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,9 +45,11 @@ public class ArticuloInsumo extends Base {
     @ManyToOne
     private UnidadMedida unidadMedida;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "articuloInsumo")
     private List<DetallePedido> detallesPedido = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "articuloInsumo")
     private List<DetalleFactura> detallesFactura = new ArrayList<>();
 
@@ -54,6 +57,7 @@ public class ArticuloInsumo extends Base {
     @ManyToOne
     private RubroInsumo rubroInsumo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "articuloInsumo")
     private List<ArticuloManufacturadoDetalle> articulosManufacturadoDetalle = new ArrayList<>();
 

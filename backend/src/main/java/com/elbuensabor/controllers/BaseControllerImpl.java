@@ -57,4 +57,13 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
     }
+
+    @GetMapping("/max")
+    public ResponseEntity<?> findFirstByOrderByIdDesc() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.findFirstByOrderByIdDesc());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
+        }
+    }
 }

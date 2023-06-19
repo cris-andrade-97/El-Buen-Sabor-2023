@@ -11,6 +11,8 @@ import java.util.List;
 public interface PersonaRepository extends BaseRepository<Persona, Long> {
     List<Persona> findByNombreContainingOrApellidoContaining(String nombre, String apellido);
 
+
+
     //boolean existsByDni(int dni);
 
     @Query(value = "SELECT p FROM Persona p WHERE p.nombre LIKE %:filtro% OR p.apellido LIKE %:filtro%")

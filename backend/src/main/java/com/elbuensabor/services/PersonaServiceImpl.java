@@ -3,6 +3,7 @@ package com.elbuensabor.services;
 import com.elbuensabor.entities.Persona;
 import com.elbuensabor.repositories.BaseRepository;
 import com.elbuensabor.repositories.PersonaRepository;
+import com.elbuensabor.repositories.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ public class PersonaServiceImpl extends BaseServiceImpl<Persona, Long> implement
 
     @Autowired
     private PersonaRepository personaRepository;
+
+
 
     public PersonaServiceImpl(BaseRepository<Persona, Long> baseRepository) {
         super(baseRepository);

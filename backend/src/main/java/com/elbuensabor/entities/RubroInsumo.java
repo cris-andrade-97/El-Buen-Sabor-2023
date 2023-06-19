@@ -1,7 +1,6 @@
 package com.elbuensabor.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +33,7 @@ public class RubroInsumo extends Base {
     private List<RubroInsumo> rubrosHijos = new ArrayList<RubroInsumo>();
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "rubroInsumo", cascade = CascadeType.ALL)
     private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
 

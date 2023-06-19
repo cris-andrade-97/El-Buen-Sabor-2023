@@ -1,5 +1,6 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -25,6 +26,7 @@ public class RubroArticuloManufacturado extends Base {
     @Column
     private Boolean estado;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "rubroArticuloManufacturado")
     private List<ArticuloManufacturado> articulosManufacturados = new ArrayList<ArticuloManufacturado>();
 }

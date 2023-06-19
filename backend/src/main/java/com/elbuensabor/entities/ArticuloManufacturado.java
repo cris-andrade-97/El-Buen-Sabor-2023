@@ -1,6 +1,9 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,12 +34,15 @@ public class ArticuloManufacturado extends Base {
     private Double precioCosto;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado")
     private List<DetalleFactura> detallesFactura = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "articuloManufacturado")
     private List<ArticuloManufacturadoDetalle> articuloManufacturadoDetalles = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado")
     private List<DetallePedido> detallesPedido = new ArrayList<>();
 

@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.ruta = window.location.pathname
-    this.spinner.show();
+    //this.spinner.show();
     this.auth.user$.subscribe(async (user: any) => {
       if (user) {
         this.spinner.hide();

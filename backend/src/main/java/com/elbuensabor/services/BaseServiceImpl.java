@@ -75,4 +75,17 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
             throw new Exception(e.getMessage());
         }
     }
+
+
+
+    @Override
+    @Transactional
+    public E findFirstByOrderByIdDesc() throws Exception {
+        try {
+            E entityOptional = baseRepository.findFirstByOrderByIdDesc();
+            return entityOptional;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

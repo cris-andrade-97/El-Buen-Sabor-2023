@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex justify-content-center">
-        <h2 *ngIf="id=='nuevoIngrediente'">Agregar Nuevo Articulo</h2>
-        <h2 *ngIf="id!='nuevoIngrediente'">Modificar Articulo Existente</h2>
+        <h2 *ngIf="esNuevo">Agregar Nuevo Articulo</h2>
+        <h2 *ngIf="!esNuevo">Modificar Articulo Existente</h2>
     </div>
     <br>
     <div class="form-11">
@@ -10,8 +10,8 @@
             <div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Nombre del Articulo</label>
-                    <input type="text" [(ngModel)]="articuloManufacturado.denominacion" name="myInput" class="form-control"
-                        id="exampleInputEmail1" />
+                    <input type="text" [(ngModel)]="articuloManufacturado.denominacion" name="myInput"
+                        class="form-control" id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="form-group">
@@ -22,20 +22,29 @@
                 <br>
                 <label for="exampleInputEmail1" class="form-label">Rubro de Articulo</label>
                 <select class="form-select" [(ngModel)]="articuloManufacturado.rubroArticuloManufacturado">
-                    <option [ngValue]="null" selected>-- Seleccione una opción --</option>
+                    <option [ngValue]="null">-- Seleccione una opción --</option>
                     <option *ngFor="let r of rubroArticuloManufacturado" [ngValue]="r">{{r.denominacion}}</option>
                 </select>
                 <br>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" [(ngModel)]="articuloManufacturado.estado" class="form-check-input" name="myInput"
-                        id="exampleCheck1">
+                    <input type="checkbox" [(ngModel)]="articuloManufacturado.estado" class="form-check-input"
+                        name="myInput" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Vigente</label>
+                </div>
+                <br>
+                <label for="exampleInputEmail1" class="form-label">Tiempo estimado en cocina</label>
+                <div class="input-group">
+                    <input type="number" name="myInput" [(ngModel)]="articuloManufacturado.tiempoEstimadoCocina"
+                        class="form-control" id="exampleInputEmail1" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">Min</span>
+                    </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Precio de Venta</label>
-                    $<input type="number" name="myInput" [(ngModel)]="articuloManufacturado.precioVenta" class="form-control"
-                        id="exampleInputEmail1" />
+                    $<input type="number" name="myInput" [(ngModel)]="articuloManufacturado.precioVenta"
+                        class="form-control" id="exampleInputEmail1" />
                 </div>
                 <br>
                 <div class="d-grid gap-2">
@@ -55,8 +64,8 @@
                 <th scope="col" style="width:13%">Opciones</th>
             </tr>
         </thead>
-        <tbody >
-            <tr *ngFor="let detalle of articuloManufacturado.articulosManufacturadoDetalle">
+        <tbody>
+            <tr *ngFor="let detalle of articuloManufacturado.articuloManufacturadoDetalles">
                 <td>
                     {{detalle.articuloInsumo.denominacion}}
                 </td>
@@ -67,7 +76,7 @@
                     {{detalle.articuloInsumo.unidadMedida.unidad}}
                 </td>
                 <td>
-                    <button class="btn btn-outline-success" (click)="eliminarIngrediente(detalle.id)">
+                    <button class="btn btn-outline-success" (click)="eliminarIngrediente(detalle)">
                         Eliminar
                     </button>
                 </td>
