@@ -22,7 +22,9 @@
             </div>
             &nbsp;
             <div class="dropdown text-end" ngbDropdown>
-                <a href="/carrito"><i class="fas fa-shopping-cart" style="color: black;font-size: 30px;"></i></a>
+                <a href="/carrito"><i class="fas fa-shopping-cart" style="color: black;font-size: 30px;"></i>
+                    <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">{{largoCarrito}}</span>
+                </a>
                 <button style="border:none; background:#f4f4f4"> <a *ngIf="!(auth.user$ | async) as notUser"
                         class="d-block link-dark text-decoration-none" ngbDropdownToggle>
                         <img src="../../../assets/img/usuario.png" alt="mdo" width="50" height="50"

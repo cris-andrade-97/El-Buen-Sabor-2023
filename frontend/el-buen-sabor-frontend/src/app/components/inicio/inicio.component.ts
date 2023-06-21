@@ -23,19 +23,16 @@ export class InicioComponent implements OnInit {
   termino: string = '';
 
   constructor(
+    private carritoService: CartService,
     public auth: AuthService,
-    private route: ActivatedRoute,
     private router: Router,
     private el: ElementRef,
-    private http: HttpClient,
-    private carritoService: CartService,
     private servicioDelivery: DeliveryService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     const urlParams = new URLSearchParams(window.location.search);
     this.termino = urlParams.get('busqueda')?.toString()!;
-
     this.auth.user$.subscribe(async (user) => {
       if (user) {
         this.user = user;
@@ -61,7 +58,7 @@ export class InicioComponent implements OnInit {
 
   async agregarAlCarrito(producto: any) {
     if (this.user !== null) {
-      this.carritoService.addItem(producto);
+      await this.carritoService.addItem(producto);
       await Swal.fire('Producto agregado!');
     } else {
       await Swal.fire(
