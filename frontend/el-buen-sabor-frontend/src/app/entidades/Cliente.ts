@@ -8,7 +8,11 @@ export class Cliente {
   apellido: string = '';
   telefono: number = 0;
   email: string = '';
-  usuario: Usuario = new Usuario();
+  usuario!: Usuario; // remove the instantiation here
   pedidos: Pedido[] = [];
   domicilios: Domicilio[] = [];
+
+  // constructor(usuario: Usuario) { // pass the needed instance through the constructor
+  //   this.usuario = usuario;
+  // }
 }

@@ -6,6 +6,8 @@ import com.elbuensabor.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implements UsuarioService {
     public UsuarioServiceImpl(BaseRepository<Usuario, Long> baseRepository) {
@@ -14,4 +16,14 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Override
+    public List<Usuario> searchUID(String uid) throws Exception {
+        try {
+            List<Usuario> usuario = usuarioRepository.searchUID(uid);
+            return usuario;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

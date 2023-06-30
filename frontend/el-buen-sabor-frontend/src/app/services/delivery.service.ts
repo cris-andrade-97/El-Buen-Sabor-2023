@@ -60,6 +60,20 @@ export class DeliveryService {
     return await response.json();
   }
 
+  public async searchUID(uid: string): Promise<any> {
+    let urlServer = new URL('http://localhost:9000/api/v1/usuario/searchUID');
+    urlServer.searchParams.append('uid', uid);
+    let response = await fetch(urlServer.toString(), {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      mode: 'cors',
+    });
+    return await response.json();
+  }
+
   public async save(entidad: any, nombreEntidad: string) {
     let urlServer = 'http://localhost:9000/api/v1/' + nombreEntidad;
     let method: string = 'POST';

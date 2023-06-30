@@ -1,3 +1,6 @@
+<ngx-spinner type="ball-scale-multiple">
+    <h1>Cargando...</h1>
+</ngx-spinner>
 <div class="container" *ngIf="!termino">
     <div class="frame-27">
         <a href="inicio#pizzas"><img class="dise-o-sin-t-tulo-5-1" src="../../../assets/img/Pizzas.png" /></a>
@@ -114,7 +117,7 @@
     <br>
     <div class="col-sm-auto">
         <h1>Artículos que contengan '{{termino}}':</h1>
-    </div>    
+    </div>
     <br>
     <div class="bloques">
         <div class="card" style="width: 18rem;" *ngFor="let articulo of articulosManufacturados">

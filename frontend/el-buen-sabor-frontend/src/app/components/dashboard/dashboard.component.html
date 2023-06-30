@@ -21,9 +21,10 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <img [src]="user.picture" alt="" height="50px" class="bd-placeholder-img rounded-circle">
-                <p>{{user.given_name}}</p>
-                <p>{{user.family_name}}</p>
-                <p>{{user.sub}}</p>
+                <p>{{user.given_name}}</p><br>
+                <p>{{user.name}}</p><br>
+                <p>{{user.family_name}}</p><br>
+                <p>{{user.sub}}</p><br>
                 <p>{{user.email}}</p>
                 <p class="lead text-muted">{{user | json}}</p>
             </div>

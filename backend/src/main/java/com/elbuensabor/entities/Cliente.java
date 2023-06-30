@@ -1,5 +1,6 @@
 package com.elbuensabor.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,12 +26,14 @@ public class Cliente extends Base {
     @Column
     private String email;
 
+
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<Pedido>();
+
 
     @OneToMany(mappedBy = "cliente")
     private List<Domicilio> domicilios = new ArrayList<Domicilio>();

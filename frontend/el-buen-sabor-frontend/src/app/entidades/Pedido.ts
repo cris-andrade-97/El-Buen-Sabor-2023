@@ -15,7 +15,7 @@ export class Pedido {
   envio: Envio = new Envio();
   mercadoPagoDatos: MercadoPagoDatos = new MercadoPagoDatos();
   factura: Factura = new Factura();
-  cliente: Cliente = new Cliente();
+  cliente!: Cliente;
   detallesPedido: DetallePedido[] = [];
   domicilio: Domicilio = new Domicilio();
   estado: Estado = new Estado();
